@@ -1,0 +1,103 @@
+# -------------------------
+# Node / TypeScript
+# -------------------------
+node_modules/
+dist/
+build/
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# Package managers
+.pnpm-store/
+.pnpm-debug.log*
+.yarn/
+.yarn-cache/
+.yarnrc.yml
+
+# -------------------------
+# Python / MkDocs
+# -------------------------
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+site/
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------
+# Temporary / generated
+# -------------------------
+tmp/
+temp/
+*.tmp
+
+# -------------------------
+# Local databases
+# -------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# -------------------------
+# Backend uploads / secrets
+# -------------------------
+uploads/
+secrets/
+keys/
+*.pem
+*.key
+
+# -------------------------
+# Optional: test artifacts
+# -------------------------
+playwright-report/
+test-results/
+
+# -------------------------
+# Keep these tracked
+# -------------------------
+!docs/
+!prompts/
+!simulacion/
+!backend/
+!hardware/
+!README.md
+!mkdocs.yml
