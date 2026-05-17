@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import request from 'supertest';
-import patientRoutes from '../../src/routes/patientRoutes';
-import { prisma } from '../../src/prisma/client';
+import patientRoutes from '../../../src/routes/patientRoutes';
+import { prisma } from '../../../src/prisma/client';
 
 const app = express();
 app.use(express.json());

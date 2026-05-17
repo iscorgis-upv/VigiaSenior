@@ -1,14 +1,14 @@
 import { prisma } from '../prisma/client';
 import { DeviceEventBody } from '../types/event';
 
-export async function createDeviceEvent(deviceId: string, event: DeviceEventBody, patientId?: string) {
+export async function createDeviceEvent(deviceId: string, event: DeviceEventBody, patientId: string) {
   return prisma.deviceEvent.create({
     data: {
       deviceId,
       patientId,
       type: event.eventType,
       timestamp: new Date(event.timestamp),
-      payload: event.payload as any,
+      payload: JSON.stringify(event.payload),
     },
   });
 }

@@ -1,14 +1,8 @@
 import { prisma } from '../prisma/client';
 
-export type AlertType =
-  | 'missed_dose'
-  | 'device_offline'
-  | 'low_battery'
-  | 'confirmation_timeout'
-  | 'manual_review';
-
-export type AlertSeverity = 'low' | 'medium' | 'high';
-export type AlertStatus = 'open' | 'acknowledged' | 'resolved' | 'dismissed';
+export type AlertType = string;
+export type AlertSeverity = string;
+export type AlertStatus = string;
 
 export interface AlertListItem {
   id: string;

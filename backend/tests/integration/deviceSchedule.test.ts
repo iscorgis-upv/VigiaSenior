@@ -1,7 +1,7 @@
 import express from 'express';
 import request from 'supertest';
-import deviceRoutes from '../../src/routes/deviceRoutes';
-import { prisma } from '../../src/prisma/client';
+import deviceRoutes from '../../../src/routes/deviceRoutes';
+import { prisma } from '../../../src/prisma/client';
 
 const app = express();
 app.use(express.json());

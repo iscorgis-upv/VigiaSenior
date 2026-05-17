@@ -4,7 +4,7 @@ export type PatientDashboardSessionStatus = 'waiting' | 'opened' | 'confirmed' |
 export type PatientDashboardNextDoseStatus = 'scheduled' | 'due' | 'inProgress';
 export type PatientDashboardTodayDoseStatus = 'taken' | 'missed' | 'pending' | 'late';
 export type PatientDashboardAlertType = 'missedDose' | 'deviceOffline' | 'lowBattery' | 'confirmationTimeout';
-export type PatientDashboardAlertSeverity = 'low' | 'medium' | 'high';
+export type PatientDashboardAlertSeverity = 'low' | 'medium' | 'high' | string;
 
 export interface PatientDashboardPatient {
   id: string;

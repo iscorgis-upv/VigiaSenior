@@ -17,7 +17,7 @@ export async function handleDeviceEvent(deviceId: string, event: DeviceEventBody
     throw new DeviceEventError(`Device not found: ${deviceId}`, 404);
   }
 
-  let patientId = device.patientId ?? undefined;
+  let patientId = device.patientId;
 
   if (event.eventType === 'dose_confirmed') {
     const payload = event.payload as { doseId: string };

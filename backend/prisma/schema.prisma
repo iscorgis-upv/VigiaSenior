@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model Caregiver {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  phone     String
+  patients  Patient[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Patient {
+  id           String         @id @default(cuid())
+  name         String
+  email        String         @unique
+  dateOfBirth  DateTime
+  caregiverId  String
+  caregiver    Caregiver      @relation(fields: [caregiverId], references: [id])
+  devices      Device[]
+  medicationPlans MedicationPlan[]
+  scheduledDoses ScheduledDose[]
+  deviceEvents DeviceEvent[]
+  alerts       Alert[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model Device {
+  id             String         @id @default(cuid())
+  serial         String         @unique
+  name           String
+  boxCount       Int
+  active         Boolean
+  patientId      String
+  patient        Patient        @relation(fields: [patientId], references: [id])
+  medicationPlans MedicationPlan[]
+  scheduledDoses ScheduledDose[]
+  deviceEvents   DeviceEvent[]
+  alerts         Alert[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+model MedicationPlan {
+  id                       String       @id @default(cuid())
+  patientId                String
+  deviceId                 String
+  name                     String
+  description              String
+  confirmationTimeoutSeconds Int
+  slotCount                Int
+  patient                  Patient      @relation(fields: [patientId], references: [id])
+  device                   Device       @relation(fields: [deviceId], references: [id])
+  doseSchedules            DoseSchedule[]
+  createdAt                DateTime     @default(now())
+  updatedAt                DateTime     @updatedAt
+}
+
+model DoseSchedule {
+  id                 String          @id @default(cuid())
+  medicationPlanId   String
+  medicationName     String
+  dosage             String
+  slotNumber         Int
+  scheduledTime      DateTime
+  windowMinutesBefore Int
+  windowMinutesAfter Int
+  requiresConfirmation Boolean
+  medicationPlan     MedicationPlan   @relation(fields: [medicationPlanId], references: [id])
+  scheduledDoses     ScheduledDose[]
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+}
+
+model ScheduledDose {
+  id                  String      @id @default(cuid())
+  doseScheduleId      String
+  deviceId            String
+  patientId           String
+  scheduledDate       DateTime
+  state               String
+  openedAt            DateTime?
+  confirmedAt         DateTime?
+  confirmationDeadline DateTime
+  doseSchedule        DoseSchedule @relation(fields: [doseScheduleId], references: [id])
+  device              Device      @relation(fields: [deviceId], references: [id])
+  patient             Patient     @relation(fields: [patientId], references: [id])
+  alerts              Alert[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+}
+
+model DeviceEvent {
+  id         String           @id @default(cuid())
+  deviceId   String
+  patientId  String
+  type       String
+  timestamp  DateTime
+  payload    String
+  createdAt  DateTime         @default(now())
+  device     Device           @relation(fields: [deviceId], references: [id])
+  patient    Patient          @relation(fields: [patientId], references: [id])
+}
+
+model Alert {
+  id              String       @id @default(cuid())
+  patientId       String
+  deviceId        String
+  scheduledDoseId String?
+  type            String
+  severity        String
+  status          String
+  message         String
+  relatedEventId  String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  patient         Patient      @relation(fields: [patientId], references: [id])
+  device          Device       @relation(fields: [deviceId], references: [id])
+  scheduledDose   ScheduledDose? @relation(fields: [scheduledDoseId], references: [id])
+}

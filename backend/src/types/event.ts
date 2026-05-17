@@ -52,3 +52,5 @@ export interface DeviceEventResponse {
   status: 'accepted';
   receivedAt: string;
 }
+
+export type DeviceEventBody = DeviceEventRequest;
