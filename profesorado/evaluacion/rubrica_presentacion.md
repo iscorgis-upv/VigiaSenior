@@ -1,9 +1,9 @@
-# Rúbrica · Presentación oral
+# Rúbrica de la presentación oral
 
-| Criterio | 1 | 2 | 3 | 4 |
+| Criterio | 1. Inicial | 2. En proceso | 3. Adecuado | 4. Muy adecuado |
 |---|---|---|---|---|
-| Claridad expositiva | Baja | Aceptable | Clara | Muy clara |
-| Recursos visuales | Pobres | Básicos | Adecuados | Muy eficaces |
-| Argumentación | Débil | Parcial | Correcta | Muy sólida |
-| Defensa del proyecto | Insegura | Mejorable | Correcta | Muy convincente |
-| Aplicabilidad por otro docente | Poco clara | Parcial | Bastante clara | Directamente aplicable |
+| Claridad expositiva | Confusa | Irregular | Clara | Muy clara |
+| Dominio del proyecto | Limitado | Parcial | Adecuado | Sólido |
+| Uso de recursos visuales | Escaso | Básico | Adecuado | Muy bien integrado |
+| Justificación curricular | Superficial | Parcial | Correcta | Muy bien argumentada |
+| Defensa técnica | Débil | Mejorable | Correcta | Muy consistente |
