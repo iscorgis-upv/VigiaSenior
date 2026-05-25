@@ -18,12 +18,15 @@ La propuesta parte de un problema real y socialmente significativo: la dificulta
 
 > Este repositorio se ha concebido con una doble finalidad:
 >
-> - como **programación de aula transferible**, de manera que otro docente pueda comprenderla y aplicarla con pocas modificaciones;
-> - como **repositorio técnico del proyecto**, donde se recogen la implementación del backend, los recursos hardware, la simulación, la documentación técnica y los materiales de apoyo.
+> - Como **programación de aula transferible**, de manera que otro docente pueda comprenderla y aplicarla con pocas modificaciones;
+> - Como **repositorio técnico del proyecto**, donde se recogen la implementación del backend, los recursos hardware, la simulación, la documentación técnica y los materiales de apoyo.
 
----
+### Normativa
+Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional, así como la normativa específica del título de **Técnico Superior en Desarrollo de Aplicaciones Web** y la normativa curricular aplicable en la **Comunitat Valenciana**.
 
-## 🎓 Contexto académico
+La normativa completa puede consultarse en [profesorado/03_marco_legal.md](./profesorado/03_marco_legal.md).
+
+### 🎓 Contexto académico
 
 - **Etapa:** Formación Profesional  
 - **Ciclo:** CFGS Desarrollo de Aplicaciones Web (DAW)  
@@ -31,41 +34,16 @@ La propuesta parte de un problema real y socialmente significativo: la dificulta
 - **Metodología principal:** Aprendizaje Basado en Proyectos (ABP)  
 - **Enfoque complementario:** Aprendizaje-Servicio (ApS), al plantear una solución con potencial utilidad social  
 
-Desde el punto de vista curricular, el proyecto permite trabajar especialmente aspectos vinculados con:
+A nivel curricular, el proyecto permite trabajar de forma conjunta contenidos y procedimientos muy vinculados al módulo, como el desarrollo de servicios web, el acceso a bases de datos, la organización de la lógica de negocio y el diseño de una API. Al mismo tiempo, incorpora la integración de eventos procedentes de un dispositivo IoT y refuerza aspectos importantes como la documentación técnica y la exposición oral del proyecto.
 
-- el diseño y desarrollo de servicios web;
-- el acceso a bases de datos y la persistencia de información;
-- la separación entre lógica de negocio y presentación;
-- la definición de endpoints y contratos de API;
-- la integración de eventos procedentes de un dispositivo IoT;
-- la documentación técnica y la defensa oral del trabajo realizado.
 
 ---
 
-## 🧩 Idea general de la solución
+## 🧩 Proyecto
 
-La solución propuesta se organiza en dos planos complementarios: un **plano didáctico** y un **plano técnico**.
+En esta propuesta vamos a desarrollar **VigiaSenior**, un backend para un pastillero inteligente pensado para ayudar en el seguimiento de la medicación en personas mayores. Se trata de un proyecto que parte de una necesidad real y que permite dar sentido a los contenidos del módulo a través de una aplicación práctica, con un claro trasfondo social.
 
-### 1. Plano didáctico
-El alumnado recibe un reto contextualizado: desarrollar el backend de un sistema capaz de registrar, interpretar y gestionar eventos relacionados con la toma de medicación. El proyecto se plantea como un trabajo progresivo, con fases de análisis, diseño, implementación, validación, documentación y presentación final.
-
-### 2. Plano técnico
-El sistema se apoya en un prototipo físico o simulado de pastillero inteligente, conectado a un backend desarrollado por el alumnado.
-
-<p align="center">
-  <img src="assets/diagramas/arquitectura-general.png" alt="Arquitectura general de VigiaSenior" width="760">
-</p>
-
-De forma resumida, el flujo del sistema es el siguiente:
-
-1. el dispositivo consulta el plan del día;
-2. detecta o simula la apertura de una cajita;
-3. registra la confirmación de la toma;
-4. envía eventos al backend;
-5. el backend actualiza estados, histórico y alertas.
-
-> **Regla principal de negocio**  
-> Una toma solo se considera correcta cuando existe **apertura + confirmación** dentro de una ventana de tiempo configurable.
+Su encaje dentro de **Desarrollo web en entorno servidor** es claro, ya que permite trabajar servicios web, bases de datos, lógica de negocio, diseño de endpoints e integración de eventos procedentes de un dispositivo. En lugar de abordar estos contenidos por separado, se trabajan de manera conjunta dentro de un proyecto único, más cercano a una situación real de desarrollo.
 
 ---
 
@@ -327,7 +305,8 @@ En caso de reutilización docente, se recomienda mantener la atribución del pro
 
 **VigiaSenior** se plantea como una propuesta de aula con valor técnico, sentido social y estructura pedagógica clara. El objetivo no es únicamente construir un backend funcional, sino convertir ese desarrollo en una experiencia de aprendizaje coherente, bien documentada, evaluable y reutilizable.
 
+En este sentido, el repositorio pretende ser algo más que un contenedor de archivos: busca actuar como una **maleta pedagógica y técnica**, preparada para ser comprendida, adaptada, aplicada y defendida.
+
 <p align="center">
   <img src="assets/portada/vigiasenior-portada.png" alt="Portada VigiaSenior" width="840">
 </p>
-En este sentido, el repositorio pretende ser algo más que un contenedor de archivos: busca actuar como una **maleta pedagógica y técnica**, preparada para ser comprendida, adaptada, aplicada y defendida.
