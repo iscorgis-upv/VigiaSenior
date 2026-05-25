@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · Diseño de la API y endpoints reales del proyecto</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>05 · Diseño de la API y endpoints reales del proyecto</h1>
+    <p>Este manual baja a lo concreto: qué rutas tiene el backend, qué devuelve cada una y cómo interpretar los cuerpos JSON del proyecto.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. La API no se diseña por ocurrencias</h2>
+<p>Una API buena no nace de poner rutas al azar, sino de responder preguntas reales del sistema. En VigiaSenior, las preguntas mínimas son:</p>
+<ul class="check">
+<li>¿está vivo el backend?</li>
+<li>¿qué plan del día tiene un dispositivo?</li>
+<li>¿qué evento ha enviado el dispositivo?</li>
+<li>¿qué estado global tiene un paciente?</li>
+<li>¿qué alertas siguen abiertas?</li>
+<li>¿cómo se resuelve una alerta?</li>
+</ul>
+</section><section class="card"><h2>2. Endpoints mínimos actuales</h2>
+<pre><code>GET    /health
+GET    /api/devices/:deviceId/schedule/today
+POST   /api/devices/:deviceId/events
+GET    /api/patients/:patientId/dashboard
+GET    /api/patients/:patientId/alerts
+PATCH  /api/alerts/:alertId/resolve</code></pre>
+<p>Estas rutas cubren un recorrido funcional bastante razonable para el MVP del proyecto.</p>
+</section><section class="card"><h2>3. GET /health</h2>
+<p>Es el endpoint más simple, pero muy útil para comprobar que el servidor está levantado y responde.</p>
+<pre><code>GET /health</code></pre>
+<p><strong>Respuesta esperada:</strong></p>
+<pre><code>{
+  "status": "ok",
+  "uptime": 123.45,
+  "timestamp": "2026-05-25T21:00:00.000Z"
+}</code></pre>
+<p>Si este endpoint falla, no tiene sentido probar el resto todavía.</p>
+</section><section class="card"><h2>4. GET /api/devices/:deviceId/schedule/today</h2>
+<p>Esta ruta devuelve la planificación del día para un dispositivo concreto. El parámetro <code>deviceId</code> viaja por la URL y se valida antes de usarlo.</p>
+<pre><code>GET /api/devices/cm1234567890abcde1234567/schedule/today</code></pre>
+<p><strong>Respuesta típica:</strong></p>
+<pre><code>{
+  "deviceId": "cm1234567890abcde1234567",
+  "patientId": "cm7654321...",
+  "date": "2026-05-25",
+  "confirmationTimeoutSeconds": 60,
+  "doses": [
+    {
+      "scheduledDoseId": "cmDose01",
+      "doseScheduleId": "cmSchedule01",
+      "medicationName": "Aspirina",
+      "dosage": "1 comprimido",
+      "slotNumber": 1,
+      "scheduledTime": "2026-05-25T08:00:00.000Z",
+      "windowMinutesBefore": 10,
+      "windowMinutesAfter": 15,
+      "requiresConfirmation": true,
+      "state": "scheduled"
+    }
+  ]
+}</code></pre>
+<p>Esta ruta es importante porque conecta el plan abstracto con lo que debe hacer el dispositivo en el día actual.</p>
+</section><section class="card"><h2>5. POST /api/devices/:deviceId/events</h2>
+<p>Esta es una de las rutas más importantes del proyecto. Recibe eventos enviados por el dispositivo o por la simulación.</p>
+<p>El cuerpo se valida con Zod usando una unión discriminada por <code>eventType</code>. Eso significa que el formato del <code>payload</code> cambia según el tipo de evento.</p>
+<pre><code>{
+  "eventType": "box_opened",
+  "timestamp": "2026-05-25T08:01:00.000Z",
+  "payload": {
+    "slotNumber": 1,
+    "doseId": "cmDose01"
+  }
+}</code></pre>
+<p>Otro ejemplo:</p>
+<pre><code>{
+  "eventType": "dose_confirmed",
+  "timestamp": "2026-05-25T08:01:20.000Z",
+  "payload": {
+    "doseId": "cmDose01",
+    "method": "button"
+  }
+}</code></pre>
+<p><strong>Respuesta esperada:</strong></p>
+<pre><code>{
+  "eventId": "cmEvent01",
+  "status": "accepted",
+  "receivedAt": "2026-05-25T08:01:20.500Z"
+}</code></pre>
+</section><section class="card"><h2>6. GET /api/patients/:patientId/dashboard</h2>
+<p>Esta ruta construye una vista resumida del estado de un paciente. Su respuesta es más compleja porque no devuelve un solo dato, sino una composición de varias consultas y transformaciones.</p>
+<p>En líneas generales incluye:</p>
+<ul class="check">
+<li>datos básicos del paciente;</li>
+<li>estado del dispositivo;</li>
+<li>próximas tomas;</li>
+<li>tomas de hoy;</li>
+<li>alertas activas;</li>
+<li>resumen de cumplimiento.</li>
+</ul>
+<p>El alumnado no tiene que memorizar todo el JSON, pero sí entender que esta ruta requiere composición de datos y no una simple consulta plana.</p>
+</section><section class="card"><h2>7. GET /api/patients/:patientId/alerts</h2>
+<p>Devuelve las alertas de un paciente junto con contadores de abiertas y resueltas. Es útil para enseñar que una API también puede devolver información resumida y no solo listas crudas.</p>
+<pre><code>{
+  "patientId": "cmPatient01",
+  "alerts": [ ... ],
+  "total": 3,
+  "openCount": 2,
+  "resolvedCount": 1
+}</code></pre>
+</section><section class="card"><h2>8. PATCH /api/alerts/:alertId/resolve</h2>
+<p>Esta ruta modifica el estado de una alerta. No crea un recurso nuevo ni consulta una lista: cambia una parte del recurso existente. Por eso <code>PATCH</code> encaja bien aquí.</p>
+<p>La lógica del servicio comprueba primero si la alerta existe y después si realmente sigue abierta. Si no está abierta, devuelve conflicto.</p>
+</section><section class="card"><h2>9. Validación y errores</h2>
+<p>No todas las peticiones son válidas. Por ejemplo:</p>
+<ul class="check">
+<li>si el <code>deviceId</code> no tiene formato CUID, la validación falla antes de entrar en la lógica;</li>
+<li>si el evento <code>dose_confirmed</code> no incluye <code>doseId</code>, el body es inválido;</li>
+<li>si la dosis no pertenece al dispositivo actual, el servicio rechaza la operación;</li>
+<li>si el recurso no existe, se devuelve 404.</li>
+</ul>
+<p>Esto enseña al alumnado que un backend serio no acepta cualquier cosa sin comprobarla.</p>
+</section><section class="card"><h2>10. Cómo debería documentarse la API del proyecto</h2>
+<p>Al menos, cada equipo debería dejar por escrito:</p>
+<ul class="check">
+<li>la lista de endpoints;</li>
+<li>el método HTTP de cada uno;</li>
+<li>qué params recibe;</li>
+<li>qué body espera, si aplica;</li>
+<li>qué estructura devuelve;</li>
+<li>qué errores principales contempla.</li>
+</ul>
+<p>Con eso, otra persona puede probar la API sin tener que abrir todos los archivos del backend.</p>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

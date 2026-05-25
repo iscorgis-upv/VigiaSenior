@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VigiaSenior · Apuntes completos de backend</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" style="color:#dce7fb">CFGS DAW · DWES · Material de apoyo real</div>
+    <h1>VigiaSenior · Apuntes completos para desarrollar el backend</h1>
+    <p>Este bloque está pensado para que el alumnado no dependa solo de esquemas o de explicaciones orales. Aquí se explica qué es un backend, cómo se organiza una API, cómo se modelan los datos, cómo se implementan rutas y lógica en el proyecto, y cómo se comprueba el resultado con Postman y Jest.</p>
+    <div class="badges">
+      <span class="badge">Express + TypeScript</span>
+      <span class="badge">Prisma</span>
+      <span class="badge">SQLite actual</span>
+      <span class="badge">Postman</span>
+      <span class="badge">Jest + Supertest</span>
+      <span class="badge">Basado en el repo real</span>
+    </div>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap">
+  <a href="01_fundamentos_backend.html">01 Fundamentos</a>
+  <a href="02_stack_y_entorno.html">02 Stack</a>
+  <a href="03_modelado_y_bbdd.html">03 Datos</a>
+  <a href="04_arquitectura_backend.html">04 Arquitectura</a>
+  <a href="05_api_y_endpoints.html">05 API</a>
+  <a href="06_implementacion_guiada.html">06 Implementación</a>
+  <a href="07_postman_y_pruebas_manual.html">07 Postman</a>
+  <a href="08_jest_y_validacion.html">08 Jest</a>
+  <a href="09_glosario_y_checklists.html">09 Glosario</a>
+</div></nav>
+<main class="wrap">
+<section class="card">
+  <h2>Cómo usar estos apuntes</h2>
+  <div class="step"><div class="num">1</div><div><strong>Empieza por el contexto.</strong><br>Lee primero qué problema resuelve VigiaSenior y qué significa desarrollar su backend. Si no entiendes el objetivo, el código se convertirá en una suma de archivos sin sentido.</div></div>
+  <div class="step"><div class="num">2</div><div><strong>Diseña antes de codificar.</strong><br>Modelo de datos, endpoints y flujo de eventos antes de abrir el controlador o el servicio.</div></div>
+  <div class="step"><div class="num">3</div><div><strong>Implementa por capas.</strong><br>En este proyecto se trabaja con rutas, controladores, servicios, repositorios, validadores y pruebas. Cada capa tiene una responsabilidad distinta.</div></div>
+  <div class="step"><div class="num">4</div><div><strong>Prueba continuamente.</strong><br>No esperes al final para probar. Usa Postman para validar endpoints y Jest para asegurar la lógica y la integración.</div></div>
+</section>
+
+<section class="grid cards">
+  <article class="card"><div class="kicker">01</div><h3>Fundamentos</h3><p>Qué es un backend, qué es una API, qué es un endpoint y cómo se relacionan frontend, hardware y servidor.</p><a class="btn" href="01_fundamentos_backend.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">02</div><h3>Stack y entorno</h3><p>Node, npm, TypeScript, Express, Prisma, Git, scripts y puesta en marcha del proyecto.</p><a class="btn" href="02_stack_y_entorno.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">03</div><h3>Modelado y base de datos</h3><p>Entidades del dominio, relaciones y lectura del schema real de Prisma.</p><a class="btn" href="03_modelado_y_bbdd.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">04</div><h3>Arquitectura del backend</h3><p>Qué hace cada carpeta y cómo se reparte la responsabilidad entre capas.</p><a class="btn" href="04_arquitectura_backend.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">05</div><h3>API y endpoints</h3><p>Diseño de rutas, request/response, bodies JSON, validación y errores.</p><a class="btn" href="05_api_y_endpoints.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">06</div><h3>Implementación guiada</h3><p>Cómo codificar una ruta completa desde el archivo de rutas hasta el repositorio.</p><a class="btn" href="06_implementacion_guiada.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">07</div><h3>Postman</h3><p>Cómo crear entornos, colecciones y pruebas manuales del backend.</p><a class="btn" href="07_postman_y_pruebas_manual.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">08</div><h3>Jest y validación</h3><p>Pruebas unitarias y de integración basadas en la estructura real del proyecto.</p><a class="btn" href="08_jest_y_validacion.html">Abrir manual</a></article>
+  <article class="card"><div class="kicker">09</div><h3>Glosario y checklists</h3><p>Resumen final de conceptos y listas de comprobación para no perderse.</p><a class="btn" href="09_glosario_y_checklists.html">Abrir manual</a></article>
+</section>
+
+<section class="card">
+  <h2>Qué cubren de verdad estos materiales</h2>
+  <div class="cols">
+    <div>
+      <ul class="check">
+        <li>definiciones teóricas claras de backend, API y endpoint;</li>
+        <li>relación entre problema real, dominio y modelo de datos;</li>
+        <li>cómo se traduce una necesidad a rutas HTTP y JSON;</li>
+        <li>cómo está organizado el backend del proyecto;</li>
+        <li>cómo codificar una funcionalidad completa paso a paso;</li>
+        <li>cómo probarla manual y automáticamente.</li>
+      </ul>
+    </div>
+    <div class="callout ok">
+      <strong>Objetivo real:</strong><br>
+      que el alumnado pueda abrir estos apuntes mientras trabaja el backend y utilizarlos como referencia práctica, no solo como lectura previa.
+    </div>
+  </div>
+</section>
+</main>
+</body>
+</html>

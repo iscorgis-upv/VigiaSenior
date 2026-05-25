@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · Modelado del dominio, base de datos y lectura del schema de Prisma</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>03 · Modelado del dominio, base de datos y lectura del schema de Prisma</h1>
+    <p>En este manual se explica qué datos necesita el sistema, cómo se relacionan y cómo se representan en el schema actual del proyecto.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Por qué el modelo de datos importa tanto</h2>
+<p>Un backend puede tener rutas y tests, pero si el modelo de datos está mal planteado, el sistema se vuelve incoherente. En VigiaSenior, la base de datos es lo que permite reconstruir el estado del dispositivo, del paciente, de las tomas y de las alertas.</p>
+<p>Dicho de otro modo: la lógica de negocio necesita memoria. Esa memoria es la base de datos.</p>
+</section><section class="card"><h2>2. Entidades principales del proyecto</h2>
+<p>El dominio del proyecto gira alrededor de estas entidades:</p>
+<ul class="check">
+<li><strong>Caregiver</strong>: la persona cuidadora o responsable.</li>
+<li><strong>Patient</strong>: la persona paciente a la que se asocia la medicación.</li>
+<li><strong>Device</strong>: el dispositivo físico o lógico del pastillero.</li>
+<li><strong>MedicationPlan</strong>: el plan de medicación general.</li>
+<li><strong>DoseSchedule</strong>: una pauta concreta, con medicamento, dosis, slot y hora.</li>
+<li><strong>ScheduledDose</strong>: la instancia diaria que se va a ejecutar o controlar.</li>
+<li><strong>DeviceEvent</strong>: los eventos enviados por el dispositivo.</li>
+<li><strong>Alert</strong>: las incidencias o avisos que el sistema registra.</li>
+</ul>
+</section><section class="card"><h2>3. Cómo pensar estas relaciones en lenguaje normal</h2>
+<table class="table">
+<thead><tr><th>Relación</th><th>Cómo se entiende</th></tr></thead>
+<tbody>
+<tr><td>Caregiver → Patient</td><td>Una persona cuidadora puede supervisar a varios pacientes.</td></tr>
+<tr><td>Patient → Device</td><td>Un paciente puede tener uno o más dispositivos asociados, según diseño.</td></tr>
+<tr><td>Patient → MedicationPlan</td><td>Un paciente puede tener distintos planes de medicación.</td></tr>
+<tr><td>MedicationPlan → DoseSchedule</td><td>Un plan contiene varias pautas concretas.</td></tr>
+<tr><td>DoseSchedule → ScheduledDose</td><td>Cada pauta se materializa en tomas programadas reales.</td></tr>
+<tr><td>Device → DeviceEvent</td><td>El dispositivo genera eventos a lo largo del tiempo.</td></tr>
+<tr><td>ScheduledDose → Alert</td><td>Una toma concreta puede provocar alertas.</td></tr>
+</tbody>
+</table>
+</section><section class="card"><h2>4. Qué hace Prisma en este proyecto</h2>
+<p>Prisma es un ORM. Eso significa que ayuda a trabajar con la base de datos desde código, sin escribir siempre SQL manual. En lugar de definir tablas a mano en un primer momento, aquí se trabaja con un archivo <code>schema.prisma</code> donde se describen modelos, campos y relaciones.</p>
+<pre><code>generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}</code></pre>
+<p>Eso indica que el proveedor actual es SQLite y que Prisma generará un cliente de acceso para usarlo desde TypeScript.</p>
+</section><section class="card"><h2>5. Lectura guiada de algunos modelos reales</h2>
+<pre><code>model Device {
+  id        String   @id @default(cuid())
+  serial    String   @unique
+  name      String
+  boxCount  Int
+  active    Boolean
+  patientId String
+  patient   Patient  @relation(fields: [patientId], references: [id])
+}</code></pre>
+<p>Este modelo nos dice varias cosas importantes:</p>
+<ul class="check">
+<li>el identificador principal es <code>id</code> y se genera automáticamente con <code>cuid()</code>;</li>
+<li>el número de serie debe ser único;</li>
+<li>cada dispositivo está asociado a un paciente;</li>
+<li>la relación se materializa con la clave foránea <code>patientId</code>.</li>
+</ul>
+</section><section class="card"><h2>6. Ejemplo clave: ScheduledDose</h2>
+<pre><code>model ScheduledDose {
+  id                   String   @id @default(cuid())
+  doseScheduleId       String
+  deviceId             String
+  patientId            String
+  scheduledDate        DateTime
+  state                String
+  openedAt             DateTime?
+  confirmedAt          DateTime?
+  confirmationDeadline DateTime
+}</code></pre>
+<p>Este es uno de los modelos más importantes del proyecto porque captura el estado real de la toma. No guarda solo la pauta abstracta, sino la ejecución que hay que vigilar en una fecha concreta.</p>
+<p>Aquí aparecen varias pistas de lógica:</p>
+<ul class="check">
+<li><code>state</code> representa el estado actual de la toma;</li>
+<li><code>openedAt</code> guarda cuándo se abrió la cajita, si ocurrió;</li>
+<li><code>confirmedAt</code> guarda cuándo se confirmó la dosis, si ocurrió;</li>
+<li><code>confirmationDeadline</code> marca el límite para considerar válida la confirmación.</li>
+</ul>
+</section><section class="card"><h2>7. DeviceEvent: el histórico de lo que llega al backend</h2>
+<pre><code>model DeviceEvent {
+  id        String   @id @default(cuid())
+  deviceId  String
+  patientId String
+  type      String
+  timestamp DateTime
+  payload   String
+}</code></pre>
+<p>Este modelo es importante porque conserva el registro bruto de eventos. A partir de ahí el sistema puede reconstruir o justificar decisiones posteriores.</p>
+<p>El campo <code>payload</code> se guarda como texto serializado. Esto permite conservar el contenido del evento, aunque luego se interprete desde código.</p>
+</section><section class="card"><h2>8. Alert: cómo se representa una incidencia</h2>
+<pre><code>model Alert {
+  id              String    @id @default(cuid())
+  patientId       String
+  deviceId        String
+  scheduledDoseId String?
+  type            String
+  severity        String
+  status          String
+  message         String
+}</code></pre>
+<p>Una alerta no es solo un texto. Tiene tipo, severidad y estado. Eso permite consultar qué sigue abierto, qué ya se resolvió y qué prioridad tiene cada caso.</p>
+</section><section class="card"><h2>9. Qué debería comprender el alumnado del schema</h2>
+<ul class="check">
+<li>qué entidades son centrales y cuáles son auxiliares;</li>
+<li>qué relaciones unen a unas con otras;</li>
+<li>qué campos son obligatorios y cuáles opcionales;</li>
+<li>qué datos permiten aplicar la regla de negocio;</li>
+<li>por qué el backend necesita tanto el modelo abstracto como el histórico de eventos.</li>
+</ul>
+</section><section class="card"><h2>10. Actividad de cierre recomendada</h2>
+<p>Antes de seguir con la API, conviene que cada equipo haga dos cosas:</p>
+<ul class="check">
+<li>dibujar su propio diagrama simplificado del dominio en papel o herramienta visual;</li>
+<li>explicar con una frase para qué sirve cada modelo principal del schema.</li>
+</ul>
+<p>Si el alumnado no puede explicar el modelo con palabras normales, todavía no lo domina lo suficiente para implementar con seguridad.</p>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

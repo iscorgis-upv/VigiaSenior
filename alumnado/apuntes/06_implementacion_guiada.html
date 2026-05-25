@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06 · Implementación guiada: cómo codificar una funcionalidad completa</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>06 · Implementación guiada: cómo codificar una funcionalidad completa</h1>
+    <p>Este manual muestra cómo construir una parte del backend sin perderse entre archivos. La idea es que el alumnado vea el recorrido completo desde la entrada HTTP hasta la base de datos.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. El error más común al empezar</h2>
+<p>Muchos alumnos abren el backend y quieren empezar directamente por el servicio o por Prisma, sin tener claro el recorrido completo. Eso suele acabar en código desordenado. Lo correcto es pensar la implementación como una cadena:</p>
+<pre><code>ruta → controlador → validador → servicio → repositorio → respuesta</code></pre>
+<p>Si entiendes ese flujo, cada nueva funcionalidad se vuelve mucho más manejable.</p>
+</section><section class="card"><h2>2. Ejemplo guiado: implementar GET /api/devices/:deviceId/schedule/today</h2>
+<p>Vamos a usar este endpoint como ejemplo porque combina varias capas, pero sigue siendo razonablemente comprensible.</p>
+<p><strong>Objetivo funcional:</strong> dado un dispositivo, devolver qué dosis tiene planificadas para hoy.</p>
+</section><section class="card"><h2>3. Paso 1: definir la ruta</h2>
+<pre><code>// src/routes/deviceRoutes.ts
+router.get('/:deviceId/schedule/today', getDeviceTodaySchedule)</code></pre>
+<p>Aquí no hay lógica todavía. Solo estamos diciendo que cuando llegue una petición GET a esa ruta, el controlador responsable será <code>getDeviceTodaySchedule</code>.</p>
+</section><section class="card"><h2>4. Paso 2: crear el controlador</h2>
+<pre><code>// src/controllers/deviceController.ts
+export async function getDeviceTodaySchedule(req, res, next) {
+  try {
+    const params = deviceIdParamSchema.parse(req.params)
+    const schedule = await getTodayScheduleForDevice(params.deviceId)
+    return res.status(200).json(schedule)
+  } catch (error) {
+    next(error)
+  }
+}</code></pre>
+<p>El controlador:</p>
+<ul class="check">
+<li>lee los parámetros de la URL;</li>
+<li>los valida;</li>
+<li>llama al servicio;</li>
+<li>devuelve la respuesta;</li>
+<li>si algo falla, delega el error al middleware global.</li>
+</ul>
+</section><section class="card"><h2>5. Paso 3: validar la entrada</h2>
+<pre><code>// src/validators/deviceValidator.ts
+export const deviceIdParamSchema = z.object({
+  deviceId: z.string().cuid(),
+})</code></pre>
+<p>Esto es muy útil porque detecta enseguida ids con formato incorrecto. El backend no debería llegar al repositorio con cualquier valor de <code>deviceId</code>.</p>
+</section><section class="card"><h2>6. Paso 4: escribir el servicio</h2>
+<pre><code>// src/services/deviceService.ts
+export async function getTodayScheduleForDevice(deviceId: string, now = new Date()) {
+  const device = await findDeviceById(deviceId)
+  if (!device) {
+    throw new DeviceNotFoundError(deviceId)
+  }
+
+  const schedules = await findTodaySchedulesByDevice(deviceId, now)
+
+  const doses = schedules.map((scheduledDose) => ({
+    scheduledDoseId: scheduledDose.id,
+    medicationName: scheduledDose.doseSchedule.medicationName,
+    dosage: scheduledDose.doseSchedule.dosage,
+    slotNumber: scheduledDose.doseSchedule.slotNumber,
+    scheduledTime: scheduledDose.doseSchedule.scheduledTime.toISOString(),
+    state: scheduledDose.state,
+  }))
+
+  return {
+    deviceId: device.id,
+    patientId: device.patientId ?? null,
+    date: now.toISOString().slice(0, 10),
+    doses,
+  }
+}</code></pre>
+<p>El servicio ya contiene decisiones reales: comprobar si el dispositivo existe, buscar sus dosis y dar forma a la respuesta final.</p>
+</section><section class="card"><h2>7. Paso 5: encapsular la consulta en el repositorio</h2>
+<pre><code>// src/repositories/deviceRepository.ts
+export async function findTodaySchedulesByDevice(deviceId: string, date: Date) {
+  const startOfDay = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0, 0, 0, 0))
+  const endOfDay = new Date(startOfDay)
+  endOfDay.setUTCDate(startOfDay.getUTCDate() + 1)
+
+  return prisma.scheduledDose.findMany({
+    where: {
+      deviceId,
+      scheduledDate: {
+        gte: startOfDay,
+        lt: endOfDay,
+      },
+    },
+    include: {
+      doseSchedule: {
+        include: {
+          medicationPlan: true,
+        },
+      },
+    },
+  })
+}</code></pre>
+<p>Aquí sí aparece la consulta concreta a base de datos. Gracias a separar esta parte, el servicio se mantiene más limpio.</p>
+</section><section class="card"><h2>8. Qué cambiaría en el ejemplo si implementaras POST /events</h2>
+<p>La lógica sería parecida, pero con un paso extra importante: validar el body según el tipo de evento.</p>
+<pre><code>const body = deviceEventBodySchema.parse(req.body)
+const result = await handleDeviceEvent(params.deviceId, body)</code></pre>
+<p>Luego, en el servicio, habría que distinguir casos:</p>
+<ul class="check">
+<li>si el evento es <code>device_online</code> o <code>heartbeat</code>, normalmente se registra sin más;</li>
+<li>si el evento es <code>box_opened</code>, hay que asociarlo a la dosis cuando proceda;</li>
+<li>si el evento es <code>dose_confirmed</code>, hay que comprobar la dosis, el dispositivo y la ventana de tiempo.</li>
+</ul>
+</section><section class="card"><h2>9. Cómo pensar la lógica del evento dose_confirmed</h2>
+<p>La implementación no debería ser “si llega confirmación, marcar confirmed y ya está”. Debe recorrer varias comprobaciones:</p>
+<pre><code>1. buscar dispositivo
+2. buscar dosis programada
+3. comprobar que la dosis pertenece a ese dispositivo
+4. comprobar que hay contexto suficiente para confirmarla
+5. actualizar estado y confirmedAt
+6. registrar evento</code></pre>
+<p>Este tipo de secuencia es una buena pista para extraer funciones pequeñas si el servicio empieza a crecer demasiado.</p>
+</section><section class="card"><h2>10. Patrón para implementar nuevas funcionalidades</h2>
+<div class="step"><div class="num">1</div><div><strong>Escribe primero qué debe hacer el endpoint.</strong><br>No empieces por el código, empieza por la intención.</div></div>
+<div class="step"><div class="num">2</div><div><strong>Decide inputs y outputs.</strong><br>Params, body y respuesta.</div></div>
+<div class="step"><div class="num">3</div><div><strong>Crea la ruta y el controlador.</strong><br>Entrada HTTP clara.</div></div>
+<div class="step"><div class="num">4</div><div><strong>Valida datos.</strong><br>No dejes que la lógica reciba basura.</div></div>
+<div class="step"><div class="num">5</div><div><strong>Implementa la lógica en el servicio.</strong><br>Ahí se toman las decisiones.</div></div>
+<div class="step"><div class="num">6</div><div><strong>Mueve consultas al repositorio.</strong><br>Separa persistencia de negocio.</div></div>
+<div class="step"><div class="num">7</div><div><strong>Prueba con Postman y con test.</strong><br>No cierres una funcionalidad sin validarla.</div></div>
+</section><section class="card"><h2>11. Qué deberías evitar al codificar</h2>
+<ul class="check">
+<li>meter toda la lógica dentro del controlador;</li>
+<li>hacer consultas Prisma directamente en cada ruta;</li>
+<li>validar “a ojo” en lugar de usar el schema;</li>
+<li>devolver respuestas inconsistentes entre endpoints parecidos;</li>
+<li>añadir tipos de evento nuevos sin revisar el validador ni las pruebas.</li>
+</ul>
+<div class="callout warn"><strong>Regla práctica:</strong> si una función mezcla lectura de params, validación, lógica, consulta a base de datos y composición de respuesta, seguramente deberías repartirla mejor.</div>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

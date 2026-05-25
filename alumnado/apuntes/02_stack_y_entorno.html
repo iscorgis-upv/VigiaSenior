@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Stack real del proyecto y preparación del entorno</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>02 · Stack real del proyecto y preparación del entorno</h1>
+    <p>Este manual explica con qué tecnologías se construye el backend actual y qué necesita el alumnado para poder ejecutarlo y tocarlo sin romperlo todo.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Qué stack usa el backend actual</h2>
+<p>El backend de VigiaSenior está organizado con un stack típico de servidor en JavaScript/TypeScript:</p>
+<ul class="check">
+<li><strong>Node.js</strong> como entorno de ejecución;</li>
+<li><strong>npm</strong> para gestionar dependencias y scripts;</li>
+<li><strong>TypeScript</strong> para tipar el código;</li>
+<li><strong>Express</strong> para definir el servidor HTTP y las rutas;</li>
+<li><strong>Prisma</strong> como ORM y cliente de acceso a base de datos;</li>
+<li><strong>Zod</strong> para validar parámetros y cuerpos de petición;</li>
+<li><strong>Jest</strong> y <strong>Supertest</strong> para pruebas.</li>
+</ul>
+<p>Esto significa que aquí no se trabaja con Django como framework principal. La lógica general del proyecto sí sigue siendo la misma, pero la implementación está adaptada al stack real del repositorio.</p>
+</section><section class="card"><h2>2. Qué hace cada herramienta</h2>
+<table class="table">
+<thead><tr><th>Herramienta</th><th>Para qué sirve</th><th>Idea corta</th></tr></thead>
+<tbody>
+<tr><td>Node.js</td><td>Ejecutar JavaScript/TypeScript fuera del navegador</td><td>Es el motor que corre el servidor.</td></tr>
+<tr><td>npm</td><td>Instalar paquetes y lanzar scripts</td><td>Gestiona dependencias y tareas.</td></tr>
+<tr><td>TypeScript</td><td>Añadir tipos al código</td><td>Ayuda a detectar errores antes.</td></tr>
+<tr><td>Express</td><td>Montar el servidor y las rutas</td><td>Recibe peticiones y devuelve respuestas.</td></tr>
+<tr><td>Prisma</td><td>Modelar y consultar la base de datos</td><td>Evita escribir todo el SQL a mano.</td></tr>
+<tr><td>Zod</td><td>Validar datos de entrada</td><td>Protege la API frente a cuerpos mal formados.</td></tr>
+<tr><td>Jest</td><td>Ejecutar tests</td><td>Comprueba comportamiento del código.</td></tr>
+<tr><td>Supertest</td><td>Probar endpoints HTTP</td><td>Envía peticiones al servidor en pruebas.</td></tr>
+</tbody>
+</table>
+</section><section class="card"><h2>3. Scripts del proyecto: por qué son importantes</h2>
+<p>En la mayoría de repos modernos no se ejecutan los comandos a mano uno por uno. Se agrupan en <strong>scripts</strong> dentro de <code>package.json</code>. Esto hace que todo el equipo use el mismo flujo.</p>
+<pre><code>{
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "test": "jest --runInBand",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "prisma:seed": "npx prisma db seed"
+  }
+}</code></pre>
+<p>Si el alumnado aprende a usar estos scripts, no necesita memorizar comandos largos en cada sesión.</p>
+</section><section class="card"><h2>4. Qué significa cada script</h2>
+<ul class="check">
+<li><code>npm run dev</code> → arranca el servidor en modo desarrollo y reinicia al detectar cambios.</li>
+<li><code>npm run build</code> → compila el proyecto TypeScript.</li>
+<li><code>npm test</code> → ejecuta las pruebas.</li>
+<li><code>npm run prisma:generate</code> → genera el cliente de Prisma a partir del schema.</li>
+<li><code>npm run prisma:migrate</code> → aplica migraciones de base de datos.</li>
+<li><code>npm run prisma:seed</code> → carga datos iniciales si existe script de seed.</li>
+</ul>
+</section><section class="card"><h2>5. Preparación del entorno local</h2>
+<p>El orden recomendado es este:</p>
+<pre><code>git clone &lt;url-del-repo&gt;
+cd implementacion/backend
+npm install
+cp .env.example .env
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:seed
+npm run dev</code></pre>
+<p>Puede haber pequeñas variaciones según el sistema operativo o el estado de la base de datos, pero esta secuencia es una base razonable para empezar.</p>
+</section><section class="card"><h2>6. Qué papel tiene el archivo .env</h2>
+<p>El archivo <code>.env</code> guarda variables de entorno. En proyectos de backend se usa para separar configuración sensible del código fuente. Un ejemplo típico sería la ruta de la base de datos o el puerto del servidor.</p>
+<pre><code>PORT=3000
+DATABASE_URL="file:./dev.db"</code></pre>
+<p>La idea no es esconder magia, sino evitar que ciertos valores queden dispersos por el código o comprometidos en el repositorio.</p>
+</section><section class="card"><h2>7. TypeScript: por qué no trabajar directamente en JavaScript</h2>
+<p>TypeScript añade tipado y comprobaciones que ayudan bastante en backend. No evita todos los errores, pero sí varios muy comunes:</p>
+<ul class="check">
+<li>pasar un tipo de dato incorrecto a una función;</li>
+<li>acceder a una propiedad que no existe;</li>
+<li>olvidar la forma que debería tener un objeto de respuesta.</li>
+</ul>
+<pre><code>interface DeviceScheduleTodayResponse {
+  deviceId: string;
+  patientId: string | null;
+  date: string;
+  confirmationTimeoutSeconds: number;
+  doses: DeviceDoseScheduleItem[];
+}</code></pre>
+<p>Un alumno no necesita dominar todo el sistema de tipos para empezar, pero sí entender que esas definiciones ayudan a hacer el código más claro y menos frágil.</p>
+</section><section class="card"><h2>8. Git y organización mínima del trabajo</h2>
+<p>Antes de tocar el servidor conviene tener el repositorio en orden. El flujo básico sigue siendo:</p>
+<pre><code>git status
+git add .
+git commit -m "feat: añade endpoint de health"
+git push</code></pre>
+<p>La trazabilidad importa también en un proyecto académico. Si el alumnado hace cambios ordenados y con mensajes razonables, luego puede explicar mejor el proceso seguido.</p>
+</section><section class="card"><h2>9. Checklist de entorno listo</h2>
+<ul class="check">
+<li>Node y npm instalados;</li>
+<li>dependencias instaladas con <code>npm install</code>;</li>
+<li>archivo <code>.env</code> creado a partir del ejemplo;</li>
+<li>cliente Prisma generado;</li>
+<li>migraciones aplicadas;</li>
+<li>datos de seed cargados, si procede;</li>
+<li>servidor arrancando con <code>npm run dev</code>;</li>
+<li>endpoint <code>/health</code> accesible.</li>
+</ul>
+<div class="callout ok"><strong>Consejo práctico:</strong> no empieces a programar una nueva ruta si todavía no has comprobado que el proyecto levanta correctamente.</div>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

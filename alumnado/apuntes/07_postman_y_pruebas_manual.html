@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07 · Cómo probar el backend con Postman paso a paso</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>07 · Cómo probar el backend con Postman paso a paso</h1>
+    <p>Este manual se centra en las pruebas manuales. La idea es que el alumnado pueda comprobar el backend aunque todavía no exista un frontend terminado.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Por qué Postman es útil aquí</h2>
+<p>Postman permite enviar peticiones HTTP al backend y ver la respuesta de forma clara. Para alumnado, esto tiene una ventaja enorme: puedes validar una ruta sin depender de una interfaz gráfica o del dispositivo físico.</p>
+<p>Si el equipo entiende cómo probar con Postman, puede cerrar más rápidamente problemas de rutas, cuerpos JSON, errores 400/404 o respuestas mal construidas.</p>
+</section><section class="card"><h2>2. Configuración mínima recomendada</h2>
+<p>Lo primero es crear un <strong>entorno</strong> con una variable base. Así no hace falta escribir la URL completa en cada petición.</p>
+<pre><code>Entorno: VigiaSenior local
+baseUrl = http://127.0.0.1:3000</code></pre>
+<p>Después se crea una colección llamada, por ejemplo, <strong>VigiaSenior Backend</strong>.</p>
+</section><section class="card"><h2>3. Primera petición: health</h2>
+<pre><code>GET {{baseUrl}}/health</code></pre>
+<p>Esta debería ser la primera prueba siempre. Si no responde 200, el problema no está en un controlador concreto: seguramente el servidor ni siquiera está bien levantado.</p>
+<p><strong>Qué comprobar:</strong></p>
+<ul class="check">
+<li>código de estado 200;</li>
+<li>cabecera JSON;</li>
+<li>campo <code>status</code> con valor <code>ok</code>.</li>
+</ul>
+</section><section class="card"><h2>4. Probar la planificación del dispositivo</h2>
+<pre><code>GET {{baseUrl}}/api/devices/&lt;deviceId&gt;/schedule/today</code></pre>
+<p>Para esta prueba necesitas un <code>deviceId</code> válido existente en la base de datos. Si no lo tienes, puedes extraerlo del seed, de una consulta previa o del panel de administración que estéis usando.</p>
+<p><strong>Qué deberías revisar:</strong></p>
+<ul class="check">
+<li>si la ruta responde 200;</li>
+<li>si devuelve un <code>deviceId</code> coherente;</li>
+<li>si aparece un array <code>doses</code>;</li>
+<li>si cada dosis tiene los campos que espera el contrato.</li>
+</ul>
+</section><section class="card"><h2>5. Probar el registro de eventos</h2>
+<p>Esta prueba es central porque toca validación, persistencia y, en algunos casos, lógica.</p>
+<p><strong>Ejemplo de box_opened:</strong></p>
+<pre><code>POST {{baseUrl}}/api/devices/&lt;deviceId&gt;/events
+Content-Type: application/json
+
+{
+  "eventType": "box_opened",
+  "timestamp": "2026-05-25T08:01:00.000Z",
+  "payload": {
+    "slotNumber": 1,
+    "doseId": "cmDose01"
+  }
+}</code></pre>
+<p><strong>Ejemplo de dose_confirmed:</strong></p>
+<pre><code>{
+  "eventType": "dose_confirmed",
+  "timestamp": "2026-05-25T08:01:20.000Z",
+  "payload": {
+    "doseId": "cmDose01",
+    "method": "button"
+  }
+}</code></pre>
+</section><section class="card"><h2>6. Qué errores manuales conviene provocar a propósito</h2>
+<p>No todo consiste en probar el caso feliz. También conviene forzar algunos errores para comprobar que el backend reacciona bien:</p>
+<ul class="check">
+<li>mandar un <code>deviceId</code> con formato incorrecto;</li>
+<li>omitir <code>doseId</code> en un <code>dose_confirmed</code>;</li>
+<li>enviar un método no permitido en <code>method</code>;</li>
+<li>usar un <code>doseId</code> inexistente;</li>
+<li>intentar confirmar una dosis fuera de ventana.</li>
+</ul>
+<p>Estas pruebas enseñan al alumnado que la calidad de una API no se mide solo por responder cuando todo va bien.</p>
+</section><section class="card"><h2>7. Probar dashboard y alertas</h2>
+<pre><code>GET {{baseUrl}}/api/patients/&lt;patientId&gt;/dashboard
+GET {{baseUrl}}/api/patients/&lt;patientId&gt;/alerts</code></pre>
+<p>Aquí conviene observar si la respuesta está realmente compuesta, no solo si llega algo. Por ejemplo:</p>
+<ul class="check">
+<li>si el dashboard incluye paciente, dispositivo, próximas tomas y resumen;</li>
+<li>si las alertas llevan contadores y estado;</li>
+<li>si los ids de paciente y dispositivo son coherentes con los datos sembrados.</li>
+</ul>
+</section><section class="card"><h2>8. Probar resolución de alertas</h2>
+<pre><code>PATCH {{baseUrl}}/api/alerts/&lt;alertId&gt;/resolve</code></pre>
+<p>Después de resolver una alerta, puedes volver a pedir el listado del paciente y comprobar si el contador de abiertas disminuye y el estado ha cambiado.</p>
+<p>Esto es útil para enseñar que una prueba no siempre termina en una sola petición; a veces hay que encadenar varias para comprobar el efecto real.</p>
+</section><section class="card"><h2>9. Tests dentro de Postman</h2>
+<p>Postman también permite añadir pequeños scripts de test. No sustituyen a Jest, pero ayudan a validar rápidamente respuestas repetitivas.</p>
+<pre><code>pm.test("Status code is 200", function () {
+  pm.response.to.have.status(200);
+});
+
+pm.test("Response is JSON", function () {
+  pm.response.to.be.json;
+});</code></pre>
+<p>También se pueden guardar variables de respuesta para reutilizarlas en peticiones posteriores.</p>
+</section><section class="card"><h2>10. Secuencia recomendada de pruebas manuales</h2>
+<div class="step"><div class="num">1</div><div><strong>Health.</strong><br>Comprobar que el servidor vive.</div></div>
+<div class="step"><div class="num">2</div><div><strong>Schedule.</strong><br>Consultar planificación del dispositivo.</div></div>
+<div class="step"><div class="num">3</div><div><strong>Event box_opened.</strong><br>Registrar apertura.</div></div>
+<div class="step"><div class="num">4</div><div><strong>Event dose_confirmed.</strong><br>Confirmar la toma.</div></div>
+<div class="step"><div class="num">5</div><div><strong>Dashboard.</strong><br>Ver si el estado se refleja correctamente.</div></div>
+<div class="step"><div class="num">6</div><div><strong>Alerts.</strong><br>Consultar si hay incidencias.</div></div>
+<div class="step"><div class="num">7</div><div><strong>Resolve alert.</strong><br>Comprobar modificación de estado.</div></div>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

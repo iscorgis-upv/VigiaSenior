@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 · Fundamentos: qué es un backend, qué es una API y qué es un endpoint</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>01 · Fundamentos: qué es un backend, qué es una API y qué es un endpoint</h1>
+    <p>Este manual aclara la base conceptual del proyecto. Antes de hablar de archivos, rutas o tests, hay que entender qué papel tiene el backend dentro de VigiaSenior.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Qué es un backend</h2>
+<p>Cuando una aplicación se divide en partes, solemos hablar de <strong>frontend</strong> y <strong>backend</strong>. El frontend es la parte visible con la que interactúa una persona usuaria. El backend es la parte que trabaja por detrás: recibe peticiones, procesa información, accede a la base de datos, aplica reglas y devuelve respuestas.</p>
+<p>En VigiaSenior, el backend no es un adorno. Es el núcleo que interpreta lo que ocurre en el sistema. El pastillero o la simulación envían eventos; el backend decide si una toma está pendiente, abierta, confirmada o perdida; además, guarda histórico y genera alertas cuando corresponde.</p>
+<div class="callout ok"><strong>Idea clave:</strong> el backend no solo guarda datos. También decide qué significan esos datos dentro del problema.</div>
+</section><section class="card"><h2>2. Qué es una API</h2>
+<p><strong>API</strong> significa <em>Application Programming Interface</em>. Dicho de forma sencilla, una API es una interfaz que permite que un sistema hable con otro. En lugar de botones o pantallas, utiliza peticiones y respuestas.</p>
+<p>En este proyecto, la API permite que un dispositivo, una simulación o un panel consulten información y envíen eventos al servidor. Si no existiera esa API, el dispositivo no sabría dónde mandar la apertura de una cajita, ni el panel podría consultar alertas o el estado del paciente.</p>
+<table class="table">
+<thead><tr><th>Sin API</th><th>Con API</th></tr></thead>
+<tbody>
+<tr><td>No hay contrato claro entre sistemas.</td><td>Existe una forma acordada de pedir y devolver información.</td></tr>
+<tr><td>Cada integración se improvisa.</td><td>Las rutas, parámetros y respuestas están definidas.</td></tr>
+<tr><td>La prueba manual es más difícil.</td><td>Se puede probar con herramientas como Postman.</td></tr>
+</tbody>
+</table>
+</section><section class="card"><h2>3. Qué es un endpoint</h2>
+<p>Un <strong>endpoint</strong> es una ruta concreta de la API. Se identifica normalmente por una URL y por un método HTTP. Por ejemplo, <code>GET /health</code> o <code>POST /api/devices/:deviceId/events</code>.</p>
+<p>Cada endpoint hace una tarea concreta. Si intentas meter demasiadas cosas en una sola ruta, el backend pierde claridad. Por eso conviene que cada endpoint responda a una pregunta concreta o realice una acción clara.</p>
+<pre><code>GET /health
+→ sirve para comprobar que el servidor está levantado
+
+GET /api/devices/:deviceId/schedule/today
+→ devuelve la planificación del día para un dispositivo
+
+POST /api/devices/:deviceId/events
+→ recibe un evento generado por el dispositivo</code></pre>
+</section><section class="card"><h2>4. Cómo se relacionan frontend, hardware y backend en VigiaSenior</h2>
+<pre><code>Dispositivo o simulación
+        │
+        │ envía eventos / consulta datos
+        ▼
+      API REST
+        │
+        ▼
+  Lógica del backend
+        │
+        ▼
+   Base de datos
+        │
+        ▼
+ Panel o dashboard</code></pre>
+<p>El hardware no toma todas las decisiones. Puede detectar o simular una apertura, pero no decide por sí solo si la toma es válida. Esa decisión la toma el backend con ayuda de la base de datos y la lógica del proyecto.</p>
+</section><section class="card"><h2>5. La regla de negocio principal del proyecto</h2>
+<p>Todo el backend gira en torno a una regla central:</p>
+<div class="callout warn"><strong>Una toma solo se considera correcta cuando existe apertura + confirmación dentro de una ventana de tiempo configurable.</strong></div>
+<p>Esta frase es más importante de lo que parece. Afecta a:</p>
+<ul class="check">
+<li>las entidades que debes modelar;</li>
+<li>los eventos que debe aceptar la API;</li>
+<li>los estados posibles de una toma;</li>
+<li>las pruebas manuales y automáticas;</li>
+<li>la información que después mostrará el dashboard.</li>
+</ul>
+</section><section class="card"><h2>6. Qué significa desarrollar el backend en este proyecto</h2>
+<p>Desarrollar el backend de VigiaSenior no es solo “hacer que responda Express”. Implica varias tareas distintas:</p>
+<ul class="check">
+<li>analizar el problema y entender el flujo del sistema;</li>
+<li>diseñar un modelo de datos coherente;</li>
+<li>definir una API clara;</li>
+<li>escribir código organizado en capas;</li>
+<li>validar la entrada que recibe el servidor;</li>
+<li>persistir información en base de datos;</li>
+<li>probar que la lógica hace lo que debe.</li>
+</ul>
+<p>Cuando todo eso funciona de forma ordenada, puedes decir que tienes backend. Si solo tienes rutas que responden algo, todavía no.</p>
+</section><section class="card"><h2>7. Qué conceptos debes reconocer desde el principio</h2>
+<table class="table">
+<thead><tr><th>Concepto</th><th>Qué significa aquí</th></tr></thead>
+<tbody>
+<tr><td>Request</td><td>La petición que llega al servidor.</td></tr>
+<tr><td>Response</td><td>La respuesta que devuelve el servidor.</td></tr>
+<tr><td>Body</td><td>Datos que se envían en la petición, normalmente en JSON.</td></tr>
+<tr><td>Params</td><td>Datos que viajan en la URL, como un <code>deviceId</code>.</td></tr>
+<tr><td>Validator</td><td>Bloque que comprueba que la entrada es correcta.</td></tr>
+<tr><td>Service</td><td>Capa donde suele vivir la lógica de negocio.</td></tr>
+<tr><td>Repository</td><td>Capa que accede a la base de datos.</td></tr>
+</tbody>
+</table>
+</section><section class="card"><h2>8. Preguntas que el alumnado debería poder responder tras esta unidad</h2>
+<ul class="check">
+<li>¿Qué papel tiene el backend en VigiaSenior?</li>
+<li>¿Qué diferencia hay entre API y endpoint?</li>
+<li>¿Por qué el dispositivo no resuelve él solo la lógica del sistema?</li>
+<li>¿Qué significa que una toma sea válida dentro de una ventana de tiempo?</li>
+<li>¿Por qué una ruta que responde no equivale todavía a un backend completo?</li>
+</ul>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

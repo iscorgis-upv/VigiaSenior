@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08 · Pruebas automáticas con Jest y Supertest</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>08 · Pruebas automáticas con Jest y Supertest</h1>
+    <p>Este manual explica cómo se prueban la lógica y los endpoints de forma automática. No se trata de testear por moda, sino de tener evidencias de que el backend se comporta como debería.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Qué diferencia hay entre prueba manual y automática</h2>
+<table class="table">
+<thead><tr><th>Tipo de prueba</th><th>Ventaja</th><th>Limitación</th></tr></thead>
+<tbody>
+<tr><td>Manual con Postman</td><td>rápida y visual</td><td>depende de que alguien la ejecute</td></tr>
+<tr><td>Automática con Jest</td><td>repetible y verificable</td><td>requiere escribir código de test</td></tr>
+</tbody>
+</table>
+<p>En un proyecto serio, ambas se complementan. Postman ayuda a explorar; Jest ayuda a asegurar.</p>
+</section><section class="card"><h2>2. Qué es Jest</h2>
+<p>Jest es un runner de pruebas para JavaScript/TypeScript. Permite definir casos de prueba, agruparlos y ejecutarlos de forma repetible.</p>
+<pre><code>describe('GET /health', () => {
+  it('returns 200 OK', async () => {
+    await request(app).get('/health').expect(200)
+  })
+})</code></pre>
+<p>La estructura básica es muy parecida a lenguaje natural:</p>
+<ul class="check">
+<li><code>describe</code> agrupa una funcionalidad;</li>
+<li><code>it</code> o <code>test</code> define un caso concreto;</li>
+<li><code>expect</code> expresa lo que se espera.</li>
+</ul>
+</section><section class="card"><h2>3. Qué aporta Supertest</h2>
+<p>Supertest permite lanzar peticiones HTTP contra la aplicación Express dentro de una prueba. Es decir, simula el comportamiento de un cliente sin necesidad de abrir Postman.</p>
+<pre><code>const response = await request(app)
+  .get('/health')
+  .expect(200)</code></pre>
+<p>Esto es especialmente útil para pruebas de integración de endpoints.</p>
+</section><section class="card"><h2>4. Tipos de prueba presentes en el proyecto</h2>
+<ul class="check">
+<li><strong>Integration tests</strong>: prueban endpoints como <code>/health</code>, <code>/schedule/today</code> o <code>/dashboard</code>.</li>
+<li><strong>Unit tests</strong>: prueban reglas de lógica, por ejemplo la confirmación de dosis.</li>
+</ul>
+<p>El alumnado debería distinguir ambos niveles. Una prueba de integración comprueba varias capas a la vez; una unitaria aísla una parte más concreta.</p>
+</section><section class="card"><h2>5. Ejemplo sencillo de integración: health</h2>
+<pre><code>describe('GET /health', () => {
+  it('returns 200 OK', async () => {
+    await request(app).get('/health').expect(200)
+  })
+
+  it('returns a basic health response structure', async () => {
+    const response = await request(app).get('/health').expect(200)
+
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        status: expect.any(String),
+      }),
+    )
+    expect(response.body.status).toBe('ok')
+  })
+})</code></pre>
+<p>Este tipo de test es muy didáctico porque enseña a comprobar tanto el código HTTP como la forma de la respuesta.</p>
+</section><section class="card"><h2>6. Ejemplo de prueba unitaria más cercana al dominio</h2>
+<p>En el proyecto aparecen pruebas centradas en la regla de cumplimiento de la dosis. La idea es comprobar casos como estos:</p>
+<ul class="check">
+<li>si solo hay apertura sin confirmación, la dosis no debe quedar confirmada;</li>
+<li>si llega una confirmación sin apertura previa, debe rechazarse;</li>
+<li>si la confirmación llega fuera de la ventana, debe rechazarse;</li>
+<li>si apertura y confirmación ocurren dentro de la ventana, la dosis debe pasar a confirmada.</li>
+</ul>
+<p>Ese tipo de pruebas son muy valiosas porque están alineadas con la regla principal del proyecto y no con un detalle secundario.</p>
+</section><section class="card"><h2>7. beforeAll, afterAll y limpieza de datos</h2>
+<p>Muchos tests crean pacientes, dispositivos, planes o dosis de prueba. Para que el entorno no se ensucie, conviene preparar los datos al principio y eliminarlos al final.</p>
+<pre><code>beforeAll(async () => {
+  // crear caregiver, patient, device...
+})
+
+afterAll(async () => {
+  // borrar datos de prueba y desconectar prisma
+})</code></pre>
+<p>Esta estructura ayuda a que las pruebas sean repetibles y no fallen por residuos de ejecuciones anteriores.</p>
+</section><section class="card"><h2>8. Qué debería comprobar el alumnado en cada test</h2>
+<ul class="check">
+<li>el código de estado HTTP esperado;</li>
+<li>que la respuesta sea JSON cuando corresponda;</li>
+<li>que aparezcan las propiedades mínimas del contrato;</li>
+<li>que la base de datos refleje el cambio esperado;</li>
+<li>que los casos erróneos se rechacen con sentido.</li>
+</ul>
+<div class="callout"><strong>Idea importante:</strong> un test útil no solo comprueba que “hay respuesta”; comprueba que esa respuesta tiene el significado esperado dentro del negocio.</div>
+</section><section class="card"><h2>9. Cómo ejecutar y leer los resultados</h2>
+<pre><code>npm test</code></pre>
+<p>Cuando una prueba falla, no conviene mirar solo la línea roja. Hay que leer:</p>
+<ul class="check">
+<li>qué archivo de test falló;</li>
+<li>qué caso concreto falló;</li>
+<li>qué esperaba y qué recibió;</li>
+<li>si el problema viene del endpoint, del servicio o de los datos creados.</li>
+</ul>
+</section><section class="card"><h2>10. Qué debería quedar como base mínima de validación</h2>
+<ul class="check">
+<li>tests de salud del servidor;</li>
+<li>tests de los endpoints principales;</li>
+<li>al menos una batería clara sobre la regla apertura + confirmación;</li>
+<li>datos de prueba coherentes y aislados;</li>
+<li>capacidad de ejecutar la suite sin intervención manual extraña.</li>
+</ul>
+<p>Si el alumnado llega a ese punto, ya dispone de una base de calidad bastante sólida para un proyecto de este tipo.</p>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

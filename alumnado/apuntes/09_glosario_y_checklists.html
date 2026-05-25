@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>09 · Glosario útil, checklist de implementación y ruta de trabajo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>09 · Glosario útil, checklist de implementación y ruta de trabajo</h1>
+    <p>Este último manual resume conceptos, repasa vocabulario importante y deja listas de comprobación para que el alumnado no pierda el hilo del proyecto.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Glosario rápido del proyecto</h2>
+<table class="table">
+<thead><tr><th>Término</th><th>Significado práctico</th></tr></thead>
+<tbody>
+<tr><td>Backend</td><td>Parte del sistema que recibe peticiones, aplica lógica y accede a la base de datos.</td></tr>
+<tr><td>API</td><td>Interfaz que permite que otros sistemas se comuniquen con el backend.</td></tr>
+<tr><td>Endpoint</td><td>Ruta concreta de la API, asociada normalmente a un método HTTP.</td></tr>
+<tr><td>Request</td><td>Petición que llega al servidor.</td></tr>
+<tr><td>Response</td><td>Respuesta que devuelve el servidor.</td></tr>
+<tr><td>Payload</td><td>Contenido del evento o del body enviado.</td></tr>
+<tr><td>ORM</td><td>Herramienta para trabajar con base de datos desde código.</td></tr>
+<tr><td>Prisma</td><td>ORM utilizado en el proyecto.</td></tr>
+<tr><td>Validator</td><td>Bloque que comprueba si la entrada tiene la forma correcta.</td></tr>
+<tr><td>Service</td><td>Capa donde se aplica la lógica de negocio.</td></tr>
+<tr><td>Repository</td><td>Capa que consulta o modifica la base de datos.</td></tr>
+<tr><td>Seed</td><td>Carga de datos iniciales para pruebas.</td></tr>
+</tbody>
+</table>
+</section><section class="card"><h2>2. Checklist de análisis y diseño</h2>
+<ul class="check">
+<li>entiendo qué problema resuelve VigiaSenior;</li>
+<li>sé cuál es la regla principal del sistema;</li>
+<li>puedo nombrar las entidades principales del dominio;</li>
+<li>sé qué endpoints mínimos tiene el proyecto;</li>
+<li>puedo explicar qué espera cada endpoint;</li>
+<li>tengo claro qué entra en el MVP y qué quedaría como ampliación.</li>
+</ul>
+</section><section class="card"><h2>3. Checklist técnico de entorno</h2>
+<ul class="check">
+<li>he clonado el repo correctamente;</li>
+<li>he instalado dependencias;</li>
+<li>he generado Prisma Client;</li>
+<li>he aplicado migraciones;</li>
+<li>he cargado seed si el proyecto lo requiere;</li>
+<li>el endpoint /health responde;</li>
+<li>puedo lanzar tests con npm test.</li>
+</ul>
+</section><section class="card"><h2>4. Checklist de implementación de una funcionalidad</h2>
+<ul class="check">
+<li>he definido qué debe hacer la ruta;</li>
+<li>he creado o revisado el validador necesario;</li>
+<li>el controlador delega en el servicio y no hace demasiadas cosas;</li>
+<li>el servicio contiene la lógica de negocio relevante;</li>
+<li>las consultas a base de datos están encapsuladas en repositorio;</li>
+<li>la respuesta JSON tiene forma clara y consistente;</li>
+<li>he probado el caso feliz y al menos uno de error.</li>
+</ul>
+</section><section class="card"><h2>5. Checklist de pruebas</h2>
+<ul class="check">
+<li>he probado con Postman la ruta principal;</li>
+<li>he probado un body válido y uno inválido;</li>
+<li>he revisado el código de estado HTTP;</li>
+<li>he comprobado si la base de datos refleja el cambio;</li>
+<li>si la funcionalidad es crítica, he añadido o revisado test automático.</li>
+</ul>
+</section><section class="card"><h2>6. Ruta de trabajo recomendada para un equipo</h2>
+<div class="step"><div class="num">1</div><div><strong>Día 1.</strong><br>Comprender el reto, leer el modelo de datos y dibujar el flujo funcional.</div></div>
+<div class="step"><div class="num">2</div><div><strong>Día 2.</strong><br>Levantar entorno, ejecutar migraciones y comprobar health.</div></div>
+<div class="step"><div class="num">3</div><div><strong>Día 3.</strong><br>Revisar y documentar endpoints mínimos.</div></div>
+<div class="step"><div class="num">4</div><div><strong>Día 4–5.</strong><br>Implementar rutas clave y probar con Postman.</div></div>
+<div class="step"><div class="num">5</div><div><strong>Día 6–7.</strong><br>Revisar lógica de eventos y añadir pruebas.</div></div>
+<div class="step"><div class="num">6</div><div><strong>Cierre.</strong><br>Documentar, ordenar el repo y preparar explicación oral.</div></div>
+</section><section class="card"><h2>7. Qué significa realmente avanzar en el proyecto</h2>
+<p>No siempre avanzar significa escribir muchas líneas. A veces un buen avance es:</p>
+<ul class="check">
+<li>entender mejor una regla de negocio;</li>
+<li>simplificar una respuesta JSON;</li>
+<li>detectar una incoherencia entre endpoint y modelo;</li>
+<li>añadir una prueba que evita un error futuro;</li>
+<li>dejar una ruta más clara y más fácil de mantener.</li>
+</ul>
+<p>Un backend bien hecho no se mide solo en cantidad de código, sino en claridad y comportamiento correcto.</p>
+</section><section class="card"><h2>8. Cierre final</h2>
+<p>Si el alumnado ha trabajado estos apuntes de forma progresiva, debería llegar al final del proyecto pudiendo explicar tres cosas con seguridad:</p>
+<ul class="check">
+<li>qué hace el backend de VigiaSenior y por qué;</li>
+<li>cómo está organizado técnicamente;</li>
+<li>cómo se demuestra que funciona.</li>
+</ul>
+<div class="callout ok"><strong>Meta final:</strong> que el alumnado no solo tenga un repositorio, sino criterio suficiente para entenderlo, ampliarlo y defenderlo.</div>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>

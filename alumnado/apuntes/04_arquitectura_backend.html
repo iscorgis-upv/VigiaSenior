@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Arquitectura del backend: rutas, controladores, servicios, repositorios y validadores</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_fundamentos_backend.html">01 Fundamentos</a><a href="02_stack_y_entorno.html">02 Stack y entorno</a><a href="03_modelado_y_bbdd.html">03 Datos y Prisma</a><a href="04_arquitectura_backend.html">04 Arquitectura</a><a href="05_api_y_endpoints.html">05 API</a><a href="06_implementacion_guiada.html">06 Implementación</a><a href="07_postman_y_pruebas_manual.html">07 Postman</a><a href="08_jest_y_validacion.html">08 Jest</a><a href="09_glosario_y_checklists.html">09 Glosario</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
+    <h1>04 · Arquitectura del backend: rutas, controladores, servicios, repositorios y validadores</h1>
+    <p>Este manual explica cómo está organizada la implementación y qué responsabilidad tiene cada capa. Comprender esta arquitectura evita mezclar todo en un solo archivo.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+  <section class="card"><h2>1. Por qué separamos el código en capas</h2>
+<p>En proyectos pequeños puede parecer más rápido ponerlo todo dentro de una misma función. El problema es que eso escala mal: cuesta leerlo, cuesta probarlo y cuesta cambiarlo. Por eso, el backend de VigiaSenior se organiza por capas.</p>
+<p>La idea es sencilla: cada capa debería tener una responsabilidad principal. Así se entiende mejor el código y se mantiene mejor.</p>
+</section><section class="card"><h2>2. Vista global de la estructura</h2>
+<pre><code>src/
+├── app.ts
+├── server.ts
+├── routes/
+├── controllers/
+├── services/
+├── repositories/
+├── validators/
+├── prisma/
+└── types/</code></pre>
+<p>A esta estructura se suman las carpetas de <code>tests/</code> para validar comportamiento del backend.</p>
+</section><section class="card"><h2>3. app.ts y server.ts: no son lo mismo</h2>
+<p>Una separación muy útil es distinguir entre la aplicación Express y el arranque del servidor.</p>
+<ul class="check">
+<li><strong>app.ts</strong> configura middlewares, rutas y manejo global de errores.</li>
+<li><strong>server.ts</strong> se encarga de escuchar en un puerto concreto.</li>
+</ul>
+<pre><code>// app.ts
+app.use(express.json())
+app.use('/api/devices', deviceRoutes)
+app.use('/api/patients', patientRoutes)
+app.use('/api', alertRoutes)</code></pre>
+<p>Gracias a esto, en pruebas se puede importar la app sin necesidad de levantar un servidor real escuchando un puerto.</p>
+</section><section class="card"><h2>4. Rutas: qué deben hacer y qué no</h2>
+<p>Las rutas solo deberían declarar el camino de entrada y salida hacia el controlador. No deberían contener lógica pesada.</p>
+<pre><code>router.get('/:deviceId/schedule/today', getDeviceTodaySchedule)
+router.post('/:deviceId/events', postDeviceEvent)</code></pre>
+<p>Una buena ruta se entiende de un vistazo. El lector sabe qué método HTTP usa, qué recurso toca y qué controlador se ejecutará.</p>
+</section><section class="card"><h2>5. Controladores: traducen request y response</h2>
+<p>El controlador recibe la petición, extrae parámetros, valida entradas y delega en la capa de servicio. Después construye la respuesta HTTP.</p>
+<pre><code>export async function postDeviceEvent(req, res, next) {
+  try {
+    const params = deviceIdParamSchema.parse(req.params)
+    const body = deviceEventBodySchema.parse(req.body)
+
+    const result = await handleDeviceEvent(params.deviceId, body)
+    return res.status(201).json(result)
+  } catch (error) {
+    next(error)
+  }
+}</code></pre>
+<p>El controlador no debería decidir la regla de negocio completa. Su papel es orquestar la entrada y la salida.</p>
+</section><section class="card"><h2>6. Servicios: aquí vive la lógica de negocio</h2>
+<p>La capa de servicio es probablemente la más importante a nivel funcional. Aquí se decide qué hacer realmente con la información recibida.</p>
+<p>Por ejemplo, cuando llega un <code>dose_confirmed</code>, el servicio debe:</p>
+<ul class="check">
+<li>comprobar si el dispositivo existe;</li>
+<li>buscar la dosis programada;</li>
+<li>verificar que esa dosis pertenece al dispositivo actual;</li>
+<li>marcar la toma como confirmada si procede;</li>
+<li>crear el evento en la base de datos;</li>
+<li>devolver una respuesta clara.</li>
+</ul>
+<pre><code>const saved = await createDeviceEvent(deviceId, event, patientId)
+
+return {
+  eventId: saved.id,
+  status: 'accepted',
+  receivedAt: saved.createdAt.toISOString(),
+}</code></pre>
+</section><section class="card"><h2>7. Repositorios: hablar con la base de datos sin ensuciar la lógica</h2>
+<p>Los repositorios encapsulan las consultas a la base de datos. Así el servicio no se llena de llamadas Prisma mezcladas con decisiones de negocio.</p>
+<pre><code>export async function findDeviceById(deviceId: string) {
+  return prisma.device.findUnique({
+    where: { id: deviceId },
+    select: {
+      id: true,
+      patientId: true,
+    },
+  })
+}</code></pre>
+<p>Esto hace que el servicio pueda leerse como lógica y no como una secuencia interminable de consultas.</p>
+</section><section class="card"><h2>8. Validadores: proteger la API antes de tocar la lógica</h2>
+<p>La API recibe datos externos. Por eso conviene validar cuanto antes si los parámetros y cuerpos tienen la forma correcta. Aquí se usa Zod.</p>
+<pre><code>export const deviceIdParamSchema = z.object({
+  deviceId: z.string().cuid(),
+})</code></pre>
+<pre><code>export const deviceEventBodySchema = z.discriminatedUnion('eventType', [
+  z.object({
+    eventType: z.literal('device_online'),
+    timestamp: z.string().datetime(),
+    payload: z.object({ batteryPercent: z.number().min(0).max(100).optional() }),
+  }),
+  ...
+])</code></pre>
+<p>Esto evita que la lógica trabaje con cuerpos mal formados, ids con formato incorrecto o timestamps inválidos.</p>
+</section><section class="card"><h2>9. types/: por qué no es una carpeta decorativa</h2>
+<p>Los tipos ayudan a que el proyecto sea más legible. No solo sirven para que compile: también documentan el contrato entre capas.</p>
+<pre><code>export interface DeviceEventResponse {
+  eventId: string
+  status: 'accepted'
+  receivedAt: string
+}</code></pre>
+<p>Cuando un alumno ve ese tipo, entiende mucho mejor qué debe devolver el servicio o el controlador sin tener que adivinarlo.</p>
+</section><section class="card"><h2>10. Patrón mental recomendado para leer el backend</h2>
+<div class="step"><div class="num">1</div><div><strong>Empieza por la ruta.</strong><br>¿Qué endpoint se define?</div></div>
+<div class="step"><div class="num">2</div><div><strong>Pasa al controlador.</strong><br>¿Qué params o body recibe? ¿Qué valida?</div></div>
+<div class="step"><div class="num">3</div><div><strong>Sigue el servicio.</strong><br>¿Qué decisiones toma?</div></div>
+<div class="step"><div class="num">4</div><div><strong>Termina en el repositorio.</strong><br>¿Qué datos necesita leer o guardar?</div></div>
+<p>Leer el backend en este orden suele ser mucho más claro que abrir archivos al azar.</p>
+</section>
+  <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
+</main>
+</body>
+</html>
