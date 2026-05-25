@@ -1,22 +1,18 @@
 # VigiaSenior
 
 <p align="center">
-  <img src="assets/portada/vigiasenior-portada.png" alt="Portada VigiaSenior" width="840">
-</p>
-
-<p align="center">
   <strong>Programación de aula y desarrollo técnico de un backend IoT para el seguimiento de la medicación en personas mayores</strong>
 </p>
 
 <p align="center">
-  <em>CFGS Desarrollo de Aplicaciones Web (DAW) · Módulo 0613 · Desarrollo web en entorno servidor</em>
+  <em>CFGS Desarrollo de Aplicaciones Web (DAW) · Módulo 0613 - Desarrollo web en entorno servidor</em>
 </p>
 
 ---
 
-## 🧭 Presentación del proyecto
+## 🧭 Introducción
 
-**VigiaSenior** es una propuesta didáctica orientada al **CFGS de Desarrollo de Aplicaciones Web (DAW)**, vinculada principalmente al módulo **0613 · Desarrollo web en entorno servidor**. El proyecto se articula a partir de una situación de aprendizaje basada en el diseño e implementación del **backend de un pastillero inteligente**, pensado para apoyar el seguimiento de la medicación en personas mayores.
+Esto es un repositorio abierto para compartir una programación de aula del **CFGS de Desarrollo de Aplicaciones Web (DAW)** para el módulo **0613 - Desarrollo web en entorno servidor**, y en esta propuesta didáctica vamos a realizar el proyecto **VigiaSenior**. El proyecto se articula a partir de una situación de aprendizaje basada en el diseño e implementación del **backend de un pastillero inteligente**, pensado para apoyar el seguimiento de la medicación en personas mayores.
 
 La propuesta parte de un problema real y socialmente significativo: la dificultad de mantener rutinas de medicación seguras, controladas y registrables en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación y una integración básica con hardware o simulación.
 
@@ -331,4 +327,7 @@ En caso de reutilización docente, se recomienda mantener la atribución del pro
 
 **VigiaSenior** se plantea como una propuesta de aula con valor técnico, sentido social y estructura pedagógica clara. El objetivo no es únicamente construir un backend funcional, sino convertir ese desarrollo en una experiencia de aprendizaje coherente, bien documentada, evaluable y reutilizable.
 
+<p align="center">
+  <img src="assets/portada/vigiasenior-portada.png" alt="Portada VigiaSenior" width="840">
+</p>
 En este sentido, el repositorio pretende ser algo más que un contenedor de archivos: busca actuar como una **maleta pedagógica y técnica**, preparada para ser comprendida, adaptada, aplicada y defendida.
