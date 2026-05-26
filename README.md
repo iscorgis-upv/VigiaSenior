@@ -47,11 +47,7 @@ Su encaje dentro de **Desarrollo web en entorno servidor** es claro, ya que perm
 
 ### 🔗 Acceso rápido
 
-- [📘 Guía para profesorado](./profesorado/)
-- [👨‍🎓 Material para alumnado](./alumnado/)
-- [🧪 Apuntes técnicos del alumnado](./alumnado/apuntes/)
-- [🎤 Presentación online](./presentacion/VigiaSenior_presentacion_online.html)
-- [⚙️ Implementación técnica](./implementacion/)
+
 
 ---
 
