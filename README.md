@@ -45,6 +45,14 @@ En esta propuesta vamos a desarrollar **VigiaSenior**, un backend para un pastil
 
 Su encaje dentro de **Desarrollo web en entorno servidor** es claro, ya que permite trabajar servicios web, bases de datos, lógica de negocio, diseño de endpoints e integración de eventos procedentes de un dispositivo. En lugar de abordar estos contenidos por separado, se trabajan de manera conjunta dentro de un proyecto único, más cercano a una situación real de desarrollo.
 
+### 🔗 Acceso rápido
+
+- [📘 Guía para profesorado](./profesorado/)
+- [👨‍🎓 Material para alumnado](./alumnado/)
+- [🧪 Apuntes técnicos del alumnado](./alumnado/apuntes/)
+- [🎤 Presentación online](./presentacion/VigiaSenior_presentacion_online.html)
+- [⚙️ Implementación técnica](./implementacion/)
+
 ---
 
 ## 🎯 Objetivos del proyecto
@@ -153,12 +161,6 @@ Recoge el material de trabajo del alumnado:
 - tutoriales;
 - plantillas de análisis, API y documentación.
 
-### 🖥️ `presentacion/`
-Incluye el material para la defensa oral del proyecto:
-
-- guion de exposición;
-- presentación visual;
-- recursos de apoyo para la explicación final.
 
 ### ⚙️ `implementacion/`
 Agrupa la parte estrictamente técnica del sistema:
