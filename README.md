@@ -24,7 +24,7 @@ La propuesta parte de un problema real y socialmente significativo: la dificulta
 ### Normativa
 Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional, así como la normativa específica del título de **Técnico Superior en Desarrollo de Aplicaciones Web** y la normativa curricular aplicable en la **Comunitat Valenciana**.
 
-La normativa completa puede consultarse en [profesorado/03_marco_legal.md](./profesorado/03_marco_legal.md).
+La normativa completa puede consultarse en [Contextualización y marco legal](./profesorado/02_contextualizacion_y_marco_legal.html).
 
 ### 🎓 Contexto académico
 
@@ -47,7 +47,11 @@ Su encaje dentro de **Desarrollo web en entorno servidor** es claro, ya que perm
 
 ### 🔗 Acceso rápido
 
-
+- [📘 Guía para profesorado](./profesorado/)
+- [👨‍🎓 Material para alumnado](./alumnado/)
+- [🧪 Apuntes técnicos del alumnado](./alumnado/apuntes/)
+- [🎤 Presentación online](./presentacion/VigiaSenior_presentacion_online.html)
+- [⚙️ Implementación técnica](./implementacion/)
 
 ---
 
