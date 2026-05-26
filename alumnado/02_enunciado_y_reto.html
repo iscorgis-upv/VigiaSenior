@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>02 · Enunciado y reto del proyecto</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Inicio</a><a href="01_dossier_del_proyecto.html">01 Dossier</a><a href="02_enunciado_y_reto.html">02 Reto</a><a href="03_fases_y_entregas.html">03 Fases y entregas</a><a href="04_como_se_va_a_evaluar.html">04 Cómo se va a evaluar</a><a href="apuntes/index.html">Apuntes</a></div></nav>
+<main class="wrap">
+<div class="hero-mini"><div class="kicker">VigiaSenior · Guía de trabajo</div><h1>02 · Enunciado y reto del proyecto</h1><p>Aquí se concreta el núcleo del trabajo: cuál es el problema planteado, qué papel tiene el backend y qué alcance se espera dentro del proyecto.</p><a class="btn secondary" href="index.html">← Volver al índice</a></div>
+<section class='card'><h2>1. Situación de partida</h2>
+<p>El sistema parte de un pastillero inteligente —o de una simulación equivalente— capaz de registrar eventos relacionados con la toma de medicación. A partir de esos eventos, el backend debe ser capaz de interpretar qué ha ocurrido, relacionarlo con una planificación previa y mantener un estado actualizado del seguimiento.</p>
+<p>Desde esa base, el reto no consiste en construir el dispositivo, sino en desarrollar la parte del servidor que hace posible que el conjunto tenga sentido: consulta de planificación, registro de eventos, cambio de estados, alertas y datos para seguimiento.</p>
+</section><section class='card'><h2>2. Alcance del reto</h2>
+<p>El proyecto no pretende cubrir todos los casos posibles de un sistema de medicación profesional, pero sí construir un MVP suficientemente claro y completo. Ese MVP debe permitir comprobar que el backend resuelve el flujo esencial del sistema y que puede defenderse como una solución coherente dentro del módulo.</p>
+<ul class="check">
+<li>Consultar el plan del día de un dispositivo o de un paciente.</li>
+<li>Registrar eventos de apertura y confirmación.</li>
+<li>Actualizar el estado de una toma.</li>
+<li>Generar alertas o incidencias cuando corresponda.</li>
+<li>Ofrecer información útil para seguimiento o dashboard.</li>
+</ul>
+</section><section class='card'><h2>3. Regla principal del proyecto</h2>
+<p>La lógica central que organiza el sistema es sencilla de formular, pero importante para todo el backend: una toma solo se considera correcta cuando existe apertura de la cajita y confirmación dentro de una ventana temporal configurable. Esa regla afecta al modelo de datos, a los eventos, a la lógica del servicio y a la forma de interpretar el estado final de cada dosis.</p>
+<p>Por eso conviene tenerla siempre presente. Muchas de las decisiones del proyecto se justifican precisamente por esa necesidad de coordinar planificación, eventos y tiempo.</p>
+</section><section class='card'><h2>4. Tareas principales del proyecto</h2>
+<p>El trabajo se articula en varias tareas principales que se van cerrando por fases. No es necesario resolverlas todas de golpe. La secuencia está pensada para que primero se entienda el problema, después se diseñe el sistema y solo entonces se programe la parte técnica.</p>
+<ul class="check">
+<li>Analizar el sistema y sus reglas de funcionamiento.</li>
+<li>Diseñar el modelo de dominio y la base de datos.</li>
+<li>Definir y desarrollar la API REST.</li>
+<li>Implementar el backend con persistencia y lógica de negocio.</li>
+<li>Validar el sistema con pruebas e integración.</li>
+<li>Documentar y preparar la defensa final.</li>
+</ul>
+</section>
+<p class="footer">VigiaSenior · Carpeta de trabajo y apoyo para el proyecto</p>
+</main></body></html>

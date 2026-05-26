@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05 · Temporalización y sesiones</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.timeline{overflow:auto}
+.timeline-grid{min-width:980px;display:grid;grid-template-columns:220px repeat(5,1fr);gap:8px;align-items:center}
+.timeline-grid .head{background:#173b73;color:#fff;font-weight:700;text-align:center;padding:12px 10px;border-radius:12px}
+.timeline-grid .label{background:#fff;border:1px solid #d9e2ef;border-radius:12px;padding:10px 12px;font-size:14px}
+.cell{height:40px;background:#edf2f7;border-radius:12px;position:relative}
+.bar{position:absolute;inset:5px;border-radius:9px;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px 8px;font-weight:600}
+.b1{background:#2563eb}.b2{background:#16a34a}.b3{background:#0f766e}.b4{background:#d97706}.b5{background:#b42318}
+.session-block{background:#fff;border:1px solid #d9e2ef;border-radius:18px;padding:20px;margin-bottom:16px}
+.session-block h3{margin:0 0 8px;color:#173b73}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef4fb;color:#173b73;font-size:13px;font-weight:700}
+.sub{font-weight:700;color:#173b73;margin-top:12px}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_introduccion_y_justificacion.html">01 Introducción</a><a href="02_contextualizacion_y_marco_legal.html">02 Contexto y marco legal</a><a href="03_objetivos_competencias_y_perfil.html">03 Objetivos y perfil</a><a href="04_contenidos_ra_ce_y_sentido_curricular.html">04 Contenidos y RA/CE</a><a href="05_temporalizacion_y_sesiones.html">05 Temporalización</a><a href="06_metodologia.html">06 Metodología</a><a href="07_evaluacion_competencial.html">07 Evaluación</a><a href="08_dua_recursos_y_materiales.html">08 DUA y recursos</a><a href="09_rubricas_e_instrumentos.html">09 Rúbricas</a></div></nav>
+<main class="wrap">
+  <div class="hero-mini">
+    <div class="kicker">Programación de aula · planificación</div>
+    <h1>05 · Temporalización y desarrollo de sesiones</h1>
+    <p>La temporalización de VigiaSenior se plantea como un tramo bien delimitado del segundo trimestre. No busca ocupar todo el módulo, sino concentrar en un bloque concreto una situación de aprendizaje completa, con inicio, desarrollo, hitos intermedios y cierre. Esta página reúne esa secuencia en una versión visual y, al mismo tiempo, suficientemente explicada como para que no se reduzca a una tabla de fechas.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
+
+  <section class="card">
+    <h2>1. Encaje dentro del módulo</h2>
+    <p>El módulo <strong>0613 · Desarrollo web en entorno servidor</strong> dispone de una carga semanal de seis horas. Dentro de ese marco, la propuesta se concreta en un bloque específico de unas veinte horas de aula, distribuidas en diez sesiones a lo largo de cinco semanas del segundo trimestre. Esta delimitación resulta importante porque refuerza la viabilidad de la propuesta: el proyecto no sustituye la programación anual del módulo, sino que se integra en ella como una situación de aprendizaje intensiva y claramente acotada.</p>
+    <div class="callout ok"><strong>Clave didáctica:</strong> la temporalización está pensada para que el proyecto tenga entidad propia sin perder realismo organizativo. Esa es una de las condiciones que hacen que la propuesta sea defendible y transferible.</div>
+  </section>
+
+  <section class="card">
+    <h2>2. Estructura general del calendario</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Fechas orientativas</th>
+          <th>Sesiones</th>
+          <th>Bloque principal</th>
+          <th>Resultado visible al cierre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>12–16 enero</td><td>1 y 2</td><td>Presentación del reto y análisis funcional</td><td>Comprensión del problema, actores, eventos y regla principal</td></tr>
+        <tr><td>2</td><td>19–23 enero</td><td>3 y 4</td><td>Modelo de dominio y diseño de API</td><td>Base de datos conceptual y contrato inicial de la API</td></tr>
+        <tr><td>3</td><td>26–30 enero</td><td>5 y 6</td><td>Estructura del backend, persistencia y planificación diaria</td><td>Entorno de trabajo listo y primer backend reconocible</td></tr>
+        <tr><td>4</td><td>2–6 febrero</td><td>7 y 8</td><td>Eventos, lógica de negocio, alertas y dashboard</td><td>MVP funcional con flujo principal operativo</td></tr>
+        <tr><td>5</td><td>9–13 febrero</td><td>9 y 10</td><td>Integración, pruebas, documentación y defensa</td><td>Proyecto completo, revisado y listo para presentarse</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>3. Vista de conjunto</h2>
+    <div class="timeline">
+      <div class="timeline-grid">
+        <div></div>
+        <div class="head">Semana 1<br><small>12–16 ene</small></div>
+        <div class="head">Semana 2<br><small>19–23 ene</small></div>
+        <div class="head">Semana 3<br><small>26–30 ene</small></div>
+        <div class="head">Semana 4<br><small>2–6 feb</small></div>
+        <div class="head">Semana 5<br><small>9–13 feb</small></div>
+
+        <div class="label">Sesión 1 · Presentación del reto</div>
+        <div class="cell"><div class="bar b1">12 ene</div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 2 · Análisis funcional</div>
+        <div class="cell"><div class="bar b1">15 ene</div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 3 · Modelo de dominio</div>
+        <div class="cell"></div><div class="cell"><div class="bar b2">19 ene</div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 4 · Diseño de API REST</div>
+        <div class="cell"></div><div class="cell"><div class="bar b2">22 ene</div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 5 · Estructura del backend</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b3">26 ene</div></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 6 · Persistencia y plan del día</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b3">29 ene</div></div><div class="cell"></div><div class="cell"></div>
+        <div class="label">Sesión 7 · Registro de eventos</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b4">2 feb</div></div><div class="cell"></div>
+        <div class="label">Sesión 8 · Lógica, alertas y dashboard</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b4">5 feb</div></div><div class="cell"></div>
+        <div class="label">Sesión 9 · Integración y pruebas</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b5">9 feb</div></div>
+        <div class="label">Sesión 10 · Documentación y defensa</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="bar b5">12 feb</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4. Hitos y entregas</h2>
+    <table class='table'><thead><tr><th>Semana</th><th>Fechas orientativas</th><th>Sesiones</th><th>Bloque</th><th>Entrega / hito</th><th>Evidencias principales</th><th>Instrumentos</th></tr></thead><tbody><tr><td>1</td><td>12-16 enero</td><td>1 y 2</td><td>Análisis</td><td>Sin entrega, se realiza trabajo de comprensión y análisis</td><td>Comprensión del reto y análisis funcional</td><td>Observación y lista de control</td></tr><tr><td>2</td><td>19-23 enero</td><td>3 y 4</td><td>Diseño</td><td>Hito 1</td><td>Modelo de dominio y diseño de la API</td><td>Rúbrica de diseño y revisión de documentos</td></tr><tr><td>3</td><td>26-30 enero</td><td>5 y 6</td><td>Implementación</td><td>Avance técnico 1</td><td>Arquitectura del backend y persistencia de los datos</td><td>Revisión técnica y demostración</td></tr><tr><td>4</td><td>2-6 febrero</td><td>7 y 8</td><td>Implementación</td><td>Hito 2</td><td>Eventos + lógica de tomas y alertas/dashboard</td><td>Checklist de servicios y rúbrica de implementación</td></tr><tr><td>5</td><td>9-13 febrero</td><td>9 y 10</td><td>Validación y cierre</td><td>Hito 3</td><td>Integración, documentación y defensa</td><td>Checklist de integración y rúbrica documental y oral</td></tr></tbody></table>
+    <p>La secuencia por hitos evita que todo dependa de una única entrega final. Cada tramo deja un tipo distinto de evidencia y obliga a que el proyecto avance de forma ordenada: primero comprensión y diseño, después implementación y, por último, validación, documentación y defensa.</p>
+  </section>
+
+  <section class="card">
+    <h2>5. Desarrollo detallado de las sesiones</h2>
+
+    <div class="session-block">
+      <h3>Sesión 1 · Presentación del reto y contextualización</h3>
+      <div class="meta"><span class="tag">12 enero</span><span class="tag">Semana 1</span><span class="tag">Inicio del proyecto</span></div>
+      <p>La primera sesión no debería funcionar como una mera explicación inicial. Su función es situar con claridad el problema, el alcance del proyecto y el papel del backend dentro del sistema. Aquí se presenta el sentido de VigiaSenior, se justifica por qué el proyecto es pertinente para el módulo y se marca el horizonte de trabajo que se espera alcanzar en las semanas siguientes. También conviene aprovechar esta sesión para revisar el repositorio, dejar claro qué partes pertenecen a la capa técnica y cuáles a la programación de aula, y fijar un primer reparto de funciones dentro del grupo.</p>
+      <p class="sub">Qué tiene que quedar claro al salir</p>
+      <p>Que el proyecto no consiste en “hacer una API” sin más, sino en construir la parte del sistema que da sentido al seguimiento de la medicación y que articula comunicación, persistencia, lógica de negocio y validación.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 2 · Análisis funcional del sistema</h3>
+      <div class="meta"><span class="tag">15 enero</span><span class="tag">Semana 1</span><span class="tag">Análisis</span></div>
+      <p>Una vez situado el proyecto, toca traducir el problema a lenguaje de sistema. En esta sesión se trabajan actores, eventos, estados y regla de negocio. El valor de este momento está en evitar que la solución técnica aparezca antes de que el problema esté bien entendido. Se trata de decidir qué cosas son relevantes para el backend, cómo se interpreta una toma correcta o incorrecta, qué papel tienen las alertas y cómo se lee el flujo del sistema en términos funcionales.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Un análisis funcional que sirva de base real para las decisiones de datos, de API y de lógica del backend.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 3 · Modelo de dominio y estructura de datos</h3>
+      <div class="meta"><span class="tag">19 enero</span><span class="tag">Semana 2</span><span class="tag">Diseño</span></div>
+      <p>El trabajo de esta sesión consiste en convertir el análisis previo en una estructura técnica más estable. Aquí se definen entidades, relaciones y estados persistentes. El objetivo no es “hacer una base de datos” por intuición, sino encontrar una representación razonable del dominio que soporte la lógica principal del proyecto. Esta sesión es especialmente importante porque de ella depende buena parte de la coherencia posterior del backend.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Un modelo de dominio o una estructura de datos suficientemente clara para sostener la planificación de dosis, el registro de eventos, el cambio de estados y la generación de alertas.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 4 · Diseño de la API REST</h3>
+      <div class="meta"><span class="tag">22 enero</span><span class="tag">Semana 2</span><span class="tag">Diseño</span></div>
+      <p>Con el dominio ya planteado, la siguiente cuestión es cómo se va a comunicar el backend con el resto del sistema. La sesión se dedica a decidir rutas, métodos HTTP, cuerpos JSON, respuestas y posibles errores. Lo importante aquí no es enumerar endpoints, sino justificar su existencia y asegurar que la API responde a necesidades reales del proyecto. Dejar esta parte cerrada antes de programar ayuda mucho a que la implementación posterior no crezca de forma improvisada.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Un borrador razonado de la API, con rutas principales y una idea clara de qué entra, qué sale y qué validaciones resultan necesarias.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 5 · Preparación de la estructura del backend</h3>
+      <div class="meta"><span class="tag">26 enero</span><span class="tag">Semana 3</span><span class="tag">Implementación inicial</span></div>
+      <p>Esta sesión marca el paso del diseño a la preparación técnica. Aquí se monta el entorno de trabajo y se revisa la arquitectura del backend: rutas, controladores, servicios, repositorios, validadores, tipado y acceso a datos. Su función principal es evitar que la implementación comience de forma ciega. Antes de añadir lógica nueva conviene entender cómo está organizado el proyecto y por qué se ha optado por una estructura por capas.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Entorno operativo y lectura global del repositorio suficiente para trabajar sobre él con criterio.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 6 · Persistencia y consulta del plan del día</h3>
+      <div class="meta"><span class="tag">29 enero</span><span class="tag">Semana 3</span><span class="tag">Persistencia</span></div>
+      <p>En este punto el proyecto empieza a adquirir un comportamiento visible. La sesión gira en torno al schema de datos, a la base de datos del proyecto y al endpoint encargado de consultar la planificación diaria. Se trata de conectar el modelo de dominio con una primera funcionalidad concreta del backend. Esta sesión suele ser decisiva porque demuestra que la parte de persistencia no es una estructura abstracta, sino la base sobre la que se sostienen respuestas útiles del sistema.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Un primer endpoint funcional o completamente entendido en su flujo técnico, desde la ruta hasta la consulta y la respuesta.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 7 · Registro de eventos y flujo básico del sistema</h3>
+      <div class="meta"><span class="tag">2 febrero</span><span class="tag">Semana 4</span><span class="tag">Servicios web</span></div>
+      <p>Una vez resuelta la consulta del plan diario, el proyecto entra en su otra gran pieza: la recepción de eventos. Esta sesión se dedica a la ruta que recibe aperturas y confirmaciones, a la validación de esos cuerpos y al recorrido completo de la información hasta la persistencia. Tiene mucho valor didáctico porque permite ver que el backend no solo “sirve datos”, sino que también interpreta acciones que llegan desde el exterior.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>La ruta de eventos debería quedar funcional o, al menos, suficientemente desarrollada y entendida como para sostener la lógica posterior de tomas y alertas.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 8 · Lógica de negocio, alertas y dashboard</h3>
+      <div class="meta"><span class="tag">5 febrero</span><span class="tag">Semana 4</span><span class="tag">Núcleo del MVP</span></div>
+      <p>Esta sesión trabaja la parte más representativa del proyecto: la lógica que decide cuándo una toma es correcta, cómo cambian los estados y cuándo hay que generar una alerta. También se aborda la información de seguimiento que luego puede alimentar el dashboard o los paneles de consulta. Aquí el proyecto deja de ser una suma de componentes y empieza a funcionar como sistema. Si este bloque se cierra bien, el MVP ya es reconocible y defendible.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Una lógica funcional clara de planificación, eventos, cambio de estado, alertas y consulta de seguimiento.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 9 · Integración con simulación o hardware y pruebas</h3>
+      <div class="meta"><span class="tag">9 febrero</span><span class="tag">Semana 5</span><span class="tag">Validación</span></div>
+      <p>En la novena sesión el foco se desplaza hacia la comprobación del sistema en conjunto. Ya no basta con revisar endpoints por separado: interesa comprobar si el flujo completo se sostiene cuando intervienen la simulación o el prototipo. También es el momento de registrar incidencias, detectar incoherencias y revisar si el comportamiento observable coincide con lo que se esperaba en diseño y en lógica de negocio.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Una validación global del sistema y una imagen clara del estado real del proyecto antes del cierre final.</p>
+    </div>
+
+    <div class="session-block">
+      <h3>Sesión 10 · Documentación final y preparación de la defensa</h3>
+      <div class="meta"><span class="tag">12 febrero</span><span class="tag">Semana 5</span><span class="tag">Cierre</span></div>
+      <p>La última sesión ordena el resultado final. Aquí se revisa el repositorio, se cierran documentos, se comprueba que la evaluación queda bien sustentada y se prepara la presentación. No es una sesión menor ni meramente administrativa: es el momento en que el proyecto pasa de ser una implementación en desarrollo a convertirse en una propuesta completa, documentada y defendible. Por eso tiene tanto peso en la calidad del producto final.</p>
+      <p class="sub">Qué debería producirse</p>
+      <p>Proyecto listo para entrega y defensa, con coherencia entre código, documentación, estructura del repositorio y narrativa de la presentación oral.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>6. Relación entre temporalización y evaluación</h2>
+    <p>La secuencia temporal no es un añadido decorativo. Cada tramo del calendario deja un tipo distinto de evidencia y permite revisar un aspecto diferente del proyecto. Las primeras semanas hacen visible la comprensión del problema y la calidad del diseño. El bloque central muestra el desarrollo técnico del backend. El cierre permite valorar integración, validación, documentación y defensa. De esta forma, la temporalización se convierte también en una herramienta de evaluación continua.</p>
+  </section>
+  <p class="footer">VigiaSenior · Profesorado · Temporalización y sesiones</p>
+</main>
+</body>
+</html>
