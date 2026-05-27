@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VigiaSenior</title>
-  <meta name="description" content="VigiaSenior · Programación de aula y desarrollo técnico de un backend IoT para el seguimiento de la medicación en personas mayores." />
+  <title>VigiaSenior · Programación de aula y backend IoT</title>
+  <meta name="description" content="Programación de aula y desarrollo técnico de un backend IoT para el seguimiento de la medicación en personas mayores." />
   <style>
     :root {
       --primary: #123e8a;
-      --secondary: #19a7a8;
+      --primary-dark: #0b2d66;
+      --secondary: #18a7a7;
       --accent: #f4a62a;
       --bg: #f5f8fc;
+      --surface: #ffffff;
+      --surface-soft: #eef6fb;
       --text: #1f2937;
       --muted: #5b6472;
-      --card: #ffffff;
       --border: #dbe4f0;
-      --shadow: 0 14px 35px rgba(17, 24, 39, 0.08);
-      --radius: 18px;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
     }
 
     * {
@@ -32,10 +34,20 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(25, 167, 168, 0.10), transparent 25%),
-        radial-gradient(circle at top right, rgba(18, 62, 138, 0.08), transparent 28%),
-        var(--bg);
-      line-height: 1.6;
+        radial-gradient(circle at top left, rgba(24, 167, 167, 0.13), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(18, 62, 138, 0.11), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .container {
@@ -43,382 +55,893 @@
       margin: 0 auto;
     }
 
-    header {
-      padding: 2rem 0 1rem;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(219, 228, 240, 0.75);
     }
 
-    .brand {
+    .topbar-inner {
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
     }
 
-    .brand h1 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 1.05;
+    .logo-mini {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      display: inline-grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 10px 20px rgba(18, 62, 138, 0.18);
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    nav a:hover {
       color: var(--primary);
     }
 
-    .brand p {
-      margin: 0.5rem 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 760px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(25, 167, 168, 0.12);
-      color: #0f6f70;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border: 1px solid rgba(25, 167, 168, 0.18);
+    header {
+      padding: 3rem 0 2rem;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1fr 0.95fr;
       gap: 2rem;
       align-items: center;
-      margin-top: 1rem;
-      margin-bottom: 2.5rem;
     }
 
-    .hero-copy {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(219, 228, 240, 0.9);
+    .hero-card {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(219, 228, 240, 0.85);
       box-shadow: var(--shadow);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: clamp(1.35rem, 3vw, 2.5rem);
     }
 
-    .hero-copy h2 {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-size: clamp(1.5rem, 2vw, 2.2rem);
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(24, 167, 167, 0.12);
+      color: #0f6f70;
+      border: 1px solid rgba(24, 167, 167, 0.18);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 1rem 0 0.65rem;
       color: var(--primary);
-      line-height: 1.2;
+      line-height: 1.03;
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      letter-spacing: -0.075em;
     }
 
-    .hero-copy p {
+    .subtitle {
       margin: 0 0 1rem;
+      color: var(--primary-dark);
+      font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+      font-weight: 800;
+      max-width: 820px;
+    }
+
+    .hero-card p {
       color: var(--muted);
+      margin: 0 0 1rem;
+      max-width: 820px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-top: 1.4rem;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.8rem 1.1rem;
+      border-radius: 13px;
+      font-weight: 850;
       text-decoration: none;
-      padding: 0.9rem 1.15rem;
-      border-radius: 12px;
-      font-weight: 700;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-      box-shadow: 0 8px 18px rgba(18, 62, 138, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 10px 22px rgba(18, 62, 138, 0.08);
     }
 
     .btn:hover {
       transform: translateY(-2px);
+      text-decoration: none;
     }
 
     .btn-primary {
       background: var(--primary);
-      color: white;
+      color: #fff;
     }
 
     .btn-secondary {
-      background: white;
+      background: var(--surface);
       color: var(--primary);
       border: 1px solid var(--border);
     }
 
-    .hero-image {
-      background: white;
-      border-radius: var(--radius);
-      padding: 0.8rem;
+    .hero-media {
+      background:
+        linear-gradient(135deg, rgba(18, 62, 138, 0.08), rgba(24, 167, 167, 0.08)),
+        var(--surface);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
     }
 
-    .hero-image img {
+    .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .hero-media.is-missing::after {
+      content: "VigiaSenior · Pastillero inteligente conectado";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: var(--primary);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .quick {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .quick a {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+      color: var(--primary);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+      text-decoration: none;
+      min-height: 94px;
+    }
+
+    .quick strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .quick span {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    main {
+      padding: 0 0 3rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 86px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .toc h2 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin: 0 0 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .toc a {
+      display: block;
+      padding: 0.45rem 0.5rem;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .toc a:hover {
+      background: var(--surface-soft);
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .content {
+      min-width: 0;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(1.15rem, 2.3vw, 2rem);
+      margin-bottom: 1.3rem;
+      scroll-margin-top: 90px;
+    }
+
+    section h2 {
+      color: var(--primary);
+      margin: 0 0 0.9rem;
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+      letter-spacing: -0.035em;
+    }
+
+    section h3 {
+      color: var(--primary-dark);
+      margin: 1.3rem 0 0.5rem;
+      font-size: 1.18rem;
+    }
+
+    p {
+      margin: 0 0 0.95rem;
+    }
+
+    ul, ol {
+      margin-top: 0.35rem;
+      padding-left: 1.3rem;
+    }
+
+    li {
+      margin: 0.32rem 0;
+    }
+
+    .callout {
+      border-left: 5px solid var(--secondary);
+      background: rgba(24, 167, 167, 0.08);
+      border-radius: 14px;
+      padding: 1rem 1rem 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+
+    .callout ul {
+      margin-bottom: 0;
+    }
+
+    .meta-grid,
+    .card-grid,
+    .materials-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .meta-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1rem;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 1rem;
+    }
+
+    .materials-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .mini-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+    }
+
+    .mini-card strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    code {
+      background: #eef4ff;
+      color: #20417d;
+      padding: 0.12rem 0.38rem;
+      border-radius: 7px;
+      font-size: 0.95em;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 18px;
+      padding: 1rem;
+      overflow-x: auto;
+      line-height: 1.45;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .image-card {
+      margin: 1.1rem 0;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .image-card img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: 14px;
     }
 
-    section {
-      margin-bottom: 2.5rem;
-    }
-
-    .section-title {
-      margin: 0 0 1rem;
-      font-size: 1.6rem;
-      color: var(--primary);
-    }
-
-    .section-intro {
-      color: var(--muted);
-      margin-top: 0;
-      margin-bottom: 1.3rem;
-      max-width: 800px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.15s ease, border-color 0.15s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(18, 62, 138, 0.22);
-    }
-
-    .card h3 {
-      margin: 0 0 0.55rem;
-      color: var(--primary);
-      font-size: 1.15rem;
-    }
-
-    .card p {
-      margin: 0 0 1rem;
-      color: var(--muted);
-    }
-
-    .card a {
-      color: var(--secondary);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .feature {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1rem;
-      box-shadow: var(--shadow);
-    }
-
-    .feature strong {
+    .image-card small {
       display: block;
-      color: var(--primary);
-      margin-bottom: 0.35rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.55rem;
     }
 
     footer {
-      padding: 1rem 0 2.5rem;
+      padding: 2rem 0 3rem;
       color: var(--muted);
-      font-size: 0.95rem;
+      text-align: center;
     }
 
-    code {
-      background: #eef4ff;
-      color: #20417d;
-      padding: 0.1rem 0.35rem;
-      border-radius: 6px;
-    }
-
-    @media (max-width: 920px) {
+    @media (max-width: 1040px) {
       .hero {
         grid-template-columns: 1fr;
       }
 
-      .grid {
+      .quick {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .layout {
         grid-template-columns: 1fr;
       }
 
-      .features {
+      .toc {
+        position: static;
+      }
+
+      .toc nav {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-grid,
+      .materials-grid {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 560px) {
-      .container {
-        width: min(100% - 1rem, 1180px);
+    @media (max-width: 680px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0.9rem 0;
       }
 
-      .hero-copy,
-      .card,
-      .feature {
-        padding: 1rem;
+      nav {
+        justify-content: flex-start;
       }
 
-      .features {
+      header {
+        padding-top: 1.5rem;
+      }
+
+      .quick,
+      .meta-grid,
+      .toc nav {
         grid-template-columns: 1fr;
       }
 
       .hero-actions {
         flex-direction: column;
       }
-
-      .btn {
-        text-align: center;
-      }
     }
   </style>
 </head>
 <body>
-  <header class="container">
-    <div class="brand">
-      <div>
-        <span class="badge">Proyecto DAW · IoT · Backend</span>
-        <h1>VigiaSenior</h1>
-        <p>
-          Programación de aula y desarrollo técnico de un sistema de seguimiento de medicación
-          para personas mayores, con enfoque en backend, integración IoT y documentación docente.
-        </p>
-      </div>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="logo-mini" href="#inicio" aria-label="Ir al inicio">
+        <span class="logo-dot">VS</span>
+        <span>VigiaSenior</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#proyecto">Proyecto</a>
+        <a href="#mvp">MVP</a>
+        <a href="#estructura">Repositorio</a>
+        <a href="#evaluacion">Evaluación</a>
+        <a href="#lectura">Lectura</a>
+      </nav>
     </div>
+  </div>
 
+  <header id="inicio" class="container">
     <div class="hero">
-      <div class="hero-copy">
-        <h2>Pastillero inteligente conectado con backend, eventos y supervisión</h2>
-        <p>
-          Este repositorio reúne la propuesta didáctica, la documentación para profesorado y alumnado,
-          la presentación del proyecto y la parte técnica de implementación.
+      <div class="hero-card">
+        <span class="badge">CFGS DAW · Módulo 0613 · Backend IoT</span>
+        <h1>VigiaSenior</h1>
+        <p class="subtitle">
+          Programación de aula y desarrollo técnico de un backend IoT para el seguimiento de la medicación en personas mayores.
         </p>
-
+        <p>
+          Repositorio abierto para compartir una propuesta didáctica basada en el diseño e implementación del backend
+          de un pastillero inteligente. La propuesta combina programación de aula, documentación para profesorado y alumnado,
+          implementación técnica, simulación y recursos de apoyo.
+        </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="./profesorado/">Acceso profesorado</a>
           <a class="btn btn-secondary" href="./alumnado/">Acceso alumnado</a>
-          <a class="btn btn-secondary" href="./presentacion/VigiaSenior_presentacion_online.html">Ver presentación</a>
+          <a class="btn btn-secondary" href="./presentacion/VigiaSenior_presentacion_online.html">Presentación online</a>
         </div>
       </div>
 
-      <div class="hero-image">
-        <img src="./assets/presentacion/diapositiva-portada.png" alt="Ilustración principal del proyecto VigiaSenior" />
+      <div class="hero-media">
+        <img src="./assets/portada/vigiasenior-portada.png" alt="Portada visual del proyecto VigiaSenior" onerror="this.closest('.hero-media').classList.add('is-missing'); this.style.display='none';" />
       </div>
+    </div>
+
+    <div class="quick" aria-label="Acceso rápido">
+      <a href="./profesorado/">
+        <strong>📘 Profesorado</strong>
+        <span>Guía didáctica, currículo, metodología, evaluación y DUA.</span>
+      </a>
+      <a href="./alumnado/">
+        <strong>👨‍🎓 Alumnado</strong>
+        <span>Dossier, fases, entregables, tutoriales y plantillas.</span>
+      </a>
+      <a href="./alumnado/apuntes/">
+        <strong>🧪 Apuntes técnicos</strong>
+        <span>Material de apoyo para el desarrollo del backend.</span>
+      </a>
+      <a href="./presentacion/VigiaSenior_presentacion_online.html">
+        <strong>🎤 Presentación</strong>
+        <span>Versión online para exposición y defensa del proyecto.</span>
+      </a>
+      <a href="./implementacion/">
+        <strong>⚙️ Implementación</strong>
+        <span>Backend, hardware, simulación y documentación técnica.</span>
+      </a>
     </div>
   </header>
 
   <main class="container">
-    <section>
-      <h2 class="section-title">Acceso rápido</h2>
-      <p class="section-intro">
-        Entrada directa a los principales recursos del proyecto.
-      </p>
+    <div class="layout">
+      <aside class="toc" aria-label="Índice de contenidos">
+        <h2>Contenido</h2>
+        <nav>
+          <a href="#introduccion">Introducción</a>
+          <a href="#normativa">Normativa y contexto</a>
+          <a href="#proyecto">Proyecto</a>
+          <a href="#objetivos">Objetivos</a>
+          <a href="#mvp">MVP</a>
+          <a href="#hardware">Hardware</a>
+          <a href="#estructura">Estructura</a>
+          <a href="#materiales">Materiales</a>
+          <a href="#flujo">Flujo de trabajo</a>
+          <a href="#metodologia">Metodología</a>
+          <a href="#evaluacion">Evaluación</a>
+          <a href="#defensa">Defensa</a>
+          <a href="#documentacion">Documentación técnica</a>
+          <a href="#lectura">Cómo leer el repo</a>
+          <a href="#licencia">Licencia</a>
+          <a href="#cierre">Cierre</a>
+        </nav>
+      </aside>
 
-      <div class="grid">
-        <article class="card">
-          <h3>Profesorado</h3>
+      <div class="content">
+        <section id="introduccion">
+          <h2>🧭 Introducción</h2>
           <p>
-            Contextualización, encaje curricular, secuenciación, metodología, evaluación,
-            DUA, recursos y orientaciones para la implementación en el aula.
+            Esto es un repositorio abierto para compartir una programación de aula del <strong>CFGS de Desarrollo de Aplicaciones Web (DAW)</strong>
+            para el módulo <strong>0613 · Desarrollo web en entorno servidor</strong>. En esta propuesta didáctica se desarrolla el proyecto
+            <strong>VigiaSenior</strong>, articulado a partir de una situación de aprendizaje basada en el diseño e implementación del
+            <strong>backend de un pastillero inteligente</strong>, pensado para apoyar el seguimiento de la medicación en personas mayores.
           </p>
-          <a href="./profesorado/">Abrir documentación de profesorado →</a>
-        </article>
+          <p>
+            La propuesta parte de un problema real y reconocible: la dificultad de mantener rutinas de medicación seguras, controladas y registrables
+            en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica
+            en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación e integración básica con hardware
+            o simulación.
+          </p>
+          <div class="callout">
+            <strong>Este repositorio tiene una doble finalidad:</strong>
+            <ul>
+              <li>servir como <strong>programación de aula transferible</strong>, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones;</li>
+              <li>actuar como <strong>repositorio técnico del proyecto</strong>, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.</li>
+            </ul>
+          </div>
+        </section>
 
-        <article class="card">
-          <h3>Alumnado</h3>
+        <section id="normativa">
+          <h2>🎓 Normativa y contexto académico</h2>
           <p>
-            Dossier del proyecto, fases de trabajo, desarrollo del backend, entregables
-            y criterios de evaluación explicados de forma accesible.
+            Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional,
+            así como la normativa específica del título de <strong>Técnico Superior en Desarrollo de Aplicaciones Web</strong> y la normativa curricular
+            aplicable en la <strong>Comunitat Valenciana</strong>.
           </p>
-          <a href="./alumnado/">Abrir documentación de alumnado →</a>
-        </article>
+          <p>
+            La normativa completa puede consultarse en
+            <a href="./profesorado/02_contextualizacion_y_marco_legal.html">Contextualización y marco legal</a>.
+          </p>
 
-        <article class="card">
-          <h3>Apuntes técnicos</h3>
-          <p>
-            Material complementario para el alumnado con explicaciones, referencias técnicas
-            y apoyo al desarrollo de la solución.
-          </p>
-          <a href="./alumnado/apuntes/">Abrir apuntes técnicos →</a>
-        </article>
+          <div class="meta-grid">
+            <div class="mini-card"><strong>Etapa</strong><p>Formación Profesional</p></div>
+            <div class="mini-card"><strong>Ciclo</strong><p>CFGS Desarrollo de Aplicaciones Web (DAW)</p></div>
+            <div class="mini-card"><strong>Módulo eje</strong><p>0613 · Desarrollo web en entorno servidor</p></div>
+            <div class="mini-card"><strong>Metodología principal</strong><p>Aprendizaje Basado en Proyectos (ABP)</p></div>
+            <div class="mini-card"><strong>Enfoque complementario</strong><p>Aprendizaje-Servicio (ApS)</p></div>
+            <div class="mini-card"><strong>Producto técnico</strong><p>Backend IoT para seguimiento de medicación</p></div>
+          </div>
 
-        <article class="card">
-          <h3>Presentación online</h3>
           <p>
-            Versión navegable de la presentación del proyecto para consulta, exposición
-            y apoyo a la defensa oral.
+            A nivel curricular, el proyecto permite trabajar de forma conjunta contenidos y procedimientos vinculados al módulo:
+            desarrollo de servicios web, acceso a bases de datos, organización de la lógica de negocio y diseño de una API.
+            También incorpora eventos procedentes de un dispositivo IoT y refuerza la documentación técnica y la exposición oral.
           </p>
-          <a href="./presentacion/VigiaSenior_presentacion_online.html">Abrir presentación →</a>
-        </article>
+        </section>
 
-        <article class="card">
-          <h3>Implementación técnica</h3>
+        <section id="proyecto">
+          <h2>🧩 Proyecto</h2>
           <p>
-            Estructura del backend, simulación, hardware, documentación técnica y materiales
-            de desarrollo del sistema.
+            En esta propuesta se desarrolla <strong>VigiaSenior</strong>, un backend para un pastillero inteligente pensado para ayudar en el seguimiento
+            de la medicación en personas mayores. Se trata de un proyecto que parte de una necesidad real y da sentido a los contenidos del módulo mediante
+            una aplicación práctica con trasfondo social.
           </p>
-          <a href="./implementacion/">Abrir bloque de implementación →</a>
-        </article>
+          <p>
+            Su encaje dentro de <strong>Desarrollo web en entorno servidor</strong> es claro, ya que permite trabajar servicios web, bases de datos,
+            lógica de negocio, diseño de endpoints e integración de eventos procedentes de un dispositivo. En lugar de abordar estos contenidos por separado,
+            se trabajan de manera conjunta dentro de un proyecto único, más cercano a una situación real de desarrollo.
+          </p>
+        </section>
 
-        <article class="card">
-          <h3>Repositorio en GitHub</h3>
+        <section id="objetivos">
+          <h2>🎯 Objetivos del proyecto</h2>
+          <p>Con esta propuesta se pretende que el alumnado sea capaz de:</p>
+          <ul>
+            <li>analizar un problema real y convertirlo en requisitos técnicos;</li>
+            <li>diseñar el modelo de dominio de una aplicación basada en eventos;</li>
+            <li>estructurar una API REST coherente y documentada;</li>
+            <li>implementar la persistencia de datos mediante base de datos relacional;</li>
+            <li>desarrollar lógica de negocio en servidor;</li>
+            <li>integrar software y hardware en una arquitectura sencilla de IoT;</li>
+            <li>documentar el proyecto de forma clara, trazable y reutilizable;</li>
+            <li>defender oralmente la propuesta con base técnica y pedagógica.</li>
+          </ul>
+        </section>
+
+        <section id="mvp">
+          <h2>🚀 Producto mínimo viable</h2>
           <p>
-            Código fuente, historial de cambios y estructura completa del proyecto
-            para revisión y seguimiento.
+            El producto mínimo viable del proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
           </p>
-          <a href="https://github.com/iscorgis-upv/VigiaSenior" target="_blank" rel="noopener noreferrer">Abrir repositorio →</a>
-        </article>
+          <ul>
+            <li>consulta de planificación diaria;</li>
+            <li>recepción de eventos del dispositivo;</li>
+            <li>registro de apertura de cajita;</li>
+            <li>confirmación de la toma;</li>
+            <li>actualización del estado de la toma;</li>
+            <li>generación de alertas;</li>
+            <li>consulta de dashboard e histórico básico.</li>
+          </ul>
+
+          <h3>Endpoints mínimos del backend</h3>
+          <pre><code>GET   /health
+GET   /api/devices/:deviceId/schedule/today
+POST  /api/devices/:deviceId/events
+GET   /api/patients/:patientId/dashboard
+GET   /api/patients/:patientId/alerts
+PATCH /api/alerts/:alertId/resolve</code></pre>
+        </section>
+
+        <section id="hardware">
+          <h2>🔌 Parte hardware del prototipo</h2>
+          <p>
+            La parte física se plantea en una versión simplificada y asumible para aula, basada en <strong>Arduino Nano ESP32</strong>.
+            Se entrega al inicio del proyecto porque la finalidad principal de la propuesta es el <strong>backend</strong>, no el desarrollo eléctrico
+            ni la configuración hardware avanzada.
+          </p>
+
+          <h3>Configuración del prototipo</h3>
+          <ul>
+            <li>6 pulsadores o sensores para simular la apertura de las cajitas;</li>
+            <li>6 LEDs de estado;</li>
+            <li>1 botón de confirmación;</li>
+            <li>1 buzzer;</li>
+            <li>conexión Wi‑Fi en la versión con backend.</li>
+          </ul>
+
+          <h3>Mapeo fijo de pines</h3>
+          <ul>
+            <li><strong>D1–D6</strong> → sensores / pulsadores;</li>
+            <li><strong>D7–D12</strong> → LEDs;</li>
+            <li><strong>A0</strong> → botón de confirmación;</li>
+            <li><strong>A1</strong> → buzzer.</li>
+          </ul>
+
+          <div class="image-card">
+            <img src="./assets/hardware/esquema-breadboard.png" alt="Esquema de conexión en breadboard" onerror="this.closest('.image-card').style.display='none';" />
+            <small>Esquema de conexión en breadboard.</small>
+          </div>
+
+          <div class="callout">
+            Para una primera prueba se recomienda utilizar el sketch de <strong>modo sin backend</strong>, validar cableado y comportamiento local,
+            y solo después pasar al sketch integrado con la API.
+          </div>
+        </section>
+
+        <section id="estructura">
+          <h2>🗂️ Estructura del repositorio</h2>
+          <p>
+            La estructura del repositorio se ha organizado para que la parte <strong>didáctica</strong> y la parte <strong>técnica</strong>
+            convivan sin mezclarse.
+          </p>
+          <pre><code>VigiaSenior/
+├── alumnado/
+├── profesorado/
+├── presentacion/
+├── implementacion/
+│   ├── backend/
+│   ├── docs/
+│   ├── hardware/
+│   ├── prompts/
+│   ├── recursos/
+│   ├── simulacion/
+│   └── mkdocs.yml
+├── .gitignore
+├── LICENSE
+└── README.md</code></pre>
+
+          <div class="card-grid">
+            <div class="mini-card">
+              <strong>📘 profesorado/</strong>
+              <p>Guía didáctica, contextualización, programación de aula, currículo, metodología, DUA, instrumentos y rúbricas.</p>
+            </div>
+            <div class="mini-card">
+              <strong>👨‍🎓 alumnado/</strong>
+              <p>Dossier, enunciado, fases y entregables, tutoriales y plantillas de análisis, API y documentación.</p>
+            </div>
+            <div class="mini-card">
+              <strong>⚙️ implementacion/</strong>
+              <p>Backend, documentación técnica, hardware, prompts, recursos auxiliares y simulación.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="materiales">
+          <h2>🧰 Materiales incluidos</h2>
+          <div class="materials-grid">
+            <div class="mini-card">
+              <strong>Para profesorado</strong>
+              <ul>
+                <li>guía didáctica;</li>
+                <li>programación de aula;</li>
+                <li>contextualización;</li>
+                <li>currículo y relación RA/CE;</li>
+                <li>metodología y DUA;</li>
+                <li>evaluación y rúbricas.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Para alumnado</strong>
+              <ul>
+                <li>dossier del proyecto;</li>
+                <li>enunciado;</li>
+                <li>fases y entregables;</li>
+                <li>tutoriales;</li>
+                <li>plantillas.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <strong>Para la implementación</strong>
+              <ul>
+                <li>backend;</li>
+                <li>sketches Arduino;</li>
+                <li>esquemas de conexión;</li>
+                <li>documentación técnica;</li>
+                <li>recursos de simulación;</li>
+                <li>prompts de apoyo para Copilot Agent.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="flujo">
+          <h2>🛠️ Flujo de trabajo recomendado</h2>
+          <p>Para trabajar el proyecto de forma ordenada, se propone la siguiente secuencia:</p>
+          <ol>
+            <li><strong>comprender el problema y el contexto</strong>;</li>
+            <li><strong>analizar actores, eventos y reglas de negocio</strong>;</li>
+            <li><strong>diseñar el modelo de dominio</strong>;</li>
+            <li><strong>definir la API REST</strong>;</li>
+            <li><strong>implementar el backend</strong>;</li>
+            <li><strong>probar la integración con hardware o simulación</strong>;</li>
+            <li><strong>documentar el trabajo</strong>;</li>
+            <li><strong>preparar la defensa oral</strong>.</li>
+          </ol>
+          <p>
+            Este orden permite mantener una evolución lógica del proyecto y facilita tanto la evaluación como la transferencia a otros contextos docentes.
+          </p>
+        </section>
+
+        <section id="metodologia">
+          <h2>🧠 Metodología de aula</h2>
+          <p>La propuesta se apoya en una metodología basada en:</p>
+          <ul>
+            <li>aprendizaje basado en proyectos;</li>
+            <li>resolución de un problema significativo;</li>
+            <li>trabajo cooperativo en pequeños grupos;</li>
+            <li>desarrollo incremental por fases;</li>
+            <li>uso de GitHub como herramienta de trazabilidad y documentación;</li>
+            <li>revisión progresiva de entregables.</li>
+          </ul>
+          <p>
+            La parte técnica no se plantea como una simple acumulación de código, sino como un producto que debe ser
+            <strong>comprensible, justificable y transferible</strong>.
+          </p>
+        </section>
+
+        <section id="evaluacion">
+          <h2>📏 Evaluación</h2>
+          <p>
+            La evaluación del proyecto no se limita a verificar si “funciona” técnicamente, sino que contempla la coherencia global de la propuesta.
+          </p>
+          <p>Se valoran especialmente:</p>
+          <ul>
+            <li>la adecuación curricular;</li>
+            <li>la claridad de la programación de aula;</li>
+            <li>la viabilidad del proyecto;</li>
+            <li>la calidad técnica del backend;</li>
+            <li>la documentación generada;</li>
+            <li>la aplicabilidad del repositorio por parte de otro docente;</li>
+            <li>la calidad de la presentación oral.</li>
+          </ul>
+          <p>
+            Las rúbricas y criterios de evaluación se encuentran en la carpeta <a href="./profesorado/">profesorado/</a>.
+          </p>
+        </section>
+
+        <section id="defensa">
+          <h2>🗣️ Presentación y defensa</h2>
+          <p>
+            La parte final del proyecto no se reduce a mostrar código, sino a defender una propuesta didáctica y técnica integrada.
+          </p>
+          <p>La presentación debe permitir explicar:</p>
+          <ul>
+            <li>el problema de partida;</li>
+            <li>el encaje curricular;</li>
+            <li>la situación de aprendizaje;</li>
+            <li>la secuencia de trabajo;</li>
+            <li>el producto técnico desarrollado;</li>
+            <li>el valor del repositorio como material transferible;</li>
+            <li>la demo funcional del backend y/o del prototipo.</li>
+          </ul>
+        </section>
+
+        <section id="documentacion">
+          <h2>📚 Documentación técnica navegable</h2>
+          <p>
+            Dentro de <code>implementacion/</code> se incluye configuración para <strong>MkDocs</strong>, con el objetivo de consultar la documentación técnica
+            de forma estructurada.
+          </p>
+          <p>Para levantar esa documentación:</p>
+          <pre><code>cd implementacion
+mkdocs serve</code></pre>
+        </section>
+
+        <section id="lectura">
+          <h2>🧾 Cómo leer este repositorio</h2>
+          <p>Si es la primera vez que accedes al proyecto, el orden de lectura recomendado es:</p>
+          <ol>
+            <li>esta portada;</li>
+            <li><a href="./profesorado/">profesorado/</a>;</li>
+            <li><a href="./alumnado/">alumnado/</a>;</li>
+            <li><a href="./presentacion/VigiaSenior_presentacion_online.html">presentacion/</a>;</li>
+            <li><a href="./implementacion/backend/">implementacion/backend/</a>;</li>
+            <li><a href="./implementacion/hardware/">implementacion/hardware/</a>;</li>
+            <li><a href="./implementacion/docs/">implementacion/docs/</a>.</li>
+          </ol>
+        </section>
+
+        <section id="licencia">
+          <h2>⚖️ Licencia y reutilización</h2>
+          <p>
+            El repositorio incluye una licencia en el archivo <code>LICENSE</code>.
+          </p>
+          <p>
+            En caso de reutilización docente, se recomienda mantener la atribución del proyecto y respetar el carácter académico de los materiales,
+            especialmente de aquellos concebidos como propuesta transferible para aula.
+          </p>
+        </section>
+
+        <section id="cierre">
+          <h2>✅ Cierre</h2>
+          <p>
+            <strong>VigiaSenior</strong> se plantea como una propuesta de aula con valor técnico, sentido social y estructura pedagógica clara.
+            El objetivo no es únicamente construir un backend funcional, sino convertir ese desarrollo en una experiencia de aprendizaje coherente,
+            bien documentada, evaluable y reutilizable.
+          </p>
+          <p>
+            En este sentido, el repositorio pretende ser algo más que un contenedor de archivos: busca actuar como una <strong>maleta pedagógica y técnica</strong>,
+            preparada para ser comprendida, adaptada, aplicada y defendida.
+          </p>
+        </section>
       </div>
-    </section>
-
-    <section>
-      <h2 class="section-title">Qué integra el proyecto</h2>
-      <p class="section-intro">
-        VigiaSenior combina una propuesta didáctica con una solución técnica orientada
-        al seguimiento de la medicación y al desarrollo de competencias propias del módulo.
-      </p>
-
-      <div class="features">
-        <div class="feature">
-          <strong>API REST</strong>
-          Endpoints para planificación, eventos, alertas y consulta de información.
-        </div>
-        <div class="feature">
-          <strong>Persistencia</strong>
-          Gestión de datos, estados de toma, histórico y trazabilidad.
-        </div>
-        <div class="feature">
-          <strong>IoT y simulación</strong>
-          Integración con dispositivo o simulador para registrar aperturas y confirmaciones.
-        </div>
-        <div class="feature">
-          <strong>Dashboard y seguimiento</strong>
-          Visualización de adherencia, incidencias y alertas relevantes.
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="container">
-    <p>
-      <strong>VigiaSenior</strong> · Proyecto de aula para DAW · Publicado con GitHub Pages.
-    </p>
+    <p><strong>VigiaSenior</strong> · Programación de aula y backend IoT · Publicado con GitHub Pages.</p>
   </footer>
 </body>
 </html>
