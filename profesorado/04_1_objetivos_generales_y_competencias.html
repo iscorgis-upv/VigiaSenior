@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objetivos generales y competencias · VigiaSenior</title>
+  <style>
+    :root {
+      --primary: #123e8a;
+      --secondary: #19a7a8;
+      --accent: #f4a62a;
+      --bg: #f5f8fc;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --border: #dbe4f0;
+      --soft: #eef6fb;
+      --shadow: 0 14px 35px rgba(17, 24, 39, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(25, 167, 168, 0.10), transparent 25%),
+        radial-gradient(circle at top right, rgba(18, 62, 138, 0.08), transparent 28%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #f5f8fc;
+      box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12);
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(18, 62, 138, 0.96), rgba(25, 167, 168, 0.90));
+      color: white;
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      max-width: 900px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.05rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+    }
+
+    h2 {
+      margin: 0 0 0.8rem;
+      color: var(--primary);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.2;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .fact {
+      background: var(--soft);
+      border: 1px solid rgba(25, 167, 168, 0.18);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .fact span {
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 0.8rem 0 1.2rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      background: #eef4ff;
+      border: 1px solid #d8e6ff;
+      color: #20417d;
+      border-radius: 999px;
+      padding: 0.4rem 0.65rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 0.85rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eef4ff;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .note {
+      border-left: 5px solid var(--accent);
+      background: #fff8eb;
+      padding: 1rem;
+      border-radius: 12px;
+      color: #6b4b12;
+      margin-top: 1rem;
+    }
+
+    .concept-map {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .concept {
+      border-radius: 16px;
+      padding: 1.1rem;
+      background: #ffffff;
+      border: 1px solid var(--border);
+    }
+
+    .concept::before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 5px;
+      background: var(--secondary);
+      border-radius: 999px;
+      margin-bottom: 0.8rem;
+    }
+
+    .concept ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 850px) {
+      .intro-grid,
+      .two-col,
+      .concept-map {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 0.95rem;
+      }
+
+      th,
+      td {
+        padding: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav class="top-actions" aria-label="Navegación secundaria">
+      <a class="button" href="../">← Volver al inicio</a>
+      <a class="button" href="./">Volver a profesorado</a>
+    </nav>
+
+    <header>
+      <h1>Objetivos generales y competencias vinculadas</h1>
+      <p>
+        Encaje curricular de VigiaSenior dentro del módulo 0613 · Desarrollo web en entorno servidor.
+        Este documento resume qué objetivos, competencias y bloques del módulo se trabajan con el proyecto.
+      </p>
+    </header>
+
+    <section class="section">
+      <h2>Contexto académico</h2>
+      <p>
+        VigiaSenior se plantea como una programación de aula basada en proyecto para el ciclo de
+        Desarrollo de Aplicaciones Web. El trabajo se sitúa en el módulo de Desarrollo web en entorno
+        servidor y se organiza como un bloque específico de diez sesiones.
+      </p>
+
+      <div class="intro-grid">
+        <div class="fact">
+          <strong>Etapa</strong>
+          <span>Ciclo Formativo de Grado Superior</span>
+        </div>
+        <div class="fact">
+          <strong>Familia profesional</strong>
+          <span>Informática y Comunicaciones</span>
+        </div>
+        <div class="fact">
+          <strong>Título</strong>
+          <span>Técnico Superior en Desarrollo de Aplicaciones Web</span>
+        </div>
+        <div class="fact">
+          <strong>Módulo</strong>
+          <span>0613 · Desarrollo web en entorno servidor</span>
+        </div>
+        <div class="fact">
+          <strong>Curso</strong>
+          <span>Segundo</span>
+        </div>
+        <div class="fact">
+          <strong>Duración del módulo</strong>
+          <span>200 horas · 6 horas semanales</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Objetivos generales relacionados</h2>
+      <p>
+        El proyecto no intenta cubrir todos los objetivos del ciclo con la misma intensidad. Se centra
+        especialmente en aquellos que tienen relación directa con el desarrollo en servidor, el acceso a
+        datos, los servicios web, la verificación del software y la documentación del proceso.
+      </p>
+
+      <ul class="tag-list" aria-label="Objetivos generales vinculados">
+        <li>c)</li>
+        <li>d)</li>
+        <li>f)</li>
+        <li>g)</li>
+        <li>h)</li>
+        <li>l)</li>
+        <li>m)</li>
+        <li>n)</li>
+        <li>ñ)</li>
+        <li>o)</li>
+        <li>q)</li>
+        <li>s)</li>
+        <li>t)</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Objetivos</th>
+            <th>Cómo se trabajan en VigiaSenior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>c), d)</td>
+            <td>
+              Preparando y ajustando el entorno necesario para ejecutar el backend y trabajar con
+              servicios en el servidor.
+            </td>
+          </tr>
+          <tr>
+            <td>f), g), h)</td>
+            <td>
+              Desarrollando una aplicación con acceso a base de datos, modelo de dominio, persistencia
+              y componentes de acceso a datos.
+            </td>
+          </tr>
+          <tr>
+            <td>l), m), n)</td>
+            <td>
+              Implementando servicios web que puedan ser utilizados por el dispositivo, la simulación o
+              una interfaz de consulta.
+            </td>
+          </tr>
+          <tr>
+            <td>ñ), o)</td>
+            <td>
+              Probando los componentes desarrollados y manteniendo documentación técnica del proceso,
+              endpoints, pruebas y decisiones tomadas.
+            </td>
+          </tr>
+          <tr>
+            <td>q), s), t)</td>
+            <td>
+              Resolviendo incidencias de forma progresiva, tomando decisiones justificadas y proponiendo
+              mejoras sobre una necesidad concreta.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Competencias profesionales, personales y sociales</h2>
+      <p>
+        La propuesta se vincula con competencias que aparecen de forma natural en un proyecto backend:
+        gestionar datos, integrar lógica de negocio, desarrollar servicios, probar el funcionamiento y
+        documentar lo realizado. También se trabaja la autonomía y la resolución de problemas dentro del equipo.
+      </p>
+
+      <ul class="tag-list" aria-label="Competencias vinculadas">
+        <li>c)</li>
+        <li>d)</li>
+        <li>f)</li>
+        <li>k)</li>
+        <li>l)</li>
+        <li>m)</li>
+        <li>n)</li>
+        <li>ñ)</li>
+        <li>q)</li>
+      </ul>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Competencia</th>
+            <th>Concreción en el proyecto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>c)</td>
+            <td>Configuración y ejecución del entorno de servidor necesario para el backend.</td>
+          </tr>
+          <tr>
+            <td>d)</td>
+            <td>Diseño y gestión de la base de datos, cuidando integridad, consistencia y accesibilidad.</td>
+          </tr>
+          <tr>
+            <td>f)</td>
+            <td>Integración de los componentes de acceso a datos dentro de la lógica de la aplicación.</td>
+          </tr>
+          <tr>
+            <td>k), l)</td>
+            <td>Desarrollo e integración de servicios utilizados por el dispositivo, la simulación o el dashboard.</td>
+          </tr>
+          <tr>
+            <td>m)</td>
+            <td>Comprobación del funcionamiento mediante pruebas funcionales y casos de uso del sistema.</td>
+          </tr>
+          <tr>
+            <td>n)</td>
+            <td>Documentación del proceso de desarrollo y mantenimiento del repositorio del proyecto.</td>
+          </tr>
+          <tr>
+            <td>ñ)</td>
+            <td>Revisión del comportamiento de la aplicación antes de su entrega y posible despliegue o publicación.</td>
+          </tr>
+          <tr>
+            <td>q)</td>
+            <td>Resolución de problemas técnicos con iniciativa, reparto de tareas y mejora progresiva del producto.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Ubicación dentro del módulo</h2>
+      <p>
+        El módulo puede organizarse en tres grandes bloques. VigiaSenior se apoya sobre todo en la parte de
+        programación en entorno servidor y en el bloque de servicios web y aplicaciones web híbridas.
+      </p>
+
+      <div class="two-col">
+        <article class="card">
+          <h3>Bloque 2 · Programación en entorno servidor</h3>
+          <p>
+            En este bloque se sitúan la generación dinámica de páginas y el acceso a datos. En el proyecto
+            se trabaja especialmente a través de la separación de capas, la persistencia y la lógica de negocio.
+          </p>
+          <ul>
+            <li>RA5 · Separación entre presentación y lógica de negocio.</li>
+            <li>RA6 · Acceso a almacenes de datos y mantenimiento de la información.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Bloque 3 · Servicios web y aplicaciones híbridas</h3>
+          <p>
+            Es el bloque más visible del proyecto, ya que el backend se comunica con un dispositivo o simulador
+            mediante una API REST y registra eventos para alimentar el seguimiento de la medicación.
+          </p>
+          <ul>
+            <li>RA7 · Desarrollo, descripción, verificación y consumo de servicios web.</li>
+            <li>RA8 · Páginas o interfaces dinámicas de consulta y visualización.</li>
+            <li>RA9 · Integración de librerías, reutilización de código y documentación final.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Mapa conceptual del proyecto</h2>
+      <p>
+        El proyecto se entiende mejor como la unión de tres partes: una parte física o simulada, una capa de
+        comunicación y un backend que concentra la lógica de negocio.
+      </p>
+
+      <div class="concept-map">
+        <article class="concept">
+          <h3>Parte física</h3>
+          <ul>
+            <li>Pastillero inteligente.</li>
+            <li>Arduino Nano ESP32.</li>
+            <li>Sensores de apertura.</li>
+            <li>LEDs, buzzer y botón de confirmación.</li>
+          </ul>
+        </article>
+
+        <article class="concept">
+          <h3>Comunicación</h3>
+          <ul>
+            <li>Wi‑Fi y API REST.</li>
+            <li>Consulta del plan del día.</li>
+            <li>Envío de eventos del dispositivo.</li>
+            <li>Simulación cuando no se use hardware físico.</li>
+          </ul>
+        </article>
+
+        <article class="concept">
+          <h3>Backend</h3>
+          <ul>
+            <li>Configuración de paciente y cuidador.</li>
+            <li>Planificación semanal configurable.</li>
+            <li>Estados de toma y alertas.</li>
+            <li>Base de datos, API y dashboard de consulta.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="note">
+        El hardware valida una parte del sistema, pero el caso completo se modela en el backend:
+        planificación, eventos, persistencia, estados, alertas y consulta posterior.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Enfoque metodológico asociado</h2>
+      <p>
+        La metodología principal es el Aprendizaje Basado en Proyectos. El alumnado trabaja sobre un reto
+        concreto, avanza por fases y entrega evidencias parciales que permiten revisar el proceso antes de
+        llegar al producto final.
+      </p>
+
+      <p>
+        La propuesta también tiene una orientación próxima al Aprendizaje-Servicio, porque parte de una
+        necesidad social reconocible: apoyar el seguimiento de la medicación en personas mayores. Aun así,
+        no se plantea como un ApS completo, ya que se parte de una necesidad previamente identificada en
+        el contexto de una residencia de mayores.
+      </p>
+
+      <p>
+        La organización prevista es de equipos de tres personas, con reparto de tareas técnicas y documentales.
+        Esta estructura permite trabajar el backend, la base de datos, las pruebas, la documentación y la defensa
+        de forma coordinada.
+      </p>
+    </section>
+
+    <p class="footer">
+      VigiaSenior · Documentación para profesorado
+    </p>
+  </main>
+</body>
+</html>
