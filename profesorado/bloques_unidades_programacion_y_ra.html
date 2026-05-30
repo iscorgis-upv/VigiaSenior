@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloques de unidades de programación y RA · VigiaSenior</title>
+  <style>
+    :root {
+      --primary: #123e8a;
+      --secondary: #19a7a8;
+      --accent: #f4a62a;
+      --green: #2f9b68;
+      --orange: #f28c28;
+      --red: #c94b3f;
+      --purple: #7b2f8f;
+      --bg: #f5f8fc;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --border: #dbe4f0;
+      --soft: #eef6fb;
+      --shadow: 0 14px 35px rgba(17, 24, 39, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(25, 167, 168, 0.10), transparent 25%),
+        radial-gradient(circle at top right, rgba(18, 62, 138, 0.08), transparent 28%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #f5f8fc;
+      box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12);
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(18, 62, 138, 0.96), rgba(25, 167, 168, 0.90));
+      color: white;
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      max-width: 920px;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.05rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+    }
+
+    h2 {
+      margin: 0 0 0.8rem;
+      color: var(--primary);
+      font-size: clamp(1.45rem, 2.5vw, 2rem);
+      line-height: 1.2;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.25rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      max-width: 880px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 1.25rem;
+      align-items: stretch;
+      margin-top: 1.2rem;
+    }
+
+    .table-card,
+    .timeline-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .table-card {
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    th {
+      background: #eef4ff;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td:first-child {
+      width: 34%;
+      font-weight: 700;
+      color: #0f172a;
+      background: #fbfdff;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 0.25rem;
+    }
+
+    .timeline-card {
+      padding: 1rem;
+      background:
+        radial-gradient(circle at 65% 12%, rgba(25, 167, 168, 0.16), transparent 18%),
+        radial-gradient(circle at 70% 78%, rgba(123, 47, 143, 0.14), transparent 24%),
+        #ffffff;
+    }
+
+    .timeline-title {
+      margin-bottom: 0.85rem;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: 95px 44px 1fr;
+      grid-template-rows: repeat(9, 74px);
+      align-items: center;
+      min-height: 666px;
+    }
+
+    .line {
+      position: absolute;
+      left: 114px;
+      top: 29px;
+      bottom: 29px;
+      width: 12px;
+      border-radius: 999px;
+      background: linear-gradient(180deg,
+        #123e8a 0%,
+        #19a7a8 30%,
+        #2f9b68 46%,
+        #f28c28 57%,
+        #d94b32 70%,
+        #9f2a86 84%,
+        #6f238e 100%);
+      z-index: 0;
+    }
+
+    .ra {
+      grid-column: 1;
+      justify-self: center;
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.28rem;
+      box-shadow: 0 8px 16px rgba(17, 24, 39, 0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    .ra::after {
+      content: "";
+      position: absolute;
+      left: 66px;
+      top: 50%;
+      width: 43px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: currentColor;
+      opacity: 0.85;
+    }
+
+    .node {
+      grid-column: 2;
+      justify-self: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 5px solid currentColor;
+      z-index: 2;
+      box-shadow: 0 3px 8px rgba(17, 24, 39, 0.18);
+    }
+
+    .ra1, .n1 { color: #123e8a; grid-row: 1; }
+    .ra2, .n2 { color: #0f7890; grid-row: 2; }
+    .ra3, .n3 { color: #19a7a8; grid-row: 3; }
+    .ra4, .n4 { color: #2f9b68; grid-row: 4; }
+    .ra5, .n5 { color: #327f4c; grid-row: 5; }
+    .ra6, .n6 { color: #f28c28; grid-row: 6; }
+    .ra7, .n7 { color: #c94b3f; grid-row: 7; }
+    .ra8, .n8 { color: #7b2f8f; grid-row: 8; }
+    .ra9, .n9 { color: #6f238e; grid-row: 9; }
+
+    .bracket {
+      grid-column: 3;
+      justify-self: center;
+      position: relative;
+      width: 34px;
+      border-right: 6px solid currentColor;
+      border-radius: 0 18px 18px 0;
+      z-index: 2;
+    }
+
+    .bracket::before,
+    .bracket::after {
+      content: "";
+      position: absolute;
+      right: -6px;
+      width: 25px;
+      height: 6px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .bracket::before {
+      top: -3px;
+    }
+
+    .bracket::after {
+      bottom: -3px;
+    }
+
+    .first {
+      grid-row: 1 / span 4;
+      align-self: stretch;
+      color: var(--secondary);
+      margin: 30px 0 18px;
+    }
+
+    .second {
+      grid-row: 5 / span 5;
+      align-self: stretch;
+      color: var(--orange);
+      margin: 18px 0 30px;
+      border-image: linear-gradient(180deg, var(--orange), var(--purple)) 1;
+    }
+
+    .second::before {
+      background: var(--orange);
+    }
+
+    .second::after {
+      background: var(--purple);
+    }
+
+    .label {
+      grid-column: 3;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      justify-self: end;
+      align-self: center;
+      font-weight: 900;
+      color: #111827;
+      letter-spacing: 0.04em;
+      font-size: 1rem;
+      z-index: 3;
+      margin-right: 6px;
+    }
+
+    .first-label {
+      grid-row: 1 / span 4;
+    }
+
+    .second-label {
+      grid-row: 5 / span 5;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mini-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem;
+    }
+
+    .mini-card strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .mini-card p {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .note {
+      margin-top: 1.25rem;
+      border-left: 5px solid var(--accent);
+      background: #fff8eb;
+      padding: 1rem;
+      border-radius: 12px;
+      color: #6b4b12;
+    }
+
+    .note strong {
+      color: #5b3410;
+    }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-card {
+        overflow-x: auto;
+      }
+
+      .timeline {
+        max-width: 330px;
+        margin: 0 auto;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 1rem, 1120px);
+      }
+
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      th {
+        text-align: left;
+      }
+
+      td:first-child {
+        width: 100%;
+      }
+
+      tr {
+        display: block;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .timeline {
+        grid-template-columns: 85px 38px 1fr;
+        grid-template-rows: repeat(9, 68px);
+        min-height: 612px;
+      }
+
+      .line {
+        left: 101px;
+      }
+
+      .ra {
+        width: 58px;
+        height: 58px;
+        font-size: 1.1rem;
+      }
+
+      .ra::after {
+        left: 58px;
+        width: 39px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <nav class="top-actions" aria-label="Navegación secundaria">
+      <a class="button" href="../">← Volver al inicio</a>
+      <a class="button" href="./">Volver a profesorado</a>
+    </nav>
+
+    <header>
+      <h1>Bloques de unidades de programación y RA</h1>
+      <p>
+        Ubicación de VigiaSenior dentro de la programación del módulo 0613 · Desarrollo web en entorno servidor.
+        La propuesta se trabaja en el segundo trimestre, tomando como eje RA5, RA6, RA7, RA8 y RA9.
+      </p>
+    </header>
+
+    <section class="section">
+      <h2>Organización del módulo</h2>
+      <p class="lead">
+        El módulo se organiza en bloques que agrupan distintas unidades de programación y resultados de aprendizaje.
+        Esta distribución permite situar el proyecto dentro de una progresión lógica: primero se trabajan las bases,
+        después la programación en servidor y, finalmente, los servicios web y la integración.
+      </p>
+
+      <div class="layout">
+        <article class="table-card">
+          <table aria-label="Bloques de unidades de programación y resultados de aprendizaje">
+            <thead>
+              <tr>
+                <th>Bloque</th>
+                <th>Unidad de programación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bloque 1 · Introducción</td>
+                <td>
+                  <ul>
+                    <li>Selección de arquitecturas y herramientas de programación (RA1)</li>
+                    <li>Inserción de código en páginas web (RA2)</li>
+                    <li>Programación basada en lenguajes de marcas con código embebido (RA3)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Bloque 2 · Programación en entorno servidor</td>
+                <td>
+                  <ul>
+                    <li>Desarrollo de aplicaciones web utilizando código embebido (RA4)</li>
+                    <li>Generación dinámica de páginas web (RA5)</li>
+                    <li>Utilización de técnicas de acceso a datos (RA6)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Bloque 3 · Servicios web y aplicaciones web híbridas</td>
+                <td>
+                  <ul>
+                    <li>Desarrollo de servicios web (RA7)</li>
+                    <li>Generación dinámica de páginas web interactivas (RA8)</li>
+                    <li>Desarrollo de aplicaciones web híbridas (RA9)</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <aside class="timeline-card" aria-label="Distribución temporal de resultados de aprendizaje por trimestres">
+          <div class="timeline-title">Distribución temporal de RA</div>
+
+          <div class="timeline">
+            <div class="line" aria-hidden="true"></div>
+
+            <div class="ra ra1">RA1</div><div class="node n1" aria-hidden="true"></div>
+            <div class="ra ra2">RA2</div><div class="node n2" aria-hidden="true"></div>
+            <div class="ra ra3">RA3</div><div class="node n3" aria-hidden="true"></div>
+            <div class="ra ra4">RA4</div><div class="node n4" aria-hidden="true"></div>
+            <div class="ra ra5">RA5</div><div class="node n5" aria-hidden="true"></div>
+            <div class="ra ra6">RA6</div><div class="node n6" aria-hidden="true"></div>
+            <div class="ra ra7">RA7</div><div class="node n7" aria-hidden="true"></div>
+            <div class="ra ra8">RA8</div><div class="node n8" aria-hidden="true"></div>
+            <div class="ra ra9">RA9</div><div class="node n9" aria-hidden="true"></div>
+
+            <div class="bracket first" aria-hidden="true"></div>
+            <div class="label first-label">PRIMER TRIMESTRE</div>
+
+            <div class="bracket second" aria-hidden="true"></div>
+            <div class="label second-label">SEGUNDO TRIMESTRE</div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="note">
+        <strong>Nota:</strong> RA5 se representa dentro del segundo trimestre para reflejar la ubicación prevista
+        de VigiaSenior en la programación. Aunque RA5 pertenece al bloque de programación en entorno servidor,
+        se utiliza como punto de entrada al proyecto junto con RA6, RA7, RA8 y RA9.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Relación con VigiaSenior</h2>
+      <p>
+        El proyecto no aparece como una actividad aislada, sino como una propuesta que aprovecha los aprendizajes
+        previos del módulo y los aplica en un caso completo: backend, base de datos, API REST, eventos de un
+        dispositivo IoT o simulación, pruebas y documentación.
+      </p>
+
+      <div class="cards">
+        <article class="mini-card">
+          <strong>RA5 · Lógica y estructura</strong>
+          <p>
+            Se trabaja la separación entre estructura de la aplicación, lógica de negocio y generación dinámica.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <strong>RA6 · Acceso a datos</strong>
+          <p>
+            El proyecto necesita persistencia, consultas, actualización de información y control de consistencia.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <strong>RA7 · Servicios web</strong>
+          <p>
+            La API REST permite consultar el plan del día y registrar eventos del dispositivo o simulador.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <strong>RA8 · Interacción y visualización</strong>
+          <p>
+            Se utiliza para interpretar información, validar entradas y mostrar datos de seguimiento.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <strong>RA9 · Integración</strong>
+          <p>
+            Se incorporan librerías, herramientas y código de apoyo para construir una solución completa.
+          </p>
+        </article>
+
+        <article class="mini-card">
+          <strong>Producto final</strong>
+          <p>
+            El resultado esperado combina backend funcional, pruebas, documentación y defensa oral.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer">
+      VigiaSenior · Documentación para profesorado
+    </p>
+  </main>
+</body>
+</html>
