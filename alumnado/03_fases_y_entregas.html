@@ -1,53 +1,70 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>03 · Fases, entregas y ritmo de trabajo</title><link rel="stylesheet" href="styles.css"></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · Fases y entregas</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
 <body>
-<nav class="topnav"><div class="wrap"><a href="index.html">Inicio</a><a href="01_dossier_del_proyecto.html">01 Dossier</a><a href="02_enunciado_y_reto.html">02 Reto</a><a href="03_fases_y_entregas.html">03 Fases y entregas</a><a href="04_como_se_va_a_evaluar.html">04 Cómo se va a evaluar</a><a href="apuntes/index.html">Apuntes</a></div></nav>
+<nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_dossier_del_proyecto.html">01 Dossier</a><a href="02_enunciado_y_reto.html">02 Enunciado</a><a href="03_fases_y_entregas.html">03 Fases</a><a href="04_como_se_va_a_evaluar.html">04 Evaluación</a><a href="apuntes/index.html">Apuntes técnicos</a></div></nav>
 <main class="wrap">
-<div class="hero-mini"><div class="kicker">VigiaSenior · Guía de trabajo</div><h1>03 · Fases, entregas y ritmo de trabajo</h1><p>El proyecto se organiza por fases para que el avance tenga sentido y no dependa de una única entrega final. Cada tramo prepara el siguiente y deja evidencias distintas del trabajo realizado.</p><a class="btn secondary" href="index.html">← Volver al índice</a></div>
+  <div class="hero-mini">
+    <div class="kicker">VigiaSenior · Guía de trabajo</div>
+    <h1>03 · Fases, entregas y ritmo de trabajo</h1>
+    <p>El proyecto se organiza por fases para avanzar sin dejar todo para el final. Cada tramo prepara el siguiente y deja una entrega o prueba que permite revisar cómo va el trabajo.</p>
+    <a class="btn secondary" href="index.html">← Volver al índice</a>
+  </div>
 
-<section class="card">
-  <h2>Cómo se reparte el trabajo</h2>
-  <p>VigiaSenior no se plantea como una tarea única y continua sin puntos de referencia. El proyecto se ordena por fases para que resulte más fácil saber qué conviene resolver en cada momento y para que la revisión del trabajo no quede desplazada al último día. Esa secuencia también ayuda a detectar antes si una parte está floja o si una decisión de diseño necesita corregirse antes de que arrastre problemas en la implementación.</p>
-</section>
+  <section class="card">
+    <h2>Cómo se reparte el trabajo</h2>
+    <p>VigiaSenior se desarrolla en <strong>14 sesiones</strong>. La ampliación permite separar mejor análisis, diseño, implementación, pruebas, documentación y defensa. El objetivo no es correr más, sino evitar que todo se concentre en las últimas sesiones.</p>
+    <div class="callout ok"><strong>Idea importante:</strong> el proyecto se evalúa principalmente a través de RA5, RA6 y RA7. RA8 y RA9 pueden aparecer como apoyo o ampliación, pero no son el centro de la calificación.</div>
+  </section>
 
-<section class="card">
-  <h2>Fase 1 · Comprensión y análisis</h2>
-  <p>El primer tramo del proyecto se centra en entender bien el problema. Antes de hablar de rutas, base de datos o lógica de backend conviene tener claro qué papel cumple el sistema, qué eventos son relevantes, qué estados pueden producirse y cómo se interpreta una toma correcta o incorrecta. Esta fase sirve para convertir una idea general en un problema técnico comprensible.</p>
-  <p><strong>Al cierre de esta fase debería existir:</strong> una lectura clara del reto, un análisis funcional del sistema y una formulación comprensible de la regla principal del proyecto.</p>
-</section>
+  <section class="card">
+    <h2>Fases del proyecto</h2>
+    <div class="grid cards">
+      <div class="card-mini"><h3>Fase 1 · Comprensión y análisis</h3><p>Entender el problema, identificar actores, eventos, estados y reglas de negocio.</p></div>
+      <div class="card-mini"><h3>Fase 2 · Diseño del sistema</h3><p>Definir el modelo de dominio y el primer diseño de la API REST.</p></div>
+      <div class="card-mini"><h3>Fase 3 · Backend y persistencia</h3><p>Preparar la arquitectura, ejecutar el backend y trabajar con Prisma/SQLite.</p></div>
+      <div class="card-mini"><h3>Fase 4 · Eventos y lógica</h3><p>Registrar eventos, actualizar estados de toma, generar alertas y consultar el dashboard.</p></div>
+      <div class="card-mini"><h3>Fase 5 · Pruebas y cierre</h3><p>Probar el flujo completo, cerrar la documentación y preparar la defensa final.</p></div>
+    </div>
+  </section>
 
-<section class="card">
-  <h2>Fase 2 · Diseño del sistema</h2>
-  <p>Una vez entendido el problema, el trabajo pasa al diseño. Aquí se decide cómo se representa el dominio en datos y cómo se comunicará el backend con el resto del sistema. Es una fase especialmente importante porque de ella depende que la implementación posterior tenga coherencia interna y no crezca por acumulación de decisiones improvisadas.</p>
-  <p><strong>Al cierre de esta fase debería existir:</strong> un modelo de dominio razonable y un primer diseño de la API REST.</p>
-</section>
+  <section class="card">
+    <h2>Calendario de trabajo</h2>
+    <table class="table">
+      <thead><tr><th>Semana</th><th>Sesiones</th><th>Trabajo principal</th><th>Qué debería quedar cerrado</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>1 y 2</td><td>Presentación del reto y análisis funcional</td><td>Actividad de análisis funcional del sistema</td></tr>
+        <tr><td>2</td><td>3 y 4</td><td>Modelo de dominio y diseño de API</td><td>Modelo de datos y documento inicial de API</td></tr>
+        <tr><td>3</td><td>5 y 6</td><td>Arquitectura y entorno backend</td><td>Repositorio preparado y backend ejecutándose</td></tr>
+        <tr><td>4</td><td>7 y 8</td><td>Persistencia y planificación diaria</td><td>Base de datos y endpoint de planificación</td></tr>
+        <tr><td>5</td><td>9 y 10</td><td>Registro de eventos y lógica de tomas</td><td>Eventos registrados y estados actualizados</td></tr>
+        <tr><td>6</td><td>11 y 12</td><td>Alertas, dashboard e integración</td><td>Prueba integrada con simulador o hardware</td></tr>
+        <tr><td>7</td><td>13 y 14</td><td>Pruebas, documentación y defensa</td><td>Repositorio final, documentación y exposición</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<section class="card">
-  <h2>Fase 3 · Implementación del backend</h2>
-  <p>En la tercera fase se trabaja ya sobre el proyecto técnico: estructura del backend, persistencia, endpoints principales y lógica funcional del sistema. El objetivo no es producir código sin dirección, sino construir un MVP reconocible y coherente con el análisis y el diseño previos.</p>
-  <p><strong>Al cierre de esta fase debería existir:</strong> un backend ya operativo en sus partes principales, con flujo básico de planificación y eventos.</p>
-</section>
+  <section class="card">
+    <h2>Hitos de entrega</h2>
+    <table class="table">
+      <thead><tr><th>Hito</th><th>Sesiones</th><th>Entrega o revisión</th><th>Instrumentos</th></tr></thead>
+      <tbody>
+        <tr><td>Hito 1</td><td>1-4</td><td>Análisis funcional, modelo de dominio y diseño de API</td><td>Lista de control y rúbrica de diseño</td></tr>
+        <tr><td>Hito 2</td><td>5-8</td><td>Arquitectura, entorno, persistencia y planificación diaria</td><td>Revisión técnica y prueba funcional</td></tr>
+        <tr><td>Hito 3</td><td>9-12</td><td>Eventos, lógica de negocio, alertas e integración</td><td>Rúbrica de API y lista de control</td></tr>
+        <tr><td>Hito 4</td><td>13-14</td><td>Pruebas, documentación final y defensa oral</td><td>Rúbrica documental y rúbrica de presentación</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<section class="card">
-  <h2>Fase 4 · Validación e integración</h2>
-  <p>Cuando el núcleo del backend ya existe, toca comprobar su comportamiento con más perspectiva. Esta fase se centra en pruebas manuales, revisión de incidencias, comprobación del flujo completo e integración con simulación o prototipo cuando proceda. Aquí se pasa de la implementación al contraste con el funcionamiento real del sistema.</p>
-  <p><strong>Al cierre de esta fase debería existir:</strong> una validación suficiente del sistema y una imagen bastante clara de su estado real antes del cierre.</p>
-</section>
+  <p class="footer">VigiaSenior · Alumnado · Fases y entregas</p>
 
-<section class="card">
-  <h2>Fase 5 · Documentación y defensa</h2>
-  <p>La parte final del proyecto no consiste únicamente en preparar una presentación. Se trata de ordenar el repositorio, cerrar la documentación, revisar que el proyecto pueda entenderse con claridad y dejar lista la defensa oral. Esta fase tiene peso propio porque convierte el trabajo técnico en una propuesta completa y defendible.</p>
-  <p><strong>Al cierre de esta fase debería existir:</strong> proyecto listo para entrega, documentación revisada y defensa preparada.</p>
-</section>
-
-<section class="card">
-  <h2>Hitos principales</h2>
-  <table class='table'><thead><tr><th>Semana</th><th>Fechas orientativas</th><th>Sesiones</th><th>Bloque</th><th>Entrega / hito</th><th>Evidencias principales</th><th>Instrumentos</th></tr></thead><tbody><tr><td>1</td><td>12-16 enero</td><td>1 y 2</td><td>Análisis</td><td>Sin entrega, se realiza trabajo de comprensión y análisis</td><td>Comprensión del reto y análisis funcional</td><td>Observación y lista de control</td></tr><tr><td>2</td><td>19-23 enero</td><td>3 y 4</td><td>Diseño</td><td>Hito 1</td><td>Modelo de dominio y diseño de la API</td><td>Rúbrica de diseño y revisión de documentos</td></tr><tr><td>3</td><td>26-30 enero</td><td>5 y 6</td><td>Implementación</td><td>Avance técnico 1</td><td>Arquitectura del backend y persistencia de los datos</td><td>Revisión técnica y demostración</td></tr><tr><td>4</td><td>2-6 febrero</td><td>7 y 8</td><td>Implementación</td><td>Hito 2</td><td>Eventos + lógica de tomas y alertas/dashboard</td><td>Checklist de servicios y rúbrica de implementación</td></tr><tr><td>5</td><td>9-13 febrero</td><td>9 y 10</td><td>Validación y cierre</td><td>Hito 3</td><td>Integración, documentación y defensa</td><td>Checklist de integración y rúbrica documental y oral</td></tr></tbody></table>
-  <p>Estos hitos marcan momentos de revisión del trabajo. Su función no es añadir burocracia, sino dejar claro qué tendría que estar ya construido o suficientemente encaminado en cada tramo del proyecto.</p>
-</section>
-
-<p class="footer">VigiaSenior · Alumnado · Fases y entregas</p>
 </main>
 </body>
 </html>

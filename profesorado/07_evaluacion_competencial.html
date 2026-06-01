@@ -3,62 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>07 · Evaluación del proyecto</title>
+<title>07 · Evaluación</title>
 <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
 <nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_introduccion_y_justificacion.html">01 Introducción</a><a href="02_contextualizacion_y_marco_legal.html">02 Contexto y marco legal</a><a href="03_objetivos_competencias_y_perfil.html">03 Objetivos y perfil</a><a href="04_contenidos_ra_ce_y_sentido_curricular.html">04 Contenidos y RA/CE</a><a href="05_temporalizacion_y_sesiones.html">05 Temporalización</a><a href="06_metodologia.html">06 Metodología</a><a href="07_evaluacion_competencial.html">07 Evaluación</a><a href="08_dua_recursos_y_materiales.html">08 DUA y recursos</a><a href="09_rubricas_e_instrumentos.html">09 Rúbricas</a></div></nav>
 <main class="wrap">
   <div class="hero-mini">
     <div class="kicker">Evaluación del proyecto</div>
-    <h1>07 · Evaluación continua, competencial y concretada por criterios</h1>
-    <p>La evaluación de VigiaSenior se plantea como continua y basada en evidencias, pero eso no significa que quede abierta o indefinida. El encaje curricular general se puede leer a través de los resultados de aprendizaje del módulo; sin embargo, la concreción operativa del proyecto se realiza mediante criterios y agrupaciones de criterios con peso fijo. Esa es la lógica que organiza esta página.</p>
+    <h1>07 · Evaluación continua y concretada por criterios</h1>
+    <p>La evaluación de VigiaSenior se apoya en evidencias del proceso y del producto final, pero la ponderación no queda abierta: se concreta por RA y criterios de evaluación.</p>
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
 
   <section class="card">
     <h2>1. Marco general de la evaluación</h2>
-    <p>El proyecto no se corrige únicamente por el resultado final ni se limita a comprobar si el backend responde. La evaluación atiende al proceso completo: comprensión del problema, calidad del diseño, estructura del backend, uso de tecnologías del servidor, persistencia, servicios web, integración, documentación y defensa oral. Esa mirada global es la que justifica que la evaluación sea competencial. No se valora una colección de ejercicios aislados, sino el desempeño dentro de una tarea integrada y con sentido.</p>
-    <div class="callout ok"><strong>Punto clave:</strong> una evaluación continua no implica una ponderación difusa. En este proyecto la ponderación queda fijada mediante criterios y agrupaciones de criterios con peso real sobre el trabajo desarrollado.</div>
+    <p>El proyecto no se corrige solo por comprobar si el backend responde al final. Se revisa el recorrido completo: comprensión del problema, diseño del sistema, implementación, persistencia, servicios web, pruebas, documentación y defensa oral.</p>
+    <p>Para que la evaluación sea viable, la unidad se centra en <strong>RA5, RA6 y RA7</strong>. RA8 y RA9 siguen apareciendo como resultados relacionados por la parte de visualización, integración o reutilización de recursos, pero <strong>no se ponderan directamente</strong> en esta unidad de programación.</p>
+    <div class="callout ok"><strong>Punto clave:</strong> el peso lo tienen los RA y los criterios de evaluación. El instrumento no tiene peso propio; sirve para obtener la nota de la evidencia asociada a cada criterio.</div>
   </section>
 
   <section class="card">
-    <h2>2. Relación general con los resultados de aprendizaje</h2>
-    <p>Los resultados de aprendizaje sirven para situar curricularmente el proyecto y explicar por qué el módulo puede leer VigiaSenior como una situación de aprendizaje coherente. Esa lectura global sigue siendo útil y debe mantenerse, pero no conviene confundirla con la forma concreta en que se calcula la valoración del proyecto.</p>
-    <table class='table'><thead><tr><th>RA</th><th>Descripción</th><th>Peso (%)</th><th>Justificación</th><th>Instrumentos principales</th></tr></thead><tbody><tr><td>RA5</td><td>desarrollo de aplicaciones web separando la lógica de negocio de la presentación.</td><td>20</td><td>Arquitectura por capas, organización del backend y documentación del código.</td><td>Rúbrica técnica  y revisión del repositorio</td></tr><tr><td>RA6</td><td>desarrollo de aplicaciones web de acceso a almacenes de datos.</td><td>25</td><td>Núcleo del proyecto: base de datos, recuperación, actualización y publicación de información.</td><td>Demostración funcional y revisión de código</td></tr><tr><td>RA7</td><td>desarrollo de servicios web reutilizables y accesibles.</td><td>25</td><td>La API REST es el corazón de la interacción entre dispositivo, backend y dashboard.</td><td>Checklist de endpoints y pruebas manuales</td></tr><tr><td>RA8</td><td>generación de páginas web dinámicas con tecnologías del servidor.</td><td>15</td><td>Preparación de respuestas estructuradas y panel de seguimiento.</td><td>Rúbrica de implementación y revisión funcional</td></tr><tr><td>RA9</td><td>desarrollo de aplicaciones web híbridas mediante tecnologías, frameworks y repositorios heterogéneos.</td><td>15</td><td>Relación con simulación, hardware y recursos externos del proyecto.</td><td>Checklist de integración y observación</td></tr><tr><td></td><td>TOTAL</td><td>100</td><td></td><td></td></tr></tbody></table>
+    <h2>2. RA evaluados y RA relacionados</h2>
+    <table class="table">
+      <thead><tr><th>RA evaluado</th><th>Peso RA</th><th>Foco del RA</th><th>Aplicación en VigiaSenior</th></tr></thead>
+      <tbody><tr><td>RA5</td><td>20%</td><td>Separación entre presentación y lógica de negocio</td><td>Arquitectura por capas, organización del backend, lógica de negocio y documentación del código.</td></tr>
+<tr><td>RA6</td><td>35%</td><td>Acceso a almacenes de datos</td><td>Base de datos, recuperación de información, actualización de estados y documentación de la persistencia.</td></tr>
+<tr><td>RA7</td><td>45%</td><td>Servicios web</td><td>Diseño e implementación de la API REST, descripción del servicio, verificación y consumo.</td></tr>
+<tr><td></td><td><strong>100%</strong></td><td colspan="2"><strong>Total de RA evaluados en esta unidad</strong></td></tr></tbody>
+    </table>
+    <p class="table-caption">RA8 y RA9 se consideran relacionados o de ampliación, pero no aportan peso a la calificación de esta unidad.</p>
+    <table class="table">
+      <thead><tr><th>RA relacionado</th><th>Tratamiento</th><th>Motivo</th></tr></thead>
+      <tbody>
+        <tr><td>RA8</td><td>No ponderado</td><td>Puede aparecer en la visualización o preparación de respuestas para consulta, pero no se toma como RA evaluado.</td></tr>
+        <tr><td>RA9</td><td>No ponderado</td><td>Aparece por la integración con simulación, hardware o librerías, pero no se evalúa en esta unidad para no sobredimensionar el proyecto.</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="card">
-    <h2>3. Ponderación fija por criterios y agrupaciones de criterios</h2>
-    <p>La tabla que sigue es la referencia operativa del proyecto. Aquí ya no se habla de forma genérica de bloques, sino de criterios o agrupaciones de criterios, del peso interno dentro de cada resultado de aprendizaje y, sobre todo, del <strong>peso real sobre el proyecto</strong>. Esta es la tabla que conviene tomar como base cuando se explique cómo se corrige el trabajo.</p>
-    <table class='table'><thead><tr><th>RA</th><th>Criterio / agrupación</th><th>Qué se valora en el proyecto</th><th>Peso dentro del RA (%)</th><th>Peso real sobre proyecto (%)</th><th>Momento principal</th></tr></thead><tbody><tr><td>RA5</td><td>5.a + 5.b</td><td>Separación entre presentación y lógica; uso de mecanismos o frameworks</td><td>20</td><td>4.0</td><td>Sesiones 3-5</td></tr><tr><td>RA5</td><td>5.e</td><td>Configuración de la aplicación y parámetros de trabajo</td><td>10</td><td>2.0</td><td>Sesión 5</td></tr><tr><td>RA5</td><td>5.f</td><td>Aplicación funcional con separación clara de responsabilidades</td><td>40</td><td>8.0</td><td>Sesiones 5-8</td></tr><tr><td>RA5</td><td>5.g</td><td>Organización por capas, principios y diseño del backend</td><td>15</td><td>3.0</td><td>Sesiones 5-8</td></tr><tr><td>RA5</td><td>5.h</td><td>Prueba y documentación del código</td><td>15</td><td>3.0</td><td>Sesiones 8-10</td></tr><tr><td>RA6</td><td>6.a</td><td>Tecnologías de acceso a datos</td><td>10</td><td>2.5</td><td>Sesión 3-6</td></tr><tr><td>RA6</td><td>6.b</td><td>Conexión con la base de datos</td><td>15</td><td>3.75</td><td>Sesión 6</td></tr><tr><td>RA6</td><td>6.c</td><td>Recuperación de información</td><td>20</td><td>5.0</td><td>Sesiones 6-8</td></tr><tr><td>RA6</td><td>6.d</td><td>Publicación de información en la aplicación</td><td>15</td><td>3.75</td><td>Sesiones 6-8</td></tr><tr><td>RA6</td><td>6.f</td><td>Actualización y eliminación de información</td><td>20</td><td>5.0</td><td>Sesiones 7-8</td></tr><tr><td>RA6</td><td>6.g</td><td>Pruebas y documentación</td><td>20</td><td>5.0</td><td>Sesiones 8-10</td></tr><tr><td>RA7</td><td>7.a + 7.b</td><td>Comprensión del papel de los servicios web</td><td>15</td><td>3.75</td><td>Sesión 4</td></tr><tr><td>RA7</td><td>7.c + 7.d</td><td>Tecnologías, protocolos y estándares</td><td>20</td><td>5</td><td>Sesión 4</td></tr><tr><td>RA7</td><td>7.e</td><td>Programación del servicio web</td><td>25</td><td>6.25</td><td>Sesiones 5-8</td></tr><tr><td>RA7</td><td>7.f</td><td>Verificación del funcionamiento del servicio</td><td>20</td><td>5.0</td><td>Sesiones 7-9</td></tr><tr><td>RA7</td><td>7.g</td><td>Consumo / uso del servicio en el sistema</td><td>20</td><td>5</td><td>Sesiones 8-9</td></tr><tr><!--<td>RA7</td><td>7.h</td><td>Documentación del servicio</td><td>15</td><td>3.75</td><td>Sesiones 9-10</td></tr><tr>!--><td>RA8</td><td>8.c</td><td>Tecnologías y frameworks relacionados</td><td>15</td><td>2.25</td><td>Sesión 4-8</td></tr><tr><td>RA8</td><td>8.d</td><td>Generación de datos con interacción</td><td>25</td><td>3.75</td><td>Sesión 8</td></tr><tr><td>RA8</td><td>8.e</td><td>Validación de entradas o formularios</td><td>20</td><td>3.0</td><td>Sesiones 7-8</td></tr><tr><td>RA8</td><td>8.f</td><td>Modificación dinámica de contenido y estructura</td><td>20</td><td>3.0</td><td>Sesión 8</td></tr><tr><td>RA8</td><td>8.g</td><td>Aplicación de estas tecnologías al proyecto</td><td>20</td><td>3.0</td><td>Sesiones 8-10</td></tr><tr><td>RA9</td><td>9.a</td><td>Reutilización de código e información</td><td>10</td><td>1.5</td><td>Sesiones 5-9</td></tr><tr><td>RA9</td><td>9.b</td><td>Tecnologías o frameworks aplicables</td><td>15</td><td>2.25</td><td>Sesiones 4-9</td></tr><tr><td>RA9</td><td>9.c</td><td>Recuperación y procesamiento de información existente</td><td>20</td><td>3.0</td><td>Sesiones 8-9</td></tr><tr><td>RA9</td><td>9.d</td><td>Creación de repositorios o estructuras derivadas</td><td>15</td><td>2.25</td><td>Sesiones 6-9</td></tr><tr><td>RA9</td><td>9.e</td><td>Incorporación de funcionalidades específicas</td><td>15</td><td>2.25</td><td>Sesiones 8-9</td></tr><tr><td>RA9</td><td>9.f</td><td>Uso de servicios o código de terceros</td><td>10</td><td>1.5</td><td>Sesiones 8-9</td></tr><tr><td>RA9</td><td>9.g</td><td>Pruebas, depuración y documentación</td><td>15</td><td>2.25</td><td>Sesiones 9-10</td></tr></tbody></table>
+    <h2>3. Criterios, evidencias e instrumentos</h2>
+    <p>La tabla sigue el orden correcto de lectura: resultado de aprendizaje, peso del RA, criterio de evaluación, peso del criterio, evidencia evaluable e instrumento. Así se evita asignar peso al instrumento.</p>
+    <table class="table">
+      <thead><tr><th>RA</th><th>Peso RA</th><th>Criterio de evaluación</th><th>Peso CE</th><th>Evidencia evaluable</th><th>Instrumento</th><th>Momento</th></tr></thead>
+      <tbody><tr><td>RA5</td><td>20%</td><td>5.a</td><td>5%</td><td>Actividad de análisis de arquitectura: separación entre presentación, rutas, servicios, repositorios y lógica de negocio.</td><td>Lista de control de análisis técnico</td><td>Sesiones 2-5</td></tr>
+<tr><td>RA5</td><td>20%</td><td>5.f</td><td>10%</td><td>Repositorio backend con estructura por capas y lógica de negocio básica implementada.</td><td>Rúbrica técnica del backend</td><td>Sesiones 5-11</td></tr>
+<tr><td>RA5</td><td>20%</td><td>5.h</td><td>5%</td><td>Entrega documentada del código y del repositorio.</td><td>Rúbrica documental</td><td>Sesiones 13-14</td></tr>
+<tr><td>RA6</td><td>35%</td><td>6.b</td><td>10%</td><td>Actividad práctica de conexión con la base de datos mediante Prisma/SQLite.</td><td>Rúbrica técnica de persistencia</td><td>Sesión 7</td></tr>
+<tr><td>RA6</td><td>35%</td><td>6.c</td><td>10%</td><td>Prueba funcional de recuperación del plan diario y de información almacenada.</td><td>Prueba funcional guiada</td><td>Sesiones 8-9</td></tr>
+<tr><td>RA6</td><td>35%</td><td>6.f</td><td>10%</td><td>Actividad práctica de actualización de estados de toma y gestión de alertas.</td><td>Rúbrica técnica del backend</td><td>Sesiones 10-11</td></tr>
+<tr><td>RA6</td><td>35%</td><td>6.h</td><td>5%</td><td>Documentación y pruebas de la parte de persistencia.</td><td>Rúbrica documental</td><td>Sesiones 13-14</td></tr>
+<tr><td>RA7</td><td>45%</td><td>7.d</td><td>20%</td><td>Actividad práctica de implementación de endpoints REST del MVP.</td><td>Rúbrica de API</td><td>Sesiones 8-10</td></tr>
+<tr><td>RA7</td><td>45%</td><td>7.e</td><td>10%</td><td>Documento de descripción de la API: endpoints, cuerpos, respuestas y errores.</td><td>Rúbrica documental de API</td><td>Sesiones 4-13</td></tr>
+<tr><td>RA7</td><td>45%</td><td>7.f</td><td>10%</td><td>Verificación de endpoints con Postman, Thunder Client o Supertest.</td><td>Prueba funcional de endpoints</td><td>Sesiones 10-13</td></tr>
+<tr><td>RA7</td><td>45%</td><td>7.g</td><td>5%</td><td>Consumo de la API desde simulador, cliente HTTP o prueba integrada.</td><td>Lista de control de integración</td><td>Sesión 12</td></tr></tbody>
+    </table>
   </section>
 
   <section class="card">
-    <h2>4. Cómo se interpreta esta ponderación</h2>
-    <p>La ponderación no se reparte en categorías vagas, sino en decisiones de evaluación muy concretas. Esto permite explicar con claridad qué se está mirando en cada parte del proyecto: separación entre lógica y presentación, configuración del backend, organización por capas, acceso a datos, recuperación y publicación de información, servicios web, integración, pruebas y documentación.</p>
-    <p>Esta forma de concretar la evaluación resulta especialmente valiosa porque evita dos problemas frecuentes: por un lado, la sensación de que se corrige “por impresión general”; por otro, la simplificación excesiva de toda la propuesta en cuatro bloques demasiado amplios.</p>
+    <h2>4. Hitos y momentos de utilización</h2>
+    <p>Las evidencias se reparten a lo largo de la unidad para que la revisión no dependa solo de una entrega final. Cada hito deja algo observable y corregible.</p>
+    <table class="table">
+      <thead><tr><th>Hito</th><th>Sesiones</th><th>Contenido</th><th>Evidencias principales</th><th>Instrumentos</th></tr></thead>
+      <tbody><tr><td>Hito 1</td><td>Sesiones 1-4</td><td>Análisis, modelo de dominio y diseño de API</td><td>Actividad de análisis funcional, modelo de dominio y documento de API</td><td>Lista de control y rúbrica de diseño</td></tr>
+<tr><td>Hito 2</td><td>Sesiones 5-8</td><td>Arquitectura backend, entorno, persistencia y planificación diaria</td><td>Repositorio preparado, base de datos y endpoint de planificación</td><td>Revisión técnica y prueba funcional</td></tr>
+<tr><td>Hito 3</td><td>Sesiones 9-12</td><td>Eventos, lógica de tomas, alertas, dashboard e integración</td><td>Endpoints de eventos, lógica de negocio y prueba integrada</td><td>Rúbrica de API, lista de control y prueba funcional</td></tr>
+<tr><td>Hito 4</td><td>Sesiones 13-14</td><td>Pruebas, documentación y defensa</td><td>Informe de pruebas, documentación final, repositorio revisado y defensa oral</td><td>Rúbrica documental y rúbrica de presentación</td></tr></tbody>
+    </table>
   </section>
 
   <section class="card">
-    <h2>5. Evidencias del proyecto y momento de utilización</h2>
-    <p>Los criterios ponderados se observan a través de evidencias reales del trabajo. Esas evidencias no aparecen solo al final, sino distribuidas a lo largo de las sesiones y de los hitos. Esta estructura ayuda a que la evaluación sea continua de verdad y no solo enunciada como tal.</p>
-    <table class='table'><thead><tr><th>Evidencia</th><th>Sesión</th><th>RA principales</th><th>Criterios vinculados</th><th>Instrumento</th><th>Quién la produce</th><th>Peso (%)</th><th>Observaciones</th></tr></thead><tbody><tr><td>Análisis funcional del problema</td><td>Sesiones 1-2 · Hito 1</td><td>RA5, RA7</td><td>5.a, 5.b, 7.a, 7.b</td><td>Lista de control y revisión del documento</td><td>Equipo</td><td>10</td><td>Primera evidencia de comprensión del reto</td></tr><tr><td>Modelo de dominio y estructura de datos</td><td>Sesión 3 · Hito 1</td><td>RA6</td><td>6.a, 6.b</td><td>Rúbrica parcial de diseño</td><td>Equipo</td><td>10</td><td>Permite validar entidades y relaciones</td></tr><tr><td>Diseño de la API REST</td><td>Sesión 4 · Hito 1</td><td>RA7</td><td>7.c, 7.d, 7.e</td><td>Rúbrica de API y revisión de ejemplos JSON</td><td>Equipo</td><td>10</td><td>Contrato backend-dispositivo/frontend</td></tr><tr><td>Arquitectura y esqueleto del backend</td><td>Sesión 5 · Hito 2</td><td>RA5</td><td>5.e, 5.f, 5.g</td><td>Revisión técnica del repositorio</td><td>Equipo</td><td>10</td><td>Se revisa la organización por capas y la estructura</td></tr><tr><td>Persistencia y endpoint del plan del día</td><td>Sesión 6 · Hito 2</td><td>RA6</td><td>6.b, 6.c, 6.d</td><td>Demostración funcional y revisión de código</td><td>Equipo</td><td>15</td><td>Incluye conexión a BD y recuperación de datos</td></tr><tr><td>Endpoint de eventos y servicios web</td><td>Sesión 7 · Hito 2</td><td>RA7</td><td>7.e, 7.f, 7.g</td><td>Pruebas manuales y checklist de servicio</td><td>Equipo</td><td>15</td><td>Registro de los eventos box_opened y dose_confirmed</td></tr><tr><td>Lógica de tomas, alertas y dashboard</td><td>Sesión 8 · Hito 2</td><td>RA5, RA8</td><td>5.f, 5.h, 8.d, 8.f, 8.g</td><td>Rúbrica de implementación y prueba funcional</td><td>Equipo</td><td>15</td><td>Núcleo de la lógica de negocio</td></tr><tr><td>Integración con simulación o hardware</td><td>Sesión 9 · Hito 3</td><td>RA9</td><td>9.b, 9.c, 9.e, 9.g</td><td>Checklist de integración y observación</td><td>Equipo</td><td>10</td><td>Pruebas sobre el simulador o el modelo de pruebas fisico.</td></tr><tr><td>Documentación técnica y organización del repositorio</td><td>Sesiones 9-10 · Hito 3</td><td>RA5, RA6, RA7, RA9</td><td>5.h, 6.g, 9.g</td><td>Rúbrica documental</td><td>Equipo</td><td>5</td><td>Se valora claridad, orden y transferibilidad</td></tr><tr><td>Presentación y defensa oral</td><td>Sesión 10 · Cierre</td><td>Transversal + proyecto</td><td>Comunicación, justificación y síntesis</td><td>Rúbrica de presentación</td><td>Equipo (con reparto individual)</td><td>10</td><td>Participación de ambos miembros en la defensa oral, con reparto claro de contenidos, equilibrio en el tiempo de intervención y coherencia expositiva.</td></tr></tbody></table>
+    <h2>5. Cómo conviene leer esta evaluación</h2>
+    <ul class="check">
+      <li>Los RA sitúan el peso global de la unidad.</li>
+      <li>Los criterios de evaluación concretan qué se está calificando.</li>
+      <li>La evidencia es la actividad, prueba o entrega donde se observa ese criterio.</li>
+      <li>El instrumento aporta la nota de esa evidencia, pero no tiene un peso independiente.</li>
+    </ul>
+    <p>Con esta organización, un documento, una prueba funcional o una defensa oral no se valoran de forma genérica: se revisan en relación con los criterios que les corresponden.</p>
   </section>
 
-  <section class="card">
-    <h2>6. Hitos, calendario y revisión del proceso</h2>
-    <p>La temporalización del proyecto y la evaluación están unidas. Cada hito deja un tipo distinto de evidencia y permite revisar un aspecto diferente del trabajo: comprensión y diseño en el primer tramo, construcción del MVP en el segundo y validación, documentación y defensa en el tercero.</p>
-    <table class='table'><thead><tr><th>Semana</th><th>Fechas orientativas</th><th>Sesiones</th><th>Bloque</th><th>Entrega / hito</th><th>Evidencias principales</th><th>Instrumentos</th></tr></thead><tbody><tr><td>1</td><td>12-16 enero</td><td>1 y 2</td><td>Análisis</td><td>Sin entrega, se realiza trabajo de comprensión y análisis</td><td>Comprensión del reto y análisis funcional</td><td>Observación y lista de control</td></tr><tr><td>2</td><td>19-23 enero</td><td>3 y 4</td><td>Diseño</td><td>Hito 1</td><td>Modelo de dominio y diseño de la API</td><td>Rúbrica de diseño y revisión de documentos</td></tr><tr><td>3</td><td>26-30 enero</td><td>5 y 6</td><td>Implementación</td><td>Avance técnico 1</td><td>Arquitectura del backend y persistencia de los datos</td><td>Revisión técnica y demostración</td></tr><tr><td>4</td><td>2-6 febrero</td><td>7 y 8</td><td>Implementación</td><td>Hito 2</td><td>Eventos + lógica de tomas y alertas/dashboard</td><td>Checklist de servicios y rúbrica de implementación</td></tr><tr><td>5</td><td>9-13 febrero</td><td>9 y 10</td><td>Validación y cierre</td><td>Hito 3</td><td>Integración, documentación y defensa</td><td>Checklist de integración y rúbrica documental y oral</td></tr></tbody></table>
-  </section>
+  <p class="footer">VigiaSenior · Carpeta de profesorado en formato HTML · Versión de lectura y navegación.</p>
 
-  <section class="card">
-    <h2>7. Qué conviene decir en la memoria y en la defensa</h2>
-    <p>La formulación más adecuada no sería decir que la ponderación es “aproximada”, “orientativa” o “por resultados de aprendizaje” sin más. Lo correcto es explicar que el proyecto se apoya curricularmente en varios resultados de aprendizaje del módulo, pero que la concreción de la calificación se realiza mediante criterios y agrupaciones de criterios con peso fijo, relacionados a su vez con evidencias distribuidas por hitos, entregas, revisión del repositorio, pruebas funcionales y defensa oral.</p>
-    <div class="callout"><strong>Formulación recomendable:</strong> la evaluación del proyecto es continua y competencial, pero la ponderación no queda abierta. Se concreta mediante criterios y agrupaciones de criterios con peso fijo sobre el proyecto, tal como aparece en la tabla de ponderación, y se aplica a partir de evidencias asociadas a hitos, entregas, revisión técnica, pruebas y defensa oral.</div>
-  </section>
-
-  <p class="footer">VigiaSenior · Profesorado · Evaluación del proyecto</p>
 </main>
 </body>
 </html>
