@@ -683,19 +683,19 @@
         <section id="mvp">
           <h2>🚀 Resultado esperado del proyecto</h2>
           <p>
-            El resultado esperado del proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
+            El proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
           </p>
           <ul>
-            <li>consulta de planificación diaria;</li>
-            <li>recepción de eventos del dispositivo;</li>
-            <li>registro de apertura de cajita;</li>
-            <li>confirmación de la toma;</li>
+            <li>Consulta de planificación diaria;</li>
+            <li>Recepción de eventos del dispositivo;</li>
+            <li>Registro de apertura de cajita;</li>
+            <li>Confirmación de la toma;</li>
             <li>actualización del estado de la toma;</li>
-            <li>generación de alertas;</li>
-            <li>consulta de dashboard e histórico básico.</li>
+            <li>Generación de alertas;</li>
+            <li>Consulta básica de seguimiento e histórico.</li>
           </ul>
 
-          <h3>Endpoints mínimos del backend</h3>
+          <h3>Endpoints principales del backend</h3>
           <pre><code>GET   /health
                     GET   /api/devices/:deviceId/schedule/today
                     POST  /api/devices/:deviceId/events
@@ -707,11 +707,20 @@
         </section>
 
         <section id="hardware">
-          <h2>🔌 Parte hardware del prototipo</h2>
+          <h2>🔌 Hardware del proyecto</h2>
           <p>
             La parte física se plantea en una versión simplificada y asumible para aula, basada en <strong>Arduino Nano ESP32</strong>.
             Se entrega al inicio del proyecto porque la finalidad principal de la propuesta es el <strong>backend</strong>, no el desarrollo eléctrico
             ni la configuración hardware avanzada.
+
+            Se ha elegido una placa basada en ESP32, como Arduino Nano ESP32, porque ofrece un equilibrio muy adecuado entre coste, tamaño 
+            y conectividad. Es una opción asequible y fácil de conseguir, también en versiones compatibles de bajo coste, lo que la 
+            hace razonable para el contexto academico. 
+            
+            Además, su tamaño reducido encaja mejor en un prototipo de pastillero que otras alternativas más voluminosas, y además integra Wi-Fi 
+            y Bluetooth en la propia placa. Esto simplifica mucho el proyecto, ya que evita recurrir a módulos externos adicionales o a 
+            soluciones más costosas y complejas, como podría ocurrir con otras placas o con una Raspberry Pi. 
+          
           </p>
 
           <h3>Configuración del prototipo</h3>
