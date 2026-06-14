@@ -603,7 +603,7 @@
         <section id="introduccion">
           <h2>🧭 Introducción</h2>
           <p>
-            Esto es un repositorio abierto para compartir una programación de aula del <strong>CFGS de Desarrollo de Aplicaciones Web (DAW)</strong>
+            Este repositorio recoge una programación de aula del <strong>CFGS de Desarrollo de Aplicaciones Web (DAW)</strong>
             para el módulo <strong>0613 · Desarrollo web en entorno servidor</strong>. En esta propuesta didáctica se desarrolla el proyecto
             <strong>VigiaSenior</strong>, articulado a partir de una situación de aprendizaje basada en el diseño e implementación del
             <strong>backend de un pastillero inteligente</strong>, pensado para apoyar el seguimiento de la medicación en personas mayores.
@@ -615,10 +615,10 @@
             o simulación.
           </p>
           <div class="callout">
-            <strong>Este repositorio tiene una doble finalidad:</strong>
+            <strong>El repositorio tiene dos objetivos principales:</strong>
             <ul>
-              <li>servir como <strong>programación de aula transferible</strong>, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones;</li>
-              <li>actuar como <strong>repositorio técnico del proyecto</strong>, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.</li>
+              <li>Servir como <strong>programación de aula transferible</strong>, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones;</li>
+              <li>Actuar como <strong>repositorio técnico del proyecto</strong>, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.</li>
             </ul>
           </div>
         </section>
@@ -626,9 +626,9 @@
         <section id="normativa">
           <h2>🎓 Normativa y contexto académico</h2>
           <p>
-            Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional,
+            Para elaborar esta propuesta se ha tomado como referencia la normativa del sistema educativo y de Formación Profesional,
             así como la normativa específica del título de <strong>Técnico Superior en Desarrollo de Aplicaciones Web</strong> y la normativa curricular
-            aplicable en la <strong>Comunitat Valenciana</strong>.
+            aplicable en la <strong>Comunidad Valenciana</strong>.
           </p>
           <p>
             La normativa completa puede consultarse en
@@ -638,7 +638,7 @@
           <div class="meta-grid">
             <div class="mini-card"><strong>Etapa</strong><p>Formación Profesional</p></div>
             <div class="mini-card"><strong>Ciclo</strong><p>CFGS Desarrollo de Aplicaciones Web (DAW)</p></div>
-            <div class="mini-card"><strong>Módulo eje</strong><p>0613 · Desarrollo web en entorno servidor</p></div>
+            <div class="mini-card"><strong>Módulo</strong><p>0613 · Desarrollo web en entorno servidor</p></div>
             <div class="mini-card"><strong>Metodología principal</strong><p>Aprendizaje Basado en Proyectos (ABP)</p></div>
             <div class="mini-card"><strong>Enfoque complementario</strong><p>Aprendizaje-Servicio (ApS)</p></div>
             <div class="mini-card"><strong>Producto técnico</strong><p>Backend IoT para seguimiento de medicación</p></div>
@@ -669,21 +669,21 @@
           <h2>🎯 Objetivos del proyecto</h2>
           <p>Con esta propuesta se pretende que el alumnado sea capaz de:</p>
           <ul>
-            <li>analizar un problema real y convertirlo en requisitos técnicos;</li>
-            <li>diseñar el modelo de dominio de una aplicación basada en eventos;</li>
-            <li>estructurar una API REST coherente y documentada;</li>
-            <li>implementar la persistencia de datos mediante base de datos relacional;</li>
-            <li>desarrollar lógica de negocio en servidor;</li>
-            <li>integrar software y hardware en una arquitectura sencilla de IoT;</li>
-            <li>documentar el proyecto de forma clara, trazable y reutilizable;</li>
-            <li>defender oralmente la propuesta con base técnica y pedagógica.</li>
+            <li>Analizar un problema real y convertirlo en requisitos técnicos;</li>
+            <li>Diseñar el modelo de dominio de una aplicación basada en eventos;</li>
+            <li>Estructurar una API REST coherente y documentada;</li>
+            <li>Implementar la persistencia de datos mediante base de datos relacional;</li>
+            <li>Desarrollar lógica de negocio en servidor;</li>
+            <li>Integrar software y hardware en una arquitectura sencilla de IoT;</li>
+            <li>Documentar el proyecto de forma clara, trazable y reutilizable;</li>
+            <li>Defender oralmente la propuesta con base técnica y pedagógica.</li>
           </ul>
         </section>
 
         <section id="mvp">
-          <h2>🚀 Producto mínimo viable</h2>
+          <h2>🚀 Resultado esperado del proyecto</h2>
           <p>
-            El producto mínimo viable del proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
+            El resultado esperado del proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
           </p>
           <ul>
             <li>consulta de planificación diaria;</li>
@@ -697,11 +697,13 @@
 
           <h3>Endpoints mínimos del backend</h3>
           <pre><code>GET   /health
-GET   /api/devices/:deviceId/schedule/today
-POST  /api/devices/:deviceId/events
-GET   /api/patients/:patientId/dashboard
-GET   /api/patients/:patientId/alerts
-PATCH /api/alerts/:alertId/resolve</code></pre>
+                    GET   /api/devices/:deviceId/schedule/today
+                    POST  /api/devices/:deviceId/events
+                    GET   /api/patients/:patientId/dashboard
+                    GET   /api/patients/:patientId/alerts
+                    PATCH /api/alerts/:alertId/resolve
+                </code>
+            </pre>
         </section>
 
         <section id="hardware">
