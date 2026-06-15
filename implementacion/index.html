@@ -1,198 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Implementación técnica · VigiaSenior</title>
-  <style>
-    :root {
-      --primary: #123e8a;
-      --secondary: #19a7a8;
-      --bg: #f5f8fc;
-      --text: #1f2937;
-      --muted: #5b6472;
-      --border: #dbe4f0;
-      --card: #ffffff;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .container {
-      width: min(1000px, calc(100% - 2rem));
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
-
-    .topbar {
-      margin-bottom: 1.5rem;
-    }
-
-    .topbar a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .topbar a:hover {
-      text-decoration: underline;
-    }
-
-    header {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 {
-      margin: 0 0 0.75rem;
-      color: var(--primary);
-      font-size: clamp(2rem, 4vw, 3rem);
-    }
-
-    p {
-      color: var(--muted);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: 1.25rem;
-    }
-
-    .card a {
-      color: var(--secondary);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 750px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        padding: 1.25rem;
-      }
-    }
-
-    .back-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1.5rem;
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #123e8a;
-  border: 1px solid #dbe4f0;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.back-home:hover {
-  transform: translateY(-2px);
-  background: #f5f8fc;
-  box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12);
-}
-  </style>
-</head>
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Implementación técnica · VigiaSenior</title><link rel="stylesheet" href="styles.css"/></head>
 <body>
-  <a class="back-home" href="../">← Volver al inicio</a>
-  <main class="container">
-    <nav class="topbar">
-      <a href="../">← Volver a la portada de VigiaSenior</a>
-    </nav>
+<header class="hero"><div class="wrap"><h1>Implementación técnica</h1><p>Backend, documentación, hardware y simulación en formato navegable.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
 
-    <header>
-      <h1>Implementación técnica</h1>
-      <p>
-        Esta sección reúne los recursos técnicos del proyecto VigiaSenior: backend,
-        documentación técnica, hardware, simulación, recursos auxiliares y prompts de apoyo.
-      </p>
-    </header>
-
-    <section class="grid">
-      <article class="card">
-        <h2>Backend</h2>
-        <p>
-          API REST, modelo de datos, lógica de negocio, validaciones, rutas,
-          servicios, repositorios y pruebas.
-        </p>
-        <a href="./backend/">Abrir backend →</a>
-      </article>
-
-      <article class="card">
-        <h2>Documentación técnica</h2>
-        <p>
-          Documentación de apoyo sobre arquitectura, endpoints, decisiones técnicas
-          y funcionamiento general del sistema.
-        </p>
-        <a href="./docs/">Abrir documentación técnica →</a>
-      </article>
-
-      <article class="card">
-        <h2>Hardware</h2>
-        <p>
-          Sketches Arduino, esquemas de conexión, notas de montaje y materiales
-          relacionados con el prototipo físico.
-        </p>
-        <a href="./hardware/">Abrir hardware →</a>
-      </article>
-
-      <article class="card">
-        <h2>Simulación</h2>
-        <p>
-          Recursos para probar el flujo funcional del proyecto sin depender
-          necesariamente del dispositivo físico.
-        </p>
-        <a href="./simulacion/">Abrir simulación →</a>
-      </article>
-
-      <article class="card">
-        <h2>Recursos</h2>
-        <p>
-          Materiales auxiliares, ejemplos y archivos de apoyo para el desarrollo
-          y la documentación del proyecto.
-        </p>
-        <a href="./recursos/">Abrir recursos →</a>
-      </article>
-
-      <article class="card">
-        <h2>Prompts de apoyo</h2>
-        <p>
-          Prompts y orientaciones para el uso guiado de asistentes de programación
-          durante el desarrollo.
-        </p>
-        <a href="./prompts/">Abrir prompts →</a>
-      </article>
-    </section>
-  </main>
-</body>
-</html>
+<nav class="topnav"><div class="wrap">
+  <a href="../index.html">Inicio</a>
+  <a href="index.html">Implementación</a>
+  <a href="backend/index.html">Backend</a>
+  <a href="docs/index.html">Docs</a>
+  <a href="hardware/index.html">Hardware</a>
+  <a href="simulacion/index.html">Simulación</a>
+  <a href="recursos/index.html">Recursos</a>
+  <a href="prompts/index.html">Prompts</a>
+</div></nav>
+<main class="wrap"><a class="back-home" href="../index.html">← Volver al inicio</a>
+<section class="hero-mini"><span class="kicker">Implementación</span><h1>Mapa técnico del proyecto</h1>
+<p>Esta carpeta reúne la parte que se puede abrir, probar o reutilizar: backend, documentación técnica, hardware, simulaciones, recursos y prompts. La navegación se ha pasado a HTML para que no dependa de abrir archivos sueltos en GitHub.</p></section>
+<section class="grid cards">
+  <article class="card-mini"><h3>Backend</h3><p>API REST, Prisma, servicios, repositorios, validaciones y pruebas.</p><a class="btn" href="backend/index.html">Abrir backend</a></article>
+  <article class="card-mini"><h3>Documentación técnica</h3><p>Arquitectura, diagramas, hardware y recursos de apoyo.</p><a class="btn" href="docs/index.html">Abrir documentación</a></article>
+  <article class="card-mini"><h3>Hardware</h3><p>Sketches Arduino, esquemas y notas de conexión.</p><a class="btn" href="hardware/index.html">Abrir hardware</a></article>
+  <article class="card-mini"><h3>Simulación</h3><p>Pruebas en Wokwi en modo local y modo preparado para backend.</p><a class="btn" href="simulacion/index.html">Abrir simulación</a></article>
+  <article class="card-mini"><h3>Recursos</h3><p>Herramientas, glosario y referencias.</p><a class="btn" href="recursos/index.html">Abrir recursos</a></article>
+  <article class="card-mini"><h3>Prompts</h3><p>Apoyo para usar asistentes sin sustituir el análisis del alumnado.</p><a class="btn" href="prompts/index.html">Abrir prompts</a></article>
+</section>
+<section class="card"><h2>Orden recomendado</h2><ol><li>Leer primero la arquitectura del backend.</li><li>Revisar el modelo de datos y los endpoints.</li><li>Probar el backend con los datos de ejemplo.</li><li>Usar la simulación o el montaje físico para generar eventos.</li><li>Documentar qué se ha probado y qué queda fuera del MVP.</li></ol></section>
+<p class="footer">VigiaSenior · Implementación técnica</p></main>
+</body></html>

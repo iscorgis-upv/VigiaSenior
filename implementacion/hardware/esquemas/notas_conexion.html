@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Notas de conexión · VigiaSenior</title><link rel="stylesheet" href="../../styles.css"/></head>
+<body>
+<header class="hero"><div class="wrap"><h1>Notas de conexión</h1><p>Documento convertido a HTML para que pueda consultarse desde GitHub Pages sin depender de visores externos.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+
+<nav class="topnav"><div class="wrap">
+  <a href="../../../index.html">Inicio</a>
+  <a href="../../index.html">Implementación</a>
+  <a href="../../backend/index.html">Backend</a>
+  <a href="../../docs/index.html">Docs</a>
+  <a href="../../hardware/index.html">Hardware</a>
+  <a href="../../simulacion/index.html">Simulación</a>
+  <a href="../../recursos/index.html">Recursos</a>
+  <a href="../../prompts/index.html">Prompts</a>
+</div></nav>
+<main class="wrap"><a class="back-home" href="../../../index.html">← Volver al inicio</a><section class="card"><h1 id="notas-de-conexión">Notas de conexión</h1>
+<h2 id="sensorespulsadores">Sensores/pulsadores</h2>
+<ul>
+<li>un terminal del pulsador al pin digital</li>
+<li>el otro a GND</li>
+<li>usar INPUT_PULLUP en código</li>
+</ul>
+<h2 id="leds">LEDs</h2>
+<ul>
+<li>pin digital -&gt; resistencia 220Ω -&gt; ánodo LED</li>
+<li>cátodo LED -&gt; GND</li>
+</ul>
+<h2 id="botón-confirmar">Botón confirmar</h2>
+<ul>
+<li>un lado a A0</li>
+<li>otro a GND</li>
+</ul>
+<h2 id="buzzer-con-bc557b">Buzzer con BC557B</h2>
+<ul>
+<li>emisor a 3.3V</li>
+<li>base a A1 a través de 1kΩ</li>
+<li>colector al positivo del buzzer</li>
+<li>negativo del buzzer a GND</li>
+</ul>
+</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
+</body></html>
