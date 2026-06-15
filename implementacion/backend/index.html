@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Backend · VigiaSenior</title><link rel="stylesheet" href="../styles.css"/></head>
+<body>
+<header class="hero"><div class="wrap"><h1>Backend</h1><p>API, modelo de datos, lógica de negocio y pruebas.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+
+<nav class="topnav"><div class="wrap">
+  <a href="../../index.html">Inicio</a>
+  <a href="../index.html">Implementación</a>
+  <a href="../backend/index.html">Backend</a>
+  <a href="../docs/index.html">Docs</a>
+  <a href="../hardware/index.html">Hardware</a>
+  <a href="../simulacion/index.html">Simulación</a>
+  <a href="../recursos/index.html">Recursos</a>
+  <a href="../prompts/index.html">Prompts</a>
+</div></nav>
+<main class="wrap"><a class="back-home" href="../../index.html">← Volver al inicio</a><section class="hero-mini"><span class="kicker">Backend</span><h1>API REST de VigiaSenior</h1><p>Backend en Node.js, TypeScript, Express y Prisma. Aquí está el núcleo evaluable del proyecto.</p></section>
+<section class="card"><h2>Qué hay que revisar</h2><ul>
+<li><code>src/routes</code>: entrada de la API.</li><li><code>src/controllers</code>: validación básica de petición y respuesta HTTP.</li><li><code>src/services</code>: reglas de negocio.</li><li><code>src/repositories</code>: acceso a datos con Prisma.</li><li><code>tests</code>: pruebas de endpoints y de lógica.</li></ul></section>
+<section class="card"><h2>Comandos habituales</h2><pre><code>cd implementacion/backend
+npm install
+cp .env.example .env
+npx prisma generate
+npx prisma migrate dev --name init
+npm run prisma:seed
+npm test
+npm run build</code></pre></section>
+<section class="card"><h2>Endpoints principales</h2><table><tr><th>Método</th><th>Ruta</th><th>Uso</th></tr>
+<tr><td>GET</td><td><code>/health</code></td><td>Comprobar que el servidor responde.</td></tr>
+<tr><td>GET</td><td><code>/api/devices/:deviceId/schedule/today</code></td><td>Consultar el plan del día del dispositivo.</td></tr>
+<tr><td>POST</td><td><code>/api/devices/:deviceId/events</code></td><td>Registrar eventos del pastillero.</td></tr>
+<tr><td>GET</td><td><code>/api/patients/:patientId/dashboard</code></td><td>Consultar resumen del paciente.</td></tr>
+<tr><td>GET</td><td><code>/api/patients/:patientId/alerts</code></td><td>Consultar alertas.</td></tr>
+<tr><td>PATCH</td><td><code>/api/alerts/:alertId/resolve</code></td><td>Resolver una alerta abierta.</td></tr>
+</table></section>
+<section class="callout ok"><strong>Regla clave:</strong> una apertura de cajita no confirma la toma. Para marcar una toma como correcta debe haber apertura y confirmación dentro de la ventana definida.</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
+</body></html>

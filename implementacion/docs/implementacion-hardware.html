@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Implementación hardware · VigiaSenior</title><link rel="stylesheet" href="../styles.css"/></head>
+<body>
+<header class="hero"><div class="wrap"><h1>Implementación hardware</h1><p>Documento convertido a HTML para que pueda consultarse desde GitHub Pages sin depender de visores externos.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+
+<nav class="topnav"><div class="wrap">
+  <a href="../../index.html">Inicio</a>
+  <a href="../index.html">Implementación</a>
+  <a href="../backend/index.html">Backend</a>
+  <a href="../docs/index.html">Docs</a>
+  <a href="../hardware/index.html">Hardware</a>
+  <a href="../simulacion/index.html">Simulación</a>
+  <a href="../recursos/index.html">Recursos</a>
+  <a href="../prompts/index.html">Prompts</a>
+</div></nav>
+<main class="wrap"><a class="back-home" href="../../index.html">← Volver al inicio</a><section class="card"><h1 id="implementación-hardware">Implementación hardware</h1>
+<h2 id="introducción">Introducción</h2>
+<p>La parte hardware de <strong>VigiaSenior</strong> se ha planteado
+como una aproximación funcional y didáctica al comportamiento de un
+pastillero inteligente. No se pretende desarrollar un dispositivo
+industrial completo, sino disponer de un soporte físico o simulado que
+permita al alumnado comprender la relación entre el dispositivo y el
+backend.</p>
+<p>Por este motivo, la implementación hardware se ha simplificado y
+orientado a la exploración de eventos, estados y flujos de
+interacción.</p>
+<h2 id="objetivo-de-la-parte-hardware">Objetivo de la parte
+hardware</h2>
+<p>La finalidad principal del hardware dentro del proyecto es:</p>
+<ul>
+<li>simular o registrar aperturas de cajitas;</li>
+<li>permitir la confirmación de una toma;</li>
+<li>ofrecer señales visuales y acústicas básicas;</li>
+<li>enviar eventos al backend o reproducir el flujo localmente;</li>
+<li>servir como recurso de apoyo para comprender la lógica del
+sistema.</li>
+</ul>
+<p>En consecuencia, el protagonismo del proyecto sigue estando en el
+<strong>backend</strong>, no en la electrónica.</p>
+<h2 id="placa-y-entorno-de-trabajo">Placa y entorno de trabajo</h2>
+<p>La implementación se ha apoyado en una placa <strong>Arduino Nano
+ESP32</strong> o, en el caso de simulación, en una placa virtual
+equivalente en entornos como <strong>Wokwi</strong>.</p>
+<p>Esta elección permite:</p>
+<ul>
+<li>conectividad Wi‑Fi;</li>
+<li>facilidad de programación;</li>
+<li>disponibilidad de simulación;</li>
+<li>integración sencilla con una API REST.</li>
+</ul>
+<h2 id="componentes-principales-del-prototipo">Componentes principales
+del prototipo</h2>
+<p>La versión planteada del prototipo utiliza los siguientes
+elementos:</p>
+<ul>
+<li>6 pulsadores o sensores para simular la apertura de 6 cajitas;</li>
+<li>6 LEDs de estado;</li>
+<li>1 botón de confirmación;</li>
+<li>1 buzzer;</li>
+<li>cableado básico y placa de pruebas;</li>
+<li>conexión Wi‑Fi en la versión integrada con backend.</li>
+</ul>
+<h2 id="mapeo-de-pines">Mapeo de pines</h2>
+<p>El mapeo adoptado para el prototipo es el siguiente:</p>
+<ul>
+<li><strong>D1–D6</strong> → sensores o pulsadores de las cajitas;</li>
+<li><strong>D7–D12</strong> → LEDs asociados a las cajitas;</li>
+<li><strong>A0</strong> → botón de confirmación;</li>
+<li><strong>A1</strong> → buzzer.</li>
+</ul>
+<p>Este mapeo se ha mantenido fijo para facilitar la relación entre
+documentación, sketches y pruebas.</p>
+<h2 id="funcionamiento-esperado">Funcionamiento esperado</h2>
+<p>El comportamiento básico del prototipo es el siguiente:</p>
+<ol type="1">
+<li>se activa una toma programada;</li>
+<li>el sistema indica visual o acústicamente la necesidad de realizar la
+toma;</li>
+<li>el usuario abre la cajita correspondiente;</li>
+<li>el sistema registra la apertura;</li>
+<li>el usuario confirma la toma mediante el botón;</li>
+<li>el backend o la lógica local determinan si la toma es correcta.</li>
+</ol>
+<h2 id="modos-de-trabajo">Modos de trabajo</h2>
+<p>La implementación hardware se ha contemplado en dos modos
+principales.</p>
+<h3 id="modo-sin-backend">1. Modo sin backend</h3>
+<p>En este modo, el prototipo funciona de forma local y permite
+explorar:</p>
+<ul>
+<li>activación de una toma;</li>
+<li>apertura correcta o incorrecta;</li>
+<li>confirmación;</li>
+<li>timeout;</li>
+<li>comportamiento de LEDs y buzzer;</li>
+<li>salida por monitor serie.</li>
+</ul>
+<p>Este modo resulta útil para pruebas iniciales, sesiones exploratorias
+y actividades del alumnado sin dependencia de red ni servidor.</p>
+<h3 id="modo-con-backend">2. Modo con backend</h3>
+<p>En este modo, el dispositivo se conecta por Wi‑Fi y envía eventos al
+backend.</p>
+<p>Los eventos principales que se manejan son:</p>
+<ul>
+<li><code>device_online</code></li>
+<li><code>heartbeat</code></li>
+<li><code>box_opened</code></li>
+<li><code>dose_confirmed</code></li>
+</ul>
+<p>Este modo permite comprobar la integración real entre dispositivo y
+backend.</p>
+<h2 id="simulación-virtual">Simulación virtual</h2>
+<p>Además del montaje físico, el proyecto contempla simulaciones en
+<strong>Wokwi</strong>, con el fin de:</p>
+<ul>
+<li>facilitar la exploración por parte del alumnado;</li>
+<li>evitar depender exclusivamente del hardware real;</li>
+<li>reproducir el comportamiento del sistema desde un navegador;</li>
+<li>experimentar con sensores, LEDs, buzzer y eventos.</li>
+</ul>
+<p>La simulación se considera especialmente útil en contextos de aula
+donde no todos los equipos dispongan del prototipo físico completo.</p>
+<h2 id="relación-con-el-backend">Relación con el backend</h2>
+<p>La parte hardware está subordinada a la lógica general del backend.
+Es decir, el dispositivo no decide por sí mismo cuándo una toma es
+correcta, sino que:</p>
+<ul>
+<li>detecta interacciones;</li>
+<li>registra o envía eventos;</li>
+<li>consulta la planificación diaria;</li>
+<li>delega en el backend la interpretación funcional de dichos
+eventos.</li>
+</ul>
+<p>Esta decisión es importante porque mantiene el foco del proyecto en
+la capa servidor.</p>
+<h2 id="valor-didáctico">Valor didáctico</h2>
+<p>La implementación hardware aporta valor al proyecto por varias
+razones:</p>
+<ul>
+<li>da contexto real al backend;</li>
+<li>favorece la comprensión del enfoque IoT;</li>
+<li>permite visualizar eventos y respuestas del sistema;</li>
+<li>incrementa la motivación del alumnado;</li>
+<li>refuerza la relación entre software, datos y comportamiento
+físico.</li>
+</ul>
+<h2 id="conclusión">Conclusión</h2>
+<p>La parte hardware de <strong>VigiaSenior</strong> se ha concebido
+como un recurso de apoyo técnico y didáctico, no como un fin en sí
+mismo. Su presencia en el proyecto sirve para contextualizar el backend,
+enriquecer la experiencia de aprendizaje y aportar una dimensión
+práctica al desarrollo de la API y de la lógica de negocio.</p>
+</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
+</body></html>

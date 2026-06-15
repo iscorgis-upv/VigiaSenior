@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Arquitectura del backend · VigiaSenior</title><link rel="stylesheet" href="../styles.css"/></head>
+<body>
+<header class="hero"><div class="wrap"><h1>Arquitectura del backend</h1><p>Documento convertido a HTML para que pueda consultarse desde GitHub Pages sin depender de visores externos.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+
+<nav class="topnav"><div class="wrap">
+  <a href="../../index.html">Inicio</a>
+  <a href="../index.html">Implementación</a>
+  <a href="../backend/index.html">Backend</a>
+  <a href="../docs/index.html">Docs</a>
+  <a href="../hardware/index.html">Hardware</a>
+  <a href="../simulacion/index.html">Simulación</a>
+  <a href="../recursos/index.html">Recursos</a>
+  <a href="../prompts/index.html">Prompts</a>
+</div></nav>
+<main class="wrap"><a class="back-home" href="../../index.html">← Volver al inicio</a><section class="card"><h1 id="arquitectura-del-backend">Arquitectura del backend</h1>
+<h2 id="introducción">Introducción</h2>
+<p>El backend de <strong>VigiaSenior</strong> se ha diseñado como una
+aplicación web en entorno servidor orientada a la gestión de un sistema
+IoT sencillo para el seguimiento de la medicación en personas mayores.
+Su finalidad es recibir eventos del dispositivo, consultar la
+planificación de tomas, actualizar estados, generar alertas y ofrecer
+información estructurada a un panel o frontend.</p>
+<p>La arquitectura se ha planteado buscando claridad, mantenibilidad y
+separación de responsabilidades, de manera que el alumnado pueda
+comprender con facilidad el flujo interno de la aplicación y trabajar
+sobre él de forma progresiva.</p>
+<h2 id="objetivos-de-la-arquitectura">Objetivos de la arquitectura</h2>
+<p>La arquitectura adoptada persigue los siguientes objetivos:</p>
+<ul>
+<li>separar la lógica de presentación de la lógica de negocio;</li>
+<li>aislar el acceso a datos de la capa de aplicación;</li>
+<li>facilitar la validación de entradas y el control de errores;</li>
+<li>permitir la evolución progresiva del proyecto sin necesidad de
+rehacer toda la estructura;</li>
+<li>mantener una organización coherente con los resultados de
+aprendizaje del módulo.</li>
+</ul>
+<h2 id="estructura-general-por-capas">Estructura general por capas</h2>
+<p>El backend se organiza siguiendo una estructura por capas, en la que
+cada bloque cumple una función concreta.</p>
+<h3 id="capa-de-rutas">1. Capa de rutas</h3>
+<p>La capa de rutas define los endpoints disponibles y dirige cada
+petición al controlador correspondiente.</p>
+<p>Sus funciones principales son:</p>
+<ul>
+<li>declarar las rutas HTTP;</li>
+<li>asociar cada endpoint con su controlador;</li>
+<li>mantener una entrada clara a la API.</li>
+</ul>
+<h3 id="capa-de-controladores">2. Capa de controladores</h3>
+<p>Los controladores reciben la petición, extraen parámetros, llaman a
+los servicios y construyen la respuesta HTTP.</p>
+<p>Sus responsabilidades son:</p>
+<ul>
+<li>leer parámetros de ruta, query o body;</li>
+<li>delegar la lógica real en la capa de servicios;</li>
+<li>devolver respuestas consistentes;</li>
+<li>propagar errores al sistema de manejo global.</li>
+</ul>
+<h3 id="capa-de-servicios">3. Capa de servicios</h3>
+<p>La capa de servicios contiene la lógica de negocio principal del
+sistema.</p>
+<p>Aquí se sitúan aspectos como:</p>
+<ul>
+<li>validación funcional de operaciones;</li>
+<li>reglas de actualización de tomas;</li>
+<li>interpretación de eventos del dispositivo;</li>
+<li>generación y resolución de alertas;</li>
+<li>construcción de respuestas de dashboard.</li>
+</ul>
+<h3 id="capa-de-repositorios">4. Capa de repositorios</h3>
+<p>Los repositorios encapsulan el acceso a la base de datos.</p>
+<p>Sus funciones son:</p>
+<ul>
+<li>consultar entidades;</li>
+<li>crear, actualizar o eliminar registros;</li>
+<li>aislar Prisma o la tecnología de persistencia del resto de
+capas.</li>
+</ul>
+<h3 id="capa-de-validación-y-tipos">5. Capa de validación y tipos</h3>
+<p>El sistema incorpora validaciones de entrada y tipos auxiliares para
+garantizar mayor consistencia.</p>
+<p>Se emplean principalmente para:</p>
+<ul>
+<li>validar payloads de eventos;</li>
+<li>validar parámetros esperados;</li>
+<li>definir estructuras de respuesta;</li>
+<li>reducir errores de tipado durante el desarrollo.</li>
+</ul>
+<h2 id="entidades-principales-del-dominio">Entidades principales del
+dominio</h2>
+<p>El backend trabaja sobre un conjunto de entidades mínimas que
+estructuran el proyecto:</p>
+<ul>
+<li><strong>Patient</strong>: paciente asociado al sistema.</li>
+<li><strong>Caregiver</strong>: cuidador o familiar responsable.</li>
+<li><strong>Device</strong>: dispositivo físico o simulado.</li>
+<li><strong>MedicationPlan</strong>: plan general de medicación.</li>
+<li><strong>DoseSchedule / ScheduledDose</strong>: programación concreta
+de tomas.</li>
+<li><strong>DeviceEvent</strong>: evento recibido desde el
+dispositivo.</li>
+<li><strong>Alert</strong>: aviso generado por incidencias en las
+tomas.</li>
+</ul>
+<p>Estas entidades permiten representar tanto la parte estructural del
+sistema como el flujo dinámico derivado de la interacción con el
+pastillero.</p>
+<h2 id="flujo-general-de-funcionamiento">Flujo general de
+funcionamiento</h2>
+<p>El flujo principal del backend puede resumirse del siguiente
+modo:</p>
+<ol type="1">
+<li>el dispositivo consulta el plan del día;</li>
+<li>el backend devuelve la información de las tomas programadas;</li>
+<li>el dispositivo registra eventos como apertura de cajita o
+confirmación;</li>
+<li>el backend interpreta esos eventos;</li>
+<li>se actualiza el estado de la toma correspondiente;</li>
+<li>si procede, se genera una alerta;</li>
+<li>el frontend consulta dashboard, tomas y alertas.</li>
+</ol>
+<h2 id="regla-principal-de-negocio">Regla principal de negocio</h2>
+<p>La regla central del proyecto es la siguiente:</p>
+<blockquote>
+<p>Una toma solo se considera correcta cuando existe <strong>apertura +
+confirmación</strong> dentro de una ventana de tiempo configurable.</p>
+</blockquote>
+<p>Esto implica que el backend no se limita a guardar eventos, sino que
+debe interpretarlos dentro de una lógica temporal y funcional.</p>
+<h2 id="manejo-de-errores">Manejo de errores</h2>
+<p>El backend incorpora un sistema básico de manejo de errores con el
+fin de mantener respuestas comprensibles y coherentes.</p>
+<p>Se contemplan, entre otros, casos como:</p>
+<ul>
+<li>dispositivo inexistente;</li>
+<li>paciente inexistente;</li>
+<li>alerta inexistente;</li>
+<li>payload inválido;</li>
+<li>intento de resolver una alerta ya resuelta;</li>
+<li>falta de información requerida.</li>
+</ul>
+<h2 id="ventajas-de-esta-arquitectura">Ventajas de esta
+arquitectura</h2>
+<p>La arquitectura adoptada resulta adecuada para el proyecto por varias
+razones:</p>
+<ul>
+<li>facilita el aprendizaje del alumnado;</li>
+<li>permite trabajar por capas y responsabilidades;</li>
+<li>mejora la legibilidad del código;</li>
+<li>favorece las pruebas y la depuración;</li>
+<li>mantiene una separación clara entre acceso a datos, lógica y
+respuesta HTTP.</li>
+</ul>
+<h2 id="conclusión">Conclusión</h2>
+<p>La arquitectura del backend de <strong>VigiaSenior</strong> responde
+a una lógica didáctica y técnica al mismo tiempo. No se ha buscado una
+solución compleja, sino una estructura suficientemente sólida como para
+soportar el proyecto, facilitar el desarrollo por parte del alumnado y
+servir como base comprensible y reutilizable para futuras
+adaptaciones.</p>
+</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
+</body></html>
