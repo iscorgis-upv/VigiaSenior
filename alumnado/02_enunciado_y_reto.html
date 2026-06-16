@@ -8,7 +8,7 @@
 <section class='card'><h2>1. Situación de partida</h2>
 <p>El sistema parte de un pastillero inteligente —o de una simulación equivalente— capaz de registrar eventos relacionados con la toma de medicación. A partir de esos eventos, el backend debe ser capaz de interpretar qué ha ocurrido, relacionarlo con una planificación previa y mantener un estado actualizado del seguimiento.</p>
 <p>Desde esa base, el reto no consiste en construir el dispositivo, sino en desarrollar la parte del servidor que hace posible que el conjunto tenga sentido: consulta de planificación, registro de eventos, cambio de estados, alertas y datos para seguimiento.</p>
-</section><section class='card'><h2>2. Alcance del reto</h2>
+</section><section class='card'><h2>2. Alcance del proyecto</h2>
 <p>El proyecto no pretende cubrir todos los casos posibles de un sistema de medicación profesional, pero sí construir un MVP suficientemente claro y completo. Ese MVP debe permitir comprobar que el backend resuelve el flujo esencial del sistema y que puede defenderse como una solución coherente dentro del módulo.</p>
 <ul class="check">
 <li>Consultar el plan del día de un dispositivo o de un paciente.</li>
@@ -16,6 +16,10 @@
 <li>Actualizar el estado de una toma.</li>
 <li>Generar alertas o incidencias cuando corresponda.</li>
 <li>Ofrecer información útil para seguimiento o dashboard.</li>
+<h3>Esquema Propuesto</h3>
+<div class="image-card">
+    <img src="./assets/hardware/VigiaSenior_prototipo.png" alt="Esquema de conexión en breadboard" onerror="this.closest('.image-card').style.display='none';" />
+</div>
 </ul>
 </section><section class='card'><h2>3. Regla principal del proyecto</h2>
 <p>La lógica central que organiza el sistema es sencilla de formular, pero importante para todo el backend: una toma solo se considera correcta cuando existe apertura de la cajita y confirmación dentro de una ventana temporal configurable. Esa regla afecta al modelo de datos, a los eventos, a la lógica del servicio y a la forma de interpretar el estado final de cada dosis.</p>

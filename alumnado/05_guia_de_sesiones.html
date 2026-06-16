@@ -1,3 +1,234 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>05 · Guía de sesiones · VigiaSenior</title><link rel="stylesheet" href="styles.css"/></head><body><header class="hero"><div class="wrap"><h1>05 · Guía de sesiones</h1><p>Qué se hace en cada sesión y qué debe quedar como evidencia.</p><div class="badges"><span class="badge">Alumnado</span><span class="badge">VigiaSenior</span></div></div></header><nav class="topnav"><div class="wrap"><a href="index.html">Índice</a><a href="01_dossier_del_proyecto.html">01 Dossier</a><a href="02_enunciado_y_reto.html">02 Reto</a><a href="03_fases_y_entregas.html">03 Fases</a><a href="04_como_se_va_a_evaluar.html">04 Evaluación</a><a href="05_guia_de_sesiones.html">05 Sesiones</a><a href="06_checklist_calidad.html">06 Calidad</a><a href="apuntes/index.html">Apuntes</a></div></nav><main class="wrap"><a class="back-home" href="../">← Volver al inicio</a><section class="hero-mini"><span class="kicker">Sesiones</span><h1>Guía de sesiones</h1><p>Esta página concreta qué se hace en cada sesión y qué evidencia debe quedar al terminar. No es una lista para correr: sirve para no llegar al final con todo a medias.</p></section>
-<section class="card"><h2>Secuencia de 14 sesiones</h2><table class="table"><tr><th>Sesión</th><th>Foco</th><th>Qué se trabaja</th><th>Materiales</th><th>Evidencia de salida</th><th>RA/CE</th></tr><tr><td>1</td><td>Presentación del reto</td><td>Entender el problema y el producto final.</td><td>Dossier, enunciado, debate inicial.</td><td>Notas de comprensión del reto.</td><td>RA5/RA7</td></tr><tr><td>2</td><td>Análisis funcional</td><td>Identificar actores, eventos y reglas de negocio.</td><td>Plantilla de análisis funcional.</td><td>Análisis funcional inicial.</td><td>RA5/RA7</td></tr><tr><td>3</td><td>Modelo de dominio</td><td>Diseñar entidades y relaciones principales.</td><td>Apuntes de modelado y Prisma.</td><td>Modelo de dominio revisable.</td><td>RA6</td></tr><tr><td>4</td><td>Diseño de API</td><td>Definir endpoints, payloads y errores esperados.</td><td>Plantilla de diseño de API.</td><td>Contrato inicial de API.</td><td>RA7</td></tr><tr><td>5</td><td>Arquitectura del backend</td><td>Crear estructura por capas y primer endpoint.</td><td>Apuntes de arquitectura.</td><td>Esqueleto del backend.</td><td>RA5</td></tr><tr><td>6</td><td>Persistencia</td><td>Configurar Prisma, base de datos y seed.</td><td>Backend, schema y seed.</td><td>Base de datos operativa.</td><td>RA6</td></tr><tr><td>7</td><td>Plan del día</td><td>Implementar consulta de planificación diaria.</td><td>Endpoint schedule/today.</td><td>Prueba funcional del endpoint.</td><td>RA6/RA7</td></tr><tr><td>8</td><td>Eventos del dispositivo</td><td>Registrar apertura, confirmación y heartbeat.</td><td>Endpoint events.</td><td>Eventos guardados en BD.</td><td>RA7</td></tr><tr><td>9</td><td>Lógica de tomas</td><td>Aplicar la regla apertura + confirmación.</td><td>Servicios y tests.</td><td>Lógica de cumplimiento.</td><td>RA5/RA7</td></tr><tr><td>10</td><td>Alertas</td><td>Generar y consultar alertas básicas.</td><td>Endpoints de alertas.</td><td>Alertas consultables/resolubles.</td><td>RA5/RA6</td></tr><tr><td>11</td><td>Dashboard</td><td>Preparar datos de seguimiento para consulta.</td><td>Endpoint dashboard.</td><td>Resumen del paciente.</td><td>RA6/RA7</td></tr><tr><td>12</td><td>Pruebas</td><td>Validar endpoints y casos borde.</td><td>Postman/Jest.</td><td>Pruebas documentadas.</td><td>RA5/RA6/RA7</td></tr><tr><td>13</td><td>Documentación</td><td>Ordenar README, endpoints y decisiones técnicas.</td><td>Plantilla de memoria.</td><td>Documentación técnica final.</td><td>RA5/RA7</td></tr><tr><td>14</td><td>Demo y defensa</td><td>Preparar demostración y explicación del trabajo.</td><td>Rúbrica de presentación.</td><td>Demo y defensa oral.</td><td>RA5/RA6/RA7</td></tr></table></section>
-<section class="callout ok"><strong>Uso recomendado:</strong> al cerrar cada sesión, el equipo debe poder enseñar algo: un documento, un endpoint, un test, una captura o una decisión técnica justificada.</section><p class="footer">VigiaSenior · Material para alumnado</p></main></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>05 · Guía de sesiones · VigiaSenior</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>05 · Guía de sesiones</h1>
+    <p>Secuencia de sesiones del proyecto VigiaSenior.</p>
+    <div class="badges">
+      <span class="badge">Alumnado</span>
+      <span class="badge">VigiaSenior</span>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a href="index.html">Índice</a>
+    <a href="01_dossier_del_proyecto.html">01 Dossier</a>
+    <a href="02_enunciado_y_reto.html">02 Reto</a>
+    <a href="03_fases_y_entregas.html">03 Fases</a>
+    <a href="04_como_se_va_a_evaluar.html">04 Evaluación</a>
+    <a href="05_guia_de_sesiones.html">05 Sesiones</a>
+    <a href="06_checklist_calidad.html">06 Calidad</a>
+    <a href="apuntes/index.html">Apuntes</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="back-home" href="../">← Volver al inicio</a>
+
+  <section class="hero-mini">
+    <span class="kicker">Sesiones</span>
+    <h1>Guía de sesiones</h1>
+    <p>
+      Esta página recoge la secuencia de trabajo prevista para las 14 sesiones del proyecto,
+      respetando la organización planteada en la presentación: hitos, foco de cada sesión,
+      materiales de apoyo y evidencia evaluable.
+    </p>
+  </section>
+
+  <!--<section class="card">
+    <h2>Temporalización</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Organización</th>
+          <th>Hito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sesiones 1-4</td>
+          <td>Ubicación: 2º Trimestre · 14 sesiones</td>
+          <td>Hito 1: Análisis funcional, modelo de dominio y diseño de API REST.</td>
+        </tr>
+        <tr>
+          <td>Sesiones 5-8</td>
+          <td>Se integra como bloque específico dentro de la programación general del módulo.</td>
+          <td>Hito 2: Arquitectura backend, entorno, persistencia y planificación diaria.</td>
+        </tr>
+        <tr>
+          <td>Sesiones 9-11</td>
+          <td>El ritmo previsto es de 2 sesiones semanales.</td>
+          <td>Hito 3: Registro de eventos, estados de toma, alertas y dashboard.</td>
+        </tr>
+        <tr>
+          <td>Sesiones 12-14</td>
+          <td>El ritmo previsto es de 2 sesiones semanales.</td>
+          <td>Hito 4: Integración, pruebas, documentación técnica y defensa oral.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>->
+
+  <section class="card">
+    <h2>Proyecto · Detalle de sesiones 1 a 5</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ses.</th>
+          <th>Foco</th>
+          <th>Qué se va a realizar</th>
+          <th>Materiales / software</th>
+          <th>Evidencia evaluable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Presentación del reto</td>
+          <td>Presentar el problema, explicar el proyecto, revisar el repositorio y organizar equipos de trabajo.</td>
+          <td>Aula informática, PCs, proyector, README, GitHub, VS Code.</td>
+          <td>Registro inicial de comprensión del reto y organización del equipo.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Análisis funcional</td>
+          <td>Identificar actores, eventos, estados y regla de negocio principal.</td>
+          <td>Plantilla de análisis, documentación del proyecto, editor Markdown.</td>
+          <td>Documento de análisis funcional: actores, eventos, estados y reglas de negocio.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Modelo de dominio</td>
+          <td>Definir entidades, relaciones y estructura inicial de datos.</td>
+          <td>Plantilla de modelo, draw.io o similar, documentación técnica.</td>
+          <td>Modelo de dominio o esquema inicial de datos entregado.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Diseño de API</td>
+          <td>Diseñar endpoints, bodies, respuestas y errores básicos.</td>
+          <td>Guía API, VS Code, documentación de endpoints.</td>
+          <td>Diseño documentado de la API: endpoints y peticiones.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Arquitectura del backend</td>
+          <td>Revisar la estructura del proyecto, organizar carpetas, rutas, servicios y repositorios.</td>
+          <td>Node.js, npm, VS Code, Git, terminal.</td>
+          <td>Repositorio con estructura inicial del backend preparada.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Proyecto · Detalle de sesiones 6 a 10</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ses.</th>
+          <th>Foco</th>
+          <th>Qué se va a realizar</th>
+          <th>Materiales / software</th>
+          <th>Evidencia evaluable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6</td>
+          <td>Puesta en marcha del entorno</td>
+          <td>Configurar dependencias, scripts y primera ejecución del backend en local.</td>
+          <td>Node.js, npm, VS Code, terminal, GitHub.</td>
+          <td>Entorno local operativo y backend ejecutándose correctamente.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Persistencia con Prisma/SQLite</td>
+          <td>Revisar el esquema de datos, configurar persistencia y comprobar acceso a base de datos.</td>
+          <td>Prisma, SQLite, VS Code, terminal, cliente HTTP.</td>
+          <td>Conexión funcional con la base de datos y persistencia configurada.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Planificación diaria</td>
+          <td>Implementar o revisar la consulta del plan del día y su respuesta desde la API.</td>
+          <td>Backend, Prisma, cliente HTTP, documentación de endpoints.</td>
+          <td>Consulta funcional de planificación diaria operativo.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Registro de eventos</td>
+          <td>Implementar o revisar la recepción y almacenamiento de eventos desde simulación o dispositivo.</td>
+          <td>Postman, backend en ejecución, ejemplos JSON.</td>
+          <td>Endpoint de registro de eventos implementado y probado.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Estados de toma</td>
+          <td>Aplicar la lógica de negocio relacionada con apertura, confirmación y estado de la toma.</td>
+          <td>Casos de prueba, VS Code, Postman, base de datos.</td>
+          <td>Funcionalidad implementada para actualizar estados de toma y gestionar información persistente.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Proyecto · Detalle de sesiones 11 a 14</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ses.</th>
+          <th>Foco</th>
+          <th>Qué se va a realizar</th>
+          <th>Materiales / software</th>
+          <th>Evidencia evaluable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>11</td>
+          <td>Alertas y dashboard</td>
+          <td>Generar alertas, consultar incidencias y revisar la visualización del seguimiento.</td>
+          <td>Casos de prueba, backend, cliente HTTP, dashboard o interfaz de consulta.</td>
+          <td>Alertas generadas y evidencias de seguimiento.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Integración y pruebas</td>
+          <td>Comprobar el flujo completo con simulación o hardware, revisar errores y registrar incidencias.</td>
+          <td>Prototipo o simulación, Postman, terminal, Arduino IDE si procede.</td>
+          <td>Prueba funcional del flujo completo e informe breve de incidencias.</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Documentación técnica</td>
+          <td>Revisar repositorio, ordenar archivos y completar documentación técnica del proyecto.</td>
+          <td>Repositorio, plantilla documental, editor Markdown.</td>
+          <td>Código del repositorio probado y documentado, con documentación técnica revisada.</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Defensa oral y cierre</td>
+          <td>Preparar y realizar la presentación final del proyecto y la demostración general.</td>
+          <td>Presentación, repositorio final, herramienta de presentaciones.</td>
+          <td>Presentación oral, demostración funcional y entrega final del proyecto.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p class="footer">VigiaSenior · Material para alumnado</p>
+</main>
+</body>
+</html>
