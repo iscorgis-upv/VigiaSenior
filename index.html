@@ -605,11 +605,11 @@
           <p>
             Este repositorio recoge una programación de aula del <strong>CFGS de Desarrollo de Aplicaciones Web (DAW)</strong>
             para el módulo <strong>0613 · Desarrollo web en entorno servidor</strong>. En esta propuesta didáctica se desarrolla el proyecto
-            <strong>VigiaSenior</strong>, articulado a partir de una situación de aprendizaje basada en el diseño e implementación del
+            <strong>VigiaSenior</strong>, articulado a partir de una unidad de trabajo basada en el diseño e implementación del
             <strong>backend de un pastillero inteligente</strong>, pensado para apoyar el seguimiento de la medicación en personas mayores.
           </p>
           <p>
-            La propuesta parte de un problema real y reconocible: la dificultad de mantener rutinas de medicación seguras, controladas y registrables
+            La propuesta parte de un problema real y reconocible: La dificultad de mantener rutinas de medicación seguras, controladas y registrables
             en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica
             en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación e integración básica con hardware
             o simulación.
@@ -617,7 +617,7 @@
           <div class="callout">
             <strong>El repositorio tiene dos objetivos principales:</strong>
             <ul>
-              <li>Servir como <strong>programación de aula transferible</strong>, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones;</li>
+              <li>Servir como <strong>programación de aula transferible</strong>, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones.</li>
               <li>Actuar como <strong>repositorio técnico del proyecto</strong>, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.</li>
             </ul>
           </div>
@@ -645,9 +645,10 @@
           </div>
 
           <p>
-            A nivel curricular, el proyecto permite trabajar de forma conjunta contenidos y procedimientos vinculados al módulo:
-            desarrollo de servicios web, acceso a bases de datos, organización de la lógica de negocio y diseño de una API.
-            También incorpora eventos procedentes de un dispositivo IoT y refuerza la documentación técnica y la exposición oral.
+            A nivel curricular, el proyecto encaja bien con el módulo porque reúne varias tareas habituales del desarrollo backend: 
+            Crear servicios web, trabajar con una base de datos, organizar la lógica de negocio y diseñar una API. 
+            El componente IoT se utiliza como contexto del problema, no como objetivo principal, y sirve para dar sentido a los eventos 
+            que recibe el sistema. Además, el alumnado debe documentar lo que hace y defender las decisiones tomadas en la exposición final.
           </p>
         </section>
 
@@ -669,34 +670,38 @@
           <h2>🎯 Objetivos del proyecto</h2>
           <p>Con esta propuesta se pretende que el alumnado sea capaz de:</p>
           <ul>
-            <li>Analizar un problema real y convertirlo en requisitos técnicos;</li>
-            <li>Diseñar el modelo de dominio de una aplicación basada en eventos;</li>
-            <li>Estructurar una API REST coherente y documentada;</li>
-            <li>Implementar la persistencia de datos mediante base de datos relacional;</li>
-            <li>Desarrollar lógica de negocio en servidor;</li>
-            <li>Integrar software y hardware en una arquitectura sencilla de IoT;</li>
-            <li>Documentar el proyecto de forma clara, trazable y reutilizable;</li>
-            <li>Defender oralmente la propuesta con base técnica y pedagógica.</li>
+            <li>Analizar un problema real y convertirlo en requisitos técnicos.</li>
+            <li>Diseñar el modelo de dominio de una aplicación basada en eventos.</li>
+            <li>Estructurar una API  coherente y documentada.</li>
+            <li>Implementar la persistencia de datos mediante base de datos relacional.</li>
+            <li>Desarrollar lógica de negocio en servidor.</li>
+            <li>Integrar software y hardware en una arquitectura sencilla de IoT.</li>
+            <li>Documentar el proyecto de forma clara, trazable y reutilizable.</li>
+            <li>Presentar el proyecto y explicar por qué se han tomado las principales decisiones técnicas y didácticas.</li>
           </ul>
         </section>
 
         <section id="mvp">
           <h2>🚀 Resultado esperado del proyecto</h2>
           <p>
+            Al finalizar el proyecto, el alumnado habrá desarrollado una primera versión funcional del backend de VigiaSenior, capaz de gestionar la 
+            planificación diaria de tomas, recibir eventos simulados de un dispositivo y registrar lo que ocurre durante el seguimiento de la medicación.
+
             El proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
           </p>
           <ul>
-            <li>Consulta de planificación diaria;</li>
-            <li>Recepción de eventos del dispositivo;</li>
-            <li>Registro de apertura de cajita;</li>
-            <li>Confirmación de la toma;</li>
-            <li>actualización del estado de la toma;</li>
-            <li>Generación de alertas;</li>
+            <li>Consulta de planificación diaria.</li>
+            <li>Recepción de eventos del dispositivo.</li>
+            <li>Registro de apertura de cajita.</li>
+            <li>Confirmación de la toma.</li>
+            <li>actualización del estado de la toma.</li>
+            <li>Generación de alertas.</li>
             <li>Consulta básica de seguimiento e histórico.</li>
           </ul>
 
           <h3>Endpoints principales del backend</h3>
-          <pre><code>GET   /health
+          <pre><code>
+                    GET   /health
                     GET   /api/devices/:deviceId/schedule/today
                     POST  /api/devices/:deviceId/events
                     GET   /api/patients/:patientId/dashboard
@@ -710,8 +715,8 @@
           <h2>🔌 Hardware del proyecto</h2>
           <p>
             La parte física se plantea en una versión simplificada y asumible para aula, basada en <strong>Arduino Nano ESP32</strong>.
-            Se entrega al inicio del proyecto porque la finalidad principal de la propuesta es el <strong>backend</strong>, no el desarrollo eléctrico
-            ni la configuración hardware avanzada.
+            Se entrega al inicio del proyecto porque la finalidad principal de la propuesta es el <strong>backend</strong>, no la electrónica
+            ni la configuración hardware.
 
             Se ha elegido una placa basada en ESP32, como Arduino Nano ESP32, porque ofrece un equilibrio muy adecuado entre coste, tamaño 
             y conectividad. Es una opción asequible y fácil de conseguir, también en versiones compatibles de bajo coste, lo que la 
@@ -732,7 +737,7 @@
             <li>conexión Wi‑Fi en la versión con backend.</li>
           </ul>
 
-          <h3>Mapeo fijo de pines</h3>
+          <h3>Esquema Propuesto</h3>
           <ul>
             <li><strong>D1–D6</strong> → sensores / pulsadores;</li>
             <li><strong>D7–D12</strong> → LEDs;</li>
