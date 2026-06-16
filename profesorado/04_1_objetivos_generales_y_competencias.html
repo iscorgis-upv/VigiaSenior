@@ -97,13 +97,6 @@
       line-height: 1.2;
     }
 
-    h3 {
-      color: var(--primary);
-      margin-top: 1.5rem;
-      margin-bottom: 0.6rem;
-      font-size: 1.2rem;
-    }
-
     p {
       color: var(--muted);
       margin-top: 0;
@@ -116,67 +109,6 @@
       padding: clamp(1.25rem, 3vw, 2rem);
       box-shadow: var(--shadow);
       margin-bottom: 1.25rem;
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .fact {
-      background: var(--soft);
-      border: 1px solid rgba(25, 167, 168, 0.18);
-      border-radius: 14px;
-      padding: 1rem;
-    }
-
-    .fact strong {
-      display: block;
-      color: var(--primary);
-      margin-bottom: 0.25rem;
-      font-size: 0.95rem;
-    }
-
-    .fact span {
-      color: var(--muted);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.1rem;
-    }
-
-    .card h3 {
-      margin-top: 0;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin: 0.8rem 0 1.2rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .tag-list li {
-      background: #eef4ff;
-      border: 1px solid #d8e6ff;
-      color: #20417d;
-      border-radius: 999px;
-      padding: 0.4rem 0.65rem;
-      font-weight: 700;
-      font-size: 0.92rem;
     }
 
     table {
@@ -207,6 +139,13 @@
       border-bottom: 0;
     }
 
+    td:first-child {
+      width: 8rem;
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
     .note {
       border-left: 5px solid var(--accent);
       background: #fff8eb;
@@ -214,36 +153,6 @@
       border-radius: 12px;
       color: #6b4b12;
       margin-top: 1rem;
-    }
-
-    .concept-map {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .concept {
-      border-radius: 16px;
-      padding: 1.1rem;
-      background: #ffffff;
-      border: 1px solid var(--border);
-    }
-
-    .concept::before {
-      content: "";
-      display: block;
-      width: 48px;
-      height: 5px;
-      background: var(--secondary);
-      border-radius: 999px;
-      margin-bottom: 0.8rem;
-    }
-
-    .concept ul {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--muted);
     }
 
     .footer {
@@ -254,12 +163,6 @@
     }
 
     @media (max-width: 850px) {
-      .intro-grid,
-      .two-col,
-      .concept-map {
-        grid-template-columns: 1fr;
-      }
-
       table {
         font-size: 0.95rem;
       }
@@ -267,6 +170,10 @@
       th,
       td {
         padding: 0.7rem;
+      }
+
+      td:first-child {
+        width: auto;
       }
     }
   </style>
@@ -282,280 +189,175 @@
       <h1>Objetivos generales y competencias vinculadas</h1>
       <p>
         Encaje curricular de VigiaSenior dentro del módulo 0613 · Desarrollo web en entorno servidor.
-        Este documento resume qué objetivos, competencias y bloques del módulo se trabajan con el proyecto.
+        Esta página recoge los objetivos generales y las competencias profesionales, personales y sociales
+        vinculadas al proyecto.
       </p>
     </header>
 
     <section class="section">
-      <h2>Contexto académico</h2>
+      <h2>1. Objetivos generales a los que contribuye el proyecto</h2>
+
       <p>
-        VigiaSenior se plantea como una programación de aula basada en proyecto para el ciclo de
-        Desarrollo de Aplicaciones Web. El trabajo se sitúa en el módulo de Desarrollo web en entorno
-        servidor y se organiza como un bloque específico de diez sesiones.
+        VigiaSenior contribuye especialmente a los objetivos del ciclo relacionados con el uso de lenguajes
+        y herramientas de desarrollo, el diseño de aplicaciones web con acceso a datos, la integración de
+        componentes en el entorno servidor, la construcción de servicios reutilizables y la verificación del
+        funcionamiento de las soluciones desarrolladas.
       </p>
 
-      <div class="intro-grid">
-        <div class="fact">
-          <strong>Etapa</strong>
-          <span>Ciclo Formativo de Grado Superior</span>
-        </div>
-        <div class="fact">
-          <strong>Familia profesional</strong>
-          <span>Informática y Comunicaciones</span>
-        </div>
-        <div class="fact">
-          <strong>Título</strong>
-          <span>Técnico Superior en Desarrollo de Aplicaciones Web</span>
-        </div>
-        <div class="fact">
-          <strong>Módulo</strong>
-          <span>0613 · Desarrollo web en entorno servidor</span>
-        </div>
-        <div class="fact">
-          <strong>Curso</strong>
-          <span>Segundo</span>
-        </div>
-        <div class="fact">
-          <strong>Duración del módulo</strong>
-          <span>200 horas · 6 horas semanales</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Objetivos generales relacionados</h2>
       <p>
-        El proyecto no intenta cubrir todos los objetivos del ciclo con la misma intensidad. Se centra
-        especialmente en aquellos que tienen relación directa con el desarrollo en servidor, el acceso a
-        datos, los servicios web, la verificación del software y la documentación del proceso.
+        La aportación del proyecto a estos objetivos no es abstracta. Se concreta en decisiones visibles:
+        diseñar una API, estructurar el backend por capas, modelar datos, integrar persistencia, validar
+        entradas, probar el comportamiento del sistema y documentar el resultado.
       </p>
-
-      <ul class="tag-list" aria-label="Objetivos generales vinculados">
-        <li>c)</li>
-        <li>d)</li>
-        <li>f)</li>
-        <li>g)</li>
-        <li>h)</li>
-        <li>l)</li>
-        <li>m)</li>
-        <li>n)</li>
-        <li>ñ)</li>
-        <li>o)</li>
-        <li>q)</li>
-        <li>s)</li>
-        <li>t)</li>
-      </ul>
 
       <table>
         <thead>
           <tr>
-            <th>Objetivos</th>
-            <th>Cómo se trabajan en VigiaSenior</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>c), d)</td>
-            <td>
-              Preparando y ajustando el entorno necesario para ejecutar el backend y trabajar con
-              servicios en el servidor.
-            </td>
-          </tr>
-          <tr>
-            <td>f), g), h)</td>
-            <td>
-              Desarrollando una aplicación con acceso a base de datos, modelo de dominio, persistencia
-              y componentes de acceso a datos.
-            </td>
-          </tr>
-          <tr>
-            <td>l), m), n)</td>
-            <td>
-              Implementando servicios web que puedan ser utilizados por el dispositivo, la simulación o
-              una interfaz de consulta.
-            </td>
-          </tr>
-          <tr>
-            <td>ñ), o)</td>
-            <td>
-              Probando los componentes desarrollados y manteniendo documentación técnica del proceso,
-              endpoints, pruebas y decisiones tomadas.
-            </td>
-          </tr>
-          <tr>
-            <td>q), s), t)</td>
-            <td>
-              Resolviendo incidencias de forma progresiva, tomando decisiones justificadas y proponiendo
-              mejoras sobre una necesidad concreta.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section">
-      <h2>Competencias profesionales, personales y sociales</h2>
-      <p>
-        La propuesta se vincula con competencias que aparecen de forma natural en un proyecto backend:
-        gestionar datos, integrar lógica de negocio, desarrollar servicios, probar el funcionamiento y
-        documentar lo realizado. También se trabaja la autonomía y la resolución de problemas dentro del equipo.
-      </p>
-
-      <ul class="tag-list" aria-label="Competencias vinculadas">
-        <li>c)</li>
-        <li>d)</li>
-        <li>f)</li>
-        <li>k)</li>
-        <li>l)</li>
-        <li>m)</li>
-        <li>n)</li>
-        <li>ñ)</li>
-        <li>q)</li>
-      </ul>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Competencia</th>
-            <th>Concreción en el proyecto</th>
+            <th>Objetivo</th>
+            <th>Descripción</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>c)</td>
-            <td>Configuración y ejecución del entorno de servidor necesario para el backend.</td>
+            <td>Instalar módulos analizando su estructura y funcionalidad para gestionar servidores de aplicaciones.</td>
           </tr>
           <tr>
             <td>d)</td>
-            <td>Diseño y gestión de la base de datos, cuidando integridad, consistencia y accesibilidad.</td>
+            <td>Ajustar parámetros analizando la configuración para gestionar servidores de aplicaciones.</td>
           </tr>
           <tr>
             <td>f)</td>
-            <td>Integración de los componentes de acceso a datos dentro de la lógica de la aplicación.</td>
+            <td>Seleccionar lenguajes, objetos y herramientas, interpretando las especificaciones para desarrollar aplicaciones web con acceso a bases de datos.</td>
           </tr>
           <tr>
-            <td>k), l)</td>
-            <td>Desarrollo e integración de servicios utilizados por el dispositivo, la simulación o el dashboard.</td>
+            <td>g)</td>
+            <td>Utilizar lenguajes, objetos y herramientas, interpretando las especificaciones para desarrollar aplicaciones web con acceso a bases de datos.</td>
+          </tr>
+          <tr>
+            <td>h)</td>
+            <td>Generar componentes de acceso a datos, cumpliendo las especificaciones, para integrar contenidos en la lógica de una aplicación web.</td>
+          </tr>
+          <tr>
+            <td>l)</td>
+            <td>Utilizar herramientas y lenguajes específicos, cumpliendo las especificaciones, para desarrollar e integrar componentes software en el entorno del servidor web.</td>
           </tr>
           <tr>
             <td>m)</td>
-            <td>Comprobación del funcionamiento mediante pruebas funcionales y casos de uso del sistema.</td>
+            <td>Emplear herramientas específicas, integrando la funcionalidad entre aplicaciones, para desarrollar servicios empleables en aplicaciones web.</td>
           </tr>
           <tr>
             <td>n)</td>
-            <td>Documentación del proceso de desarrollo y mantenimiento del repositorio del proyecto.</td>
+            <td>Evaluar servicios distribuidos ya desarrollados, verificando sus prestaciones y funcionalidad, para integrar servicios distribuidos en una aplicación web.</td>
           </tr>
           <tr>
             <td>ñ)</td>
-            <td>Revisión del comportamiento de la aplicación antes de su entrega y posible despliegue o publicación.</td>
+            <td>Verificar los componentes de software desarrollados, analizando las especificaciones, para completar el plan de pruebas.</td>
+          </tr>
+          <tr>
+            <td>o)</td>
+            <td>Utilizar herramientas específicas, cumpliendo los estándares establecidos, para elaborar y mantener la documentación de los procesos.</td>
           </tr>
           <tr>
             <td>q)</td>
-            <td>Resolución de problemas técnicos con iniciativa, reparto de tareas y mejora progresiva del producto.</td>
+            <td>Programar y realizar actividades para gestionar el mantenimiento de los recursos informáticos.</td>
+          </tr>
+          <tr>
+            <td>s)</td>
+            <td>Desarrollar la creatividad y el espíritu de innovación para responder a los retos que se presentan en los procesos y organización de trabajo y de la vida personal.</td>
+          </tr>
+          <tr>
+            <td>t)</td>
+            <td>Tomar decisiones de forma fundamentada analizando las variables implicadas, integrando saberes de distinto ámbito y aceptando los riesgos y la posibilidad de equivocación en las mismas, para afrontar y resolver distintas situaciones, problemas o contingencias.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section class="section">
-      <h2>Ubicación dentro del módulo</h2>
+      <h2>2. Competencias profesionales, personales y sociales</h2>
+
       <p>
-        El módulo puede organizarse en tres grandes bloques. VigiaSenior se apoya sobre todo en la parte de
-        programación en entorno servidor y en el bloque de servicios web y aplicaciones web híbridas.
+        El proyecto también conecta con competencias profesionales y personales del ciclo. Entre ellas,
+        destacan las relacionadas con desarrollar aplicaciones web, organizar datos, trabajar con calidad
+        técnica, documentar procesos y colaborar de forma eficaz en entornos de desarrollo.
       </p>
 
-      <div class="two-col">
-        <article class="card">
-          <h3>Bloque 2 · Programación en entorno servidor</h3>
-          <p>
-            En este bloque se sitúan la generación dinámica de páginas y el acceso a datos. En el proyecto
-            se trabaja especialmente a través de la separación de capas, la persistencia y la lógica de negocio.
-          </p>
-          <ul>
-            <li>RA5 · Separación entre presentación y lógica de negocio.</li>
-            <li>RA6 · Acceso a almacenes de datos y mantenimiento de la información.</li>
-          </ul>
-        </article>
+      <p>
+        Además, la propia lógica del proyecto —por su relación con un problema de seguimiento y cuidado—
+        favorece una lectura más amplia del trabajo técnico. No se programa solo para practicar, sino para
+        resolver una situación con sentido funcional y social.
+      </p>
 
-        <article class="card">
-          <h3>Bloque 3 · Servicios web y aplicaciones híbridas</h3>
-          <p>
-            Es el bloque más visible del proyecto, ya que el backend se comunica con un dispositivo o simulador
-            mediante una API REST y registra eventos para alimentar el seguimiento de la medicación.
-          </p>
-          <ul>
-            <li>RA7 · Desarrollo, descripción, verificación y consumo de servicios web.</li>
-            <li>RA8 · Páginas o interfaces dinámicas de consulta y visualización.</li>
-            <li>RA9 · Integración de librerías, reutilización de código y documentación final.</li>
-          </ul>
-        </article>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Competencia</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>c)</td>
+            <td>Gestionar servidores de aplicaciones adaptando su configuración en cada caso para permitir el despliegue de aplicaciones web.</td>
+          </tr>
+          <tr>
+            <td>d)</td>
+            <td>Gestionar bases de datos, interpretando su diseño lógico y verificando integridad, consistencia, seguridad y accesibilidad de los datos.</td>
+          </tr>
+          <tr>
+            <td>f)</td>
+            <td>Integrar contenidos en la lógica de una aplicación web, desarrollando componentes de acceso a datos adecuados a las especificaciones.</td>
+          </tr>
+          <tr>
+            <td>g)</td>
+            <td>Desarrollar interfaces en aplicaciones web de acuerdo con un manual de estilo, utilizando lenguajes de marcas y estándares web.</td>
+          </tr>
+          <tr>
+            <td>h)</td>
+            <td>Desarrollar componentes multimedia para su integración en aplicaciones web, empleando herramientas específicas y siguiendo las especificaciones establecidas.</td>
+          </tr>
+          <tr>
+            <td>k)</td>
+            <td>Desarrollar servicios para integrar sus funciones en otras aplicaciones web, asegurando su funcionalidad.</td>
+          </tr>
+          <tr>
+            <td>l)</td>
+            <td>Integrar servicios y contenidos distribuidos en aplicaciones web, asegurando su funcionalidad.</td>
+          </tr>
+          <tr>
+            <td>m)</td>
+            <td>Completar planes de pruebas verificando el funcionamiento de los componentes software desarrollados, según las especificaciones.</td>
+          </tr>
+          <tr>
+            <td>n)</td>
+            <td>Elaborar y mantener la documentación de los procesos de desarrollo, utilizando herramientas de generación de documentación y control de versiones.</td>
+          </tr>
+          <tr>
+            <td>ñ)</td>
+            <td>Desplegar y distribuir aplicaciones web en distintos ámbitos de implantación, verificando su comportamiento y realizando modificaciones.</td>
+          </tr>
+          <tr>
+            <td>q)</td>
+            <td>Resolver situaciones, problemas o contingencias con iniciativa y autonomía en el ámbito de su competencia, con creatividad, innovación y espíritu de mejora en el trabajo personal y en el de los miembros del equipo.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="section">
-      <h2>Mapa conceptual del proyecto</h2>
+      <h2>3. Perfil profesional y sentido aplicado</h2>
+
       <p>
-        El proyecto se entiende mejor como la unión de tres partes: una parte física o simulada, una capa de
-        comunicación y un backend que concentra la lógica de negocio.
-      </p>
-
-      <div class="concept-map">
-        <article class="concept">
-          <h3>Parte física</h3>
-          <ul>
-            <li>Pastillero inteligente.</li>
-            <li>Arduino Nano ESP32.</li>
-            <li>Sensores de apertura.</li>
-            <li>LEDs, buzzer y botón de confirmación.</li>
-          </ul>
-        </article>
-
-        <article class="concept">
-          <h3>Comunicación</h3>
-          <ul>
-            <li>Wi‑Fi y API REST.</li>
-            <li>Consulta del plan del día.</li>
-            <li>Envío de eventos del dispositivo.</li>
-            <li>Simulación cuando no se use hardware físico.</li>
-          </ul>
-        </article>
-
-        <article class="concept">
-          <h3>Backend</h3>
-          <ul>
-            <li>Configuración de paciente y cuidador.</li>
-            <li>Planificación semanal configurable.</li>
-            <li>Estados de toma y alertas.</li>
-            <li>Base de datos, API y dashboard de consulta.</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="note">
-        El hardware valida una parte del sistema, pero el caso completo se modela en el backend:
-        planificación, eventos, persistencia, estados, alertas y consulta posterior.
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Enfoque metodológico asociado</h2>
-      <p>
-        La metodología principal es el Aprendizaje Basado en Proyectos. El alumnado trabaja sobre un reto
-        concreto, avanza por fases y entrega evidencias parciales que permiten revisar el proceso antes de
-        llegar al producto final.
+        El perfil profesional del título de DAW se orienta al desarrollo, implantación y mantenimiento de
+        aplicaciones web, con atención a tecnologías específicas, acceso seguro a datos, usabilidad y calidad.
+        VigiaSenior se ajusta bien a esa orientación porque obliga a construir una parte concreta y reconocible
+        de una aplicación: el backend que coordina datos, lógica y comunicación con otros componentes.
       </p>
 
       <p>
-        La propuesta también tiene una orientación próxima al Aprendizaje-Servicio, porque parte de una
-        necesidad social reconocible: apoyar el seguimiento de la medicación en personas mayores. Aun así,
-        no se plantea como un ApS completo, ya que se parte de una necesidad previamente identificada en
-        el contexto de una residencia de mayores.
-      </p>
-
-      <p>
-        La organización prevista es de equipos de tres personas, con reparto de tareas técnicas y documentales.
-        Esta estructura permite trabajar el backend, la base de datos, las pruebas, la documentación y la defensa
-        de forma coordinada.
+        Eso le da un valor especialmente útil dentro del módulo. Permite trabajar el perfil profesional con
+        un producto identificable, en vez de quedarse en prácticas aisladas sin continuidad entre sí.
       </p>
     </section>
 
