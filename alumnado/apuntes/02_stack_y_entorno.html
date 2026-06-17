@@ -12,7 +12,7 @@
   <div class="hero-mini">
     <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
     <h1>02 · Stack real del proyecto y preparación del entorno</h1>
-    <p>Este manual explica con qué tecnologías se construye el backend actual y qué necesita el alumnado para poder ejecutarlo y tocarlo sin romperlo todo.</p>
+    <p>Este manual explica con qué tecnologías se construye el backend actual y qué necesita el alumnado para poder ejecutarlo.</p>
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Qué stack usa el backend actual</h2>
@@ -26,7 +26,8 @@
 <li><strong>Zod</strong> para validar parámetros y cuerpos de petición;</li>
 <li><strong>Jest</strong> y <strong>Supertest</strong> para pruebas.</li>
 </ul>
-<p>Esto significa que aquí no se trabaja con Django como framework principal. La lógica general del proyecto sí sigue siendo la misma, pero la implementación está adaptada al stack real del repositorio.</p>
+
+
 </section><section class="card"><h2>2. Qué hace cada herramienta</h2>
 <table class="table">
 <thead><tr><th>Herramienta</th><th>Para qué sirve</th><th>Idea corta</th></tr></thead>
@@ -53,7 +54,7 @@
     "prisma:seed": "npx prisma db seed"
   }
 }</code></pre>
-<p>Si el alumnado aprende a usar estos scripts, no necesita memorizar comandos largos en cada sesión.</p>
+<p>Si aprendes a usar estos scripts, no necesitas memorizar comandos largos en cada sesión.</p>
 </section><section class="card"><h2>4. Qué significa cada script</h2>
 <ul class="check">
 <li><code>npm run dev</code> → arranca el servidor en modo desarrollo y reinicia al detectar cambios.</li>
@@ -101,7 +102,10 @@ git add .
 git commit -m "feat: añade endpoint de health"
 git push</code></pre>
 <p>La trazabilidad importa también en un proyecto académico. Si el alumnado hace cambios ordenados y con mensajes razonables, luego puede explicar mejor el proceso seguido.</p>
-</section><section class="card"><h2>9. Checklist de entorno listo</h2>
+<p>Si no conoces git o quieres profundizar en la herramienta, puedes ver este vídeo:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vXE34aO6nfQ?si=FXGF6TbGB-C9J9V5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<!--</section><section class="card"><h2>9. Checklist de entorno listo</h2>
 <ul class="check">
 <li>Node y npm instalados;</li>
 <li>dependencias instaladas con <code>npm install</code>;</li>
@@ -113,7 +117,7 @@ git push</code></pre>
 <li>endpoint <code>/health</code> accesible.</li>
 </ul>
 <div class="callout ok"><strong>Consejo práctico:</strong> no empieces a programar una nueva ruta si todavía no has comprobado que el proyecto levanta correctamente.</div>
-</section>
+</section>-->
   <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
 </main>
 </body>

@@ -16,8 +16,26 @@
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Por qué separamos el código en capas</h2>
-<p>En proyectos pequeños puede parecer más rápido ponerlo todo dentro de una misma función. El problema es que eso escala mal: cuesta leerlo, cuesta probarlo y cuesta cambiarlo. Por eso, el backend de VigiaSenior se organiza por capas.</p>
+<p>En proyectos pequeños puede parecer más rápido ponerlo todo dentro de una misma función. El problema es que eso tiene poca escalabilidad si el proyecto crece: cuesta leerlo, cuesta probarlo y cuesta cambiarlo. Por eso, el backend de VigiaSenior se organiza por capas.</p>
 <p>La idea es sencilla: cada capa debería tener una responsabilidad principal. Así se entiende mejor el código y se mantiene mejor.</p>
+  <p>
+      Antes de entrar en el detalle de rutas, controladores, servicios, repositorios y validadores,
+      merece la pena ver este vídeo sobre arquitectura por capas. Lo ponemos al principio porque esta
+      idea va a marcar cómo se entiende el resto de la sección: si cada capa tiene clara su responsabilidad,
+      el backend será mucho más fácil de leer, probar y modificar.
+  </p>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/GgcQEtmSBF8"
+      title="Arquitectura por capas en Express"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
 </section><section class="card"><h2>2. Vista global de la estructura</h2>
 <pre><code>src/
 ├── app.ts
@@ -113,13 +131,14 @@ return {
   receivedAt: string
 }</code></pre>
 <p>Cuando un alumno ve ese tipo, entiende mucho mejor qué debe devolver el servicio o el controlador sin tener que adivinarlo.</p>
-</section><section class="card"><h2>10. Patrón mental recomendado para leer el backend</h2>
+<!--</section><section class="card"><h2>10. Patrón mental recomendado para leer el backend</h2>
 <div class="step"><div class="num">1</div><div><strong>Empieza por la ruta.</strong><br>¿Qué endpoint se define?</div></div>
 <div class="step"><div class="num">2</div><div><strong>Pasa al controlador.</strong><br>¿Qué params o body recibe? ¿Qué valida?</div></div>
 <div class="step"><div class="num">3</div><div><strong>Sigue el servicio.</strong><br>¿Qué decisiones toma?</div></div>
 <div class="step"><div class="num">4</div><div><strong>Termina en el repositorio.</strong><br>¿Qué datos necesita leer o guardar?</div></div>
 <p>Leer el backend en este orden suele ser mucho más claro que abrir archivos al azar.</p>
-</section>
+</section>-->
+
   <p class="footer">Estos apuntes están pensados como soporte real de trabajo. La idea es que el alumnado pueda usarlos mientras diseña, implementa, prueba y documenta el backend.</p>
 </main>
 </body>

@@ -12,13 +12,34 @@
   <div class="hero-mini">
     <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
     <h1>07 · Cómo probar el backend con Postman paso a paso</h1>
-    <p>Este manual se centra en las pruebas manuales. La idea es que el alumnado pueda comprobar el backend aunque todavía no exista un frontend terminado.</p>
+    <p>Este manual se centra en las pruebas manuales. La idea es que el alumnado pueda comprobar el backend creando las peticiones manualmente desde Postman.
+        Como en apartados anteriores, hemos incorporado un vídeo de apoyo sobre el uso básico de
+        Postman. La herramienta ofrece muchas opciones y al principio es fácil perderse entre ellas,
+        así que el objetivo es centrarse en lo esencial: crear peticiones, probar operaciones CRUD,
+        revisar códigos de estado y entender qué está respondiendo el backend.
+    </p>
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Por qué Postman es útil aquí</h2>
 <p>Postman permite enviar peticiones HTTP al backend y ver la respuesta de forma clara. Para alumnado, esto tiene una ventaja enorme: puedes validar una ruta sin depender de una interfaz gráfica o del dispositivo físico.</p>
 <p>Si el equipo entiende cómo probar con Postman, puede cerrar más rápidamente problemas de rutas, cuerpos JSON, errores 400/404 o respuestas mal construidas.</p>
-</section><section class="card"><h2>2. Configuración mínima recomendada</h2>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/wu5XOzAXNFE"
+      title="Primeros pasos en pruebas de API con Postman"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+
+</section>
+
+
+
+<section class="card"><h2>2. Configuración mínima recomendada</h2>
 <p>Lo primero es crear un <strong>entorno</strong> con una variable base. Así no hace falta escribir la URL completa en cada petición.</p>
 <pre><code>Entorno: VigiaSenior local
 baseUrl = http://127.0.0.1:3000</code></pre>

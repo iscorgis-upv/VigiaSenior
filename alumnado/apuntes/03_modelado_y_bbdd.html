@@ -16,8 +16,22 @@
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Por qué el modelo de datos importa tanto</h2>
-<p>Un backend puede tener rutas y tests, pero si el modelo de datos está mal planteado, el sistema se vuelve incoherente. En VigiaSenior, la base de datos es lo que permite reconstruir el estado del dispositivo, del paciente, de las tomas y de las alertas.</p>
-<p>Dicho de otro modo: la lógica de negocio necesita memoria. Esa memoria es la base de datos.</p>
+<p>
+  Un backend puede tener rutas y tests, pero si el modelo de datos está mal planteado,
+  el sistema acaba volviéndose incoherente. En VigiaSenior, la base de datos es lo que
+  permite reconstruir el estado del dispositivo, del paciente, de las tomas y de las alertas.
+</p>
+
+<p>
+  Dicho de otro modo: la lógica de negocio necesita memoria. Esa memoria es la base de datos.
+</p>
+
+<p>
+  Aunque la finalidad principal del proyecto no es diseñar una base de datos desde cero,
+  se proporcionará una estructura inicial para poder centrarnos en las operaciones más
+  importantes desde el backend: conexión, consulta, creación, actualización y borrado de datos.
+</p>
+
 </section><section class="card"><h2>2. Entidades principales del proyecto</h2>
 <p>El dominio del proyecto gira alrededor de estas entidades:</p>
 <ul class="check">
@@ -54,6 +68,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }</code></pre>
 <p>Eso indica que el proveedor actual es SQLite y que Prisma generará un cliente de acceso para usarlo desde TypeScript.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k4-DQBrJIpA?si=f8YvWcbCBHucVNR9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </section><section class="card"><h2>5. Lectura guiada de algunos modelos reales</h2>
 <pre><code>model Device {
   id        String   @id @default(cuid())

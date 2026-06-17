@@ -132,11 +132,11 @@ const result = await handleDeviceEvent(params.deviceId, body)</code></pre>
 <div class="step"><div class="num">7</div><div><strong>Prueba con Postman y con test.</strong><br>No cierres una funcionalidad sin validarla.</div></div>
 </section><section class="card"><h2>11. Qué deberías evitar al codificar</h2>
 <ul class="check">
-<li>meter toda la lógica dentro del controlador;</li>
-<li>hacer consultas Prisma directamente en cada ruta;</li>
-<li>validar “a ojo” en lugar de usar el schema;</li>
-<li>devolver respuestas inconsistentes entre endpoints parecidos;</li>
-<li>añadir tipos de evento nuevos sin revisar el validador ni las pruebas.</li>
+<li>Meter toda la lógica dentro del controlador</li>
+<li>Hacer consultas Prisma directamente en cada ruta</li>
+<li>Validar “a ojo” en lugar de usar el schema</li>
+<li>Devolver respuestas inconsistentes entre endpoints parecidos</li>
+<li>Añadir tipos de evento nuevos sin revisar el validador ni las pruebas.</li>
 </ul>
 <div class="callout warn"><strong>Regla práctica:</strong> si una función mezcla lectura de params, validación, lógica, consulta a base de datos y composición de respuesta, seguramente deberías repartirla mejor.</div>
 </section>

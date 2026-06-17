@@ -12,7 +12,16 @@
   <div class="hero-mini">
     <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
     <h1>08 · Pruebas automáticas con Jest y Supertest</h1>
-    <p>Este manual explica cómo se prueban la lógica y los endpoints de forma automática. No se trata de testear por moda, sino de tener evidencias de que el backend se comporta como debería.</p>
+    <p>   En esta sección pasamos de las pruebas manuales con Postman a las pruebas automatizadas.
+          La idea ya no es comprobar los endpoints uno a uno desde una interfaz gráfica, sino escribir
+          tests que puedan ejecutarse cada vez que cambiamos el backend.
+    </p>
+    <p>
+          Para apoyar esta parte, hemos incluido un vídeo sobre testing en Node.js con Jest y Supertest.
+          Encaja bien con el proyecto porque permite ver cómo se prueban rutas HTTP de forma automatizada:
+          se lanza una petición contra la aplicación, se revisa la respuesta y se comprueba si el backend
+          se comporta como esperamos.
+    </p>
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Qué diferencia hay entre prueba manual y automática</h2>
@@ -26,6 +35,16 @@
 <p>En un proyecto serio, ambas se complementan. Postman ayuda a explorar; Jest ayuda a asegurar.</p>
 </section><section class="card"><h2>2. Qué es Jest</h2>
 <p>Jest es un runner de pruebas para JavaScript/TypeScript. Permite definir casos de prueba, agruparlos y ejecutarlos de forma repetible.</p>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/lZJ1mar_znk"
+      title="Node.js Testing con Jest y Supertest"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
 <pre><code>describe('GET /health', () => {
   it('returns 200 OK', async () => {
     await request(app).get('/health').expect(200)

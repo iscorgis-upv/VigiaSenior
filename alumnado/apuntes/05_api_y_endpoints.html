@@ -16,7 +16,7 @@
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. La API no se diseña por ocurrencias</h2>
-<p>Una API buena no nace de poner rutas al azar, sino de responder preguntas reales del sistema. En VigiaSenior, las preguntas mínimas son:</p>
+<p>Una API buena no nace de poner rutas al azar, sino de responder preguntas reales del sistema. En VigiaSenior, las preguntas son:</p>
 <ul class="check">
 <li>¿está vivo el backend?</li>
 <li>¿qué plan del día tiene un dispositivo?</li>
@@ -32,7 +32,7 @@ POST   /api/devices/:deviceId/events
 GET    /api/patients/:patientId/dashboard
 GET    /api/patients/:patientId/alerts
 PATCH  /api/alerts/:alertId/resolve</code></pre>
-<p>Estas rutas cubren un recorrido funcional bastante razonable para el MVP del proyecto.</p>
+
 </section><section class="card"><h2>3. GET /health</h2>
 <p>Es el endpoint más simple, pero muy útil para comprobar que el servidor está levantado y responde.</p>
 <pre><code>GET /health</code></pre>
