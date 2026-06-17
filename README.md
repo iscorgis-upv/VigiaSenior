@@ -9,17 +9,25 @@
 </p>
 
 ---
+> **Nota de navegación**  
+> Este README resume el contenido principal del repositorio, pero para revisar el proyecto con mejor estructura visual, navegación entre apartados y acceso ordenado a los materiales, se recomienda consultar la versión publicada en **GitHub Pages**:  
+>  
+> 👉 **https://iscorgis-upv.github.io/VigiaSenior/**  
+>  
+> El repositorio contiene muchos materiales conectados entre sí: documentación para profesorado, materiales para alumnado, implementación técnica, presentación, hardware y simulación. GitHub Pages facilita bastante su lectura.
+
+---
 
 ## 🧭 Introducción
 
-Esto es un repositorio abierto para compartir una programación de aula del **CFGS de Desarrollo de Aplicaciones Web (DAW)** para el módulo **0613 - Desarrollo web en entorno servidor**, y en esta propuesta didáctica vamos a realizar el proyecto **VigiaSenior**. El proyecto se articula a partir de una situación de aprendizaje basada en el diseño e implementación del **backend de un pastillero inteligente**, pensado para apoyar el seguimiento de la medicación en personas mayores.
+ Este repositorio recoge una programación de aula del CFGS de Desarrollo de Aplicaciones Web (DAW) para el módulo 0613 · Desarrollo web en entorno servidor. En esta propuesta didáctica se desarrolla el proyecto VigiaSenior, articulado a partir de una unidad de trabajo basada en el diseño e implementación del backend de un pastillero inteligente, pensado para apoyar el seguimiento de la medicación en personas mayores.
 
-La propuesta parte de un problema real y socialmente significativo: la dificultad de mantener rutinas de medicación seguras, controladas y registrables en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación y una integración básica con hardware o simulación.
+La propuesta parte de un problema real y reconocible: La dificultad de mantener rutinas de medicación seguras, controladas y registrables en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación e integración básica con hardware o simulación. 
 
-> Este repositorio se ha concebido con una doble finalidad:
+> El repositorio se ha concebido con una doble finalidad:
 >
-> - Como **programación de aula transferible**, de manera que otro docente pueda comprenderla y aplicarla con pocas modificaciones;
-> - Como **repositorio técnico del proyecto**, donde se recogen la implementación del backend, los recursos hardware, la simulación, la documentación técnica y los materiales de apoyo.
+> - Servir como **programación de aula transferible**, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones.
+> - Actuar como **repositorio técnico del proyecto**, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.
 
 ### Normativa
 Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional, así como la normativa específica del título de **Técnico Superior en Desarrollo de Aplicaciones Web** y la normativa curricular aplicable en la **Comunitat Valenciana**.
