@@ -19,7 +19,40 @@
 <nav class="topnav"><div class="wrap"><a href="../../index.html">Inicio</a><a href="../index.html">Implementación</a><a href="../backend/index.html">Backend</a><a href="../docs/index.html">Docs</a><a href="../hardware/index.html">Hardware</a><a href="../simulacion/index.html">Simulación</a><a href="../recursos/index.html">Recursos</a><a href="../prompts/index.html">Prompts</a></div></nav>
 <main class="wrap">
 
-<section class="card"><h2>Por qué incluir simulación</h2><p>La simulación permite trabajar el proyecto cuando no hay hardware suficiente, cuando el grupo aún no tiene el backend preparado o cuando se quiere aislar un problema. Para una propuesta transferible, esto es importante: otro docente puede aplicar VigiaSenior aunque no disponga del mismo material físico.</p></section>
+<section class="card"><h2>Por qué incluir simulación</h2><p>La simulación permite trabajar el proyecto cuando no hay hardware suficiente, cuando el grupo aún no tiene el backend 
+  preparado o cuando se quiere aislar un problema. Para una propuesta transferible, esto es importante: otro docente puede aplicar VigiaSenior aunque no disponga 
+  del mismo material físico.</p>
+
+  <p> Se ha preparado la simulación con <strong>Wokwi</strong>, una plataforma online que permite montar y probar circuitos electrónicos desde el navegador. 
+    Con Wokwi se puede simular una placa como el ESP32, añadir componentes como LEDs, pulsadores o sensores, escribir el código del microcontrolador y 
+    comprobar su comportamiento sin tener todavía el hardware físico delante. 
+    
+     Se adjuntan los ficheros para pruebas en local y para simulación con backend.
+  </p>
+</section>
+
+<section class="card">
+  <h2>Vídeo de apoyo: primeros pasos con Wokwi</h2>
+
+  <p>
+    Antes de trabajar con la simulación de VigiaSenior, puede ser útil ver un ejemplo básico
+    de uso de Wokwi. La idea no es copiar exactamente el montaje, sino entender cómo se colocan
+    componentes, cómo se conecta una placa ESP32 y cómo se comprueba el comportamiento del circuito
+    desde el navegador.
+  </p>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/8Fypw5q9Elg"
+      title="Simula tu ESP32 en Wokwi: LED con botón"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+
 <section class="grid cards"><article class="card-mini"><h3>Wokwi · prueba local</h3><p>Escenario para comprobar entradas y salidas sin conexión real con el backend.</p><a class="btn" href="wokwi_local_test/index.html">Abrir</a></article><article class="card-mini"><h3>Wokwi · preparado para backend</h3><p>Escenario orientado a enviar eventos o representar la integración con la API.</p><a class="btn" href="wokwi_backend_ready/index.html">Abrir</a></article></section>
 <section class="card"><h2>Uso recomendado</h2><ol><li>Validar primero el comportamiento local: botones, LEDs, buzzer y estados.</li><li>Definir qué evento debe generar cada acción.</li><li>Probar esos eventos manualmente contra el backend.</li><li>Solo después conectar simulación y API si el tiempo lo permite.</li></ol><p>La simulación no debe convertirse en una segunda implementación paralela. Su valor está en hacer visible el flujo dispositivo-backend y facilitar pruebas.</p></section>
 
