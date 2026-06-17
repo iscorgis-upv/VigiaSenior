@@ -1,38 +1,219 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Backend · VigiaSenior</title><link rel="stylesheet" href="../styles.css"/></head>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Backend · VigiaSenior</title>
+  <link rel="stylesheet" href="../styles.css"/>
+</head>
 <body>
-<header class="hero"><div class="wrap"><h1>Backend</h1><p>API, modelo de datos, lógica de negocio y pruebas.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+<header class="hero">
+  <div class="wrap">
+    <h1>Backend</h1>
+    <p>API, modelo de datos, lógica de negocio y pruebas.</p>
+    <div class="badges">
+      <span class="badge">VigiaSenior</span>
+      <span class="badge">Implementación técnica</span>
+    </div>
+  </div>
+</header>
 
-<nav class="topnav"><div class="wrap">
-  <a href="../../index.html">Inicio</a>
-  <a href="../index.html">Implementación</a>
-  <a href="../backend/index.html">Backend</a>
-  <a href="../docs/index.html">Docs</a>
-  <a href="../hardware/index.html">Hardware</a>
-  <a href="../simulacion/index.html">Simulación</a>
-  <a href="../recursos/index.html">Recursos</a>
-  <a href="../prompts/index.html">Prompts</a>
-</div></nav>
-<main class="wrap"><a class="back-home" href="../../index.html">← Volver al inicio</a><section class="hero-mini"><span class="kicker">Backend</span><h1>API REST de VigiaSenior</h1><p>Backend en Node.js, TypeScript, Express y Prisma. Aquí está el núcleo evaluable del proyecto.</p></section>
-<section class="card"><h2>Qué hay que revisar</h2><ul>
-<li><code>src/routes</code>: entrada de la API.</li><li><code>src/controllers</code>: validación básica de petición y respuesta HTTP.</li><li><code>src/services</code>: reglas de negocio.</li><li><code>src/repositories</code>: acceso a datos con Prisma.</li><li><code>tests</code>: pruebas de endpoints y de lógica.</li></ul></section>
-<section class="card"><h2>Comandos habituales</h2><pre><code>cd implementacion/backend
+<nav class="topnav">
+  <div class="wrap">
+    <a href="../../index.html">Inicio</a>
+    <a href="../index.html">Implementación</a>
+    <a href="../backend/index.html">Backend</a>
+    <a href="../docs/index.html">Docs</a>
+    <a href="../hardware/index.html">Hardware</a>
+    <a href="../simulacion/index.html">Simulación</a>
+    <a href="../recursos/index.html">Recursos</a>
+    <a href="../prompts/index.html">Prompts</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="back-home" href="../../index.html">← Volver al inicio</a>
+
+  <section class="hero-mini">
+    <span class="kicker">Backend</span>
+    <h1>API REST de VigiaSenior</h1>
+    <p>
+      Esta carpeta recoge la parte técnica principal del proyecto: el backend en Node.js,
+      TypeScript, Express y Prisma. Aquí se define cómo se reciben las peticiones, cómo se
+      procesan los eventos del sistema, cómo se consulta la base de datos y qué respuestas
+      devuelve la API.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Qué papel tiene este backend</h2>
+
+    <p>
+      En VigiaSenior, el backend es la pieza que da sentido a lo que ocurre en el sistema.
+      El dispositivo o la simulación pueden enviar eventos, pero es el backend quien debe
+      interpretarlos, relacionarlos con la planificación diaria y actualizar el estado de
+      cada toma.
+    </p>
+
+    <p>
+      No se trata solo de tener rutas que respondan. El objetivo es que la API sea coherente:
+      que reciba datos válidos, aplique reglas de negocio, guarde información útil y permita
+      consultar el estado del paciente, del dispositivo y de las alertas.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Cómo leer esta carpeta</h2>
+
+    <p>
+      Si es la primera vez que entras en el backend, no conviene abrir archivos al azar.
+      Una forma sencilla de entender el proyecto es seguir el recorrido de una petición:
+      primero la ruta, después el controlador, luego el servicio y finalmente el repositorio.
+    </p>
+
+    <ul>
+      <li><strong>Ruta:</strong> define el endpoint que recibe la petición.</li>
+      <li><strong>Controlador:</strong> recoge parámetros y cuerpo, valida lo necesario y prepara la respuesta HTTP.</li>
+      <li><strong>Servicio:</strong> aplica la lógica de negocio del proyecto.</li>
+      <li><strong>Repositorio:</strong> realiza las operaciones de lectura y escritura con Prisma.</li>
+      <li><strong>Tests:</strong> comprueban que los endpoints y la lógica se comportan como se espera.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Qué hay que revisar</h2>
+
+    <p>
+      Estos son los puntos principales que conviene localizar antes de empezar a modificar código.
+      La idea es saber dónde vive cada responsabilidad y evitar mezclar lógica de negocio, consultas
+      a base de datos y respuestas HTTP en el mismo sitio.
+    </p>
+
+    <ul>
+      <li><code>src/routes</code>: entrada de la API. Aquí se declaran los endpoints.</li>
+      <li><code>src/controllers</code>: gestión de la petición y la respuesta HTTP.</li>
+      <li><code>src/services</code>: reglas de negocio y decisiones importantes del sistema.</li>
+      <li><code>src/repositories</code>: acceso a datos con Prisma.</li>
+      <li><code>src/validators</code>: validación de parámetros y cuerpos de petición.</li>
+      <li><code>src/types</code>: tipos compartidos entre capas.</li>
+      <li><code>tests</code>: pruebas de endpoints y de lógica.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Flujo básico de una petición</h2>
+
+    <p>
+      Cuando se llama a un endpoint de VigiaSenior, el recorrido normal es parecido a este:
+    </p>
+
+    <ol>
+      <li>El cliente, Postman o el simulador envía una petición a la API.</li>
+      <li>La ruta identifica qué controlador debe ejecutarse.</li>
+      <li>El controlador valida los datos recibidos y llama al servicio correspondiente.</li>
+      <li>El servicio aplica la lógica de negocio: comprueba estados, ventanas temporales, eventos o alertas.</li>
+      <li>El repositorio consulta o actualiza la base de datos usando Prisma.</li>
+      <li>El backend devuelve una respuesta clara al cliente.</li>
+    </ol>
+
+    <p>
+      Entender este flujo ayuda mucho a depurar errores. Si algo falla, no siempre hay que tocarlo
+      todo: primero conviene localizar en qué capa está el problema.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Comandos habituales</h2>
+
+    <p>
+      Estos comandos permiten preparar el entorno, generar Prisma, aplicar migraciones, cargar datos
+      iniciales, ejecutar pruebas y compilar el proyecto. Antes de programar una nueva ruta, merece la
+      pena comprobar que el backend levanta correctamente.
+    </p>
+
+    <pre><code>cd implementacion/backend
 npm install
 cp .env.example .env
 npx prisma generate
 npx prisma migrate dev --name init
 npm run prisma:seed
 npm test
-npm run build</code></pre></section>
-<section class="card"><h2>Endpoints principales</h2><table><tr><th>Método</th><th>Ruta</th><th>Uso</th></tr>
-<tr><td>GET</td><td><code>/health</code></td><td>Comprobar que el servidor responde.</td></tr>
-<tr><td>GET</td><td><code>/api/devices/:deviceId/schedule/today</code></td><td>Consultar el plan del día del dispositivo.</td></tr>
-<tr><td>POST</td><td><code>/api/devices/:deviceId/events</code></td><td>Registrar eventos del pastillero.</td></tr>
-<tr><td>GET</td><td><code>/api/patients/:patientId/dashboard</code></td><td>Consultar resumen del paciente.</td></tr>
-<tr><td>GET</td><td><code>/api/patients/:patientId/alerts</code></td><td>Consultar alertas.</td></tr>
-<tr><td>PATCH</td><td><code>/api/alerts/:alertId/resolve</code></td><td>Resolver una alerta abierta.</td></tr>
-</table></section>
-<section class="callout ok"><strong>Regla clave:</strong> una apertura de cajita no confirma la toma. Para marcar una toma como correcta debe haber apertura y confirmación dentro de la ventana definida.</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
-</body></html>
+npm run build
+npm run dev</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>Endpoints principales</h2>
+
+    <p>
+      Estos endpoints forman el núcleo funcional del backend. Sirven para comprobar que el servidor
+      responde, consultar la planificación diaria, registrar eventos del dispositivo, revisar el estado
+      del paciente y gestionar alertas.
+    </p>
+
+    <table class="table">
+      <tr>
+        <th>Método</th>
+        <th>Ruta</th>
+        <th>Uso</th>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td><code>/health</code></td>
+        <td>Comprobar que el servidor responde.</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td><code>/api/devices/:deviceId/schedule/today</code></td>
+        <td>Consultar el plan del día del dispositivo.</td>
+      </tr>
+      <tr>
+        <td>POST</td>
+        <td><code>/api/devices/:deviceId/events</code></td>
+        <td>Registrar eventos del pastillero o de la simulación.</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td><code>/api/patients/:patientId/dashboard</code></td>
+        <td>Consultar un resumen del estado del paciente.</td>
+      </tr>
+      <tr>
+        <td>GET</td>
+        <td><code>/api/patients/:patientId/alerts</code></td>
+        <td>Consultar alertas asociadas al paciente.</td>
+      </tr>
+      <tr>
+        <td>PATCH</td>
+        <td><code>/api/alerts/:alertId/resolve</code></td>
+        <td>Resolver una alerta abierta.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="callout ok">
+    <strong>Regla clave:</strong> una apertura de cajita no confirma la toma. Para marcar una toma
+    como correcta debe haber apertura y confirmación dentro de la ventana definida. Esta regla afecta
+    a la lógica del servicio, a los eventos guardados y al estado final que devuelve la API.
+  </section>
+
+  <section class="card">
+    <h2>Antes de tocar código</h2>
+
+    <p>
+      Una recomendación sencilla: no empieces modificando servicios o repositorios sin haber probado
+      antes el estado inicial del backend. Primero arranca el servidor, comprueba <code>/health</code>,
+      ejecuta los tests y revisa que la base de datos está preparada.
+    </p>
+
+    <p>
+      A partir de ahí, cualquier cambio debería poder explicarse: qué endpoint afecta, qué regla de
+      negocio modifica, qué datos toca y cómo se ha comprobado que sigue funcionando.
+    </p>
+  </section>
+
+  <p class="footer">VigiaSenior · Implementación técnica</p>
+</main>
+</body>
+</html>
+```
