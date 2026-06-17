@@ -20,90 +20,83 @@
 
 ## 🧭 Introducción
 
- Este repositorio recoge una programación de aula del CFGS de Desarrollo de Aplicaciones Web (DAW) para el módulo 0613 · Desarrollo web en entorno servidor. En esta propuesta didáctica se desarrolla el proyecto VigiaSenior, articulado a partir de una unidad de trabajo basada en el diseño e implementación del backend de un pastillero inteligente, pensado para apoyar el seguimiento de la medicación en personas mayores.
+Este repositorio recoge una programación de aula del **CFGS de Desarrollo de Aplicaciones Web (DAW)** para el módulo **0613 · Desarrollo web en entorno servidor**. En esta propuesta didáctica se desarrolla el proyecto **VigiaSenior**, articulado a partir de una unidad de trabajo basada en el diseño e implementación del **backend de un pastillero inteligente**, pensado para apoyar el seguimiento de la medicación en personas mayores.
 
-La propuesta parte de un problema real y reconocible: La dificultad de mantener rutinas de medicación seguras, controladas y registrables en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación e integración básica con hardware o simulación. 
+La propuesta parte de un problema real y reconocible: La dificultad de mantener rutinas de medicación seguras, controladas y registrables en contextos de envejecimiento, dependencia o supervisión familiar. A partir de ese contexto, el alumnado desarrolla una solución tecnológica en la que convergen análisis, modelado de datos, servicios web, lógica de negocio, persistencia, documentación e integración básica con hardware o simulación.
 
-> El repositorio se ha concebido con una doble finalidad:
+> **El repositorio tiene dos objetivos principales:**
 >
 > - Servir como **programación de aula transferible**, para que otro docente pueda comprenderla y aplicarla con pocas modificaciones.
 > - Actuar como **repositorio técnico del proyecto**, recogiendo backend, hardware, simulación, documentación técnica y materiales de apoyo.
 
-### Normativa
-Para elaborar esta propuesta se ha tomado como referencia la normativa básica del sistema educativo y de la Formación Profesional, así como la normativa específica del título de **Técnico Superior en Desarrollo de Aplicaciones Web** y la normativa curricular aplicable en la **Comunitat Valenciana**.
+## 🎓 Normativa y contexto académico
+
+Para elaborar esta propuesta se ha tomado como referencia la normativa del sistema educativo y de Formación Profesional, así como la normativa específica del título de **Técnico Superior en Desarrollo de Aplicaciones Web** y la normativa curricular aplicable en la **Comunidad Valenciana**.
 
 La normativa completa puede consultarse en [Contextualización y marco legal](./profesorado/02_contextualizacion_y_marco_legal.html).
 
-### 🎓 Contexto académico
+| Campo | Descripción |
+|---|---|
+| Etapa | Formación Profesional |
+| Ciclo | CFGS Desarrollo de Aplicaciones Web (DAW) |
+| Módulo | 0613 · Desarrollo web en entorno servidor |
+| Metodología principal | Aprendizaje Basado en Proyectos (ABP) |
+| Enfoque complementario | Aprendizaje-Servicio (ApS) |
+| Producto técnico | Backend IoT para seguimiento de medicación |
 
-- **Etapa:** Formación Profesional  
-- **Ciclo:** CFGS Desarrollo de Aplicaciones Web (DAW)  
-- **Módulo eje:** 0613 · Desarrollo web en entorno servidor  
-- **Metodología principal:** Aprendizaje Basado en Proyectos (ABP)  
-- **Enfoque complementario:** Aprendizaje-Servicio (ApS), al plantear una solución con potencial utilidad social  
-
-A nivel curricular, el proyecto permite trabajar de forma conjunta contenidos y procedimientos muy vinculados al módulo, como el desarrollo de servicios web, el acceso a bases de datos, la organización de la lógica de negocio y el diseño de una API. Al mismo tiempo, incorpora la integración de eventos procedentes de un dispositivo IoT y refuerza aspectos importantes como la documentación técnica y la exposición oral del proyecto.
-
-
----
+A nivel curricular, el proyecto encaja bien con el módulo porque reúne varias tareas habituales del desarrollo backend: Crear servicios web, trabajar con una base de datos, organizar la lógica de negocio y diseñar una API. El componente IoT se utiliza como contexto del problema, no como objetivo principal, y sirve para dar sentido a los eventos que recibe el sistema. Además, el alumnado debe documentar lo que hace y defender las decisiones tomadas en la exposición final.
 
 ## 🧩 Proyecto
 
-En esta propuesta vamos a desarrollar **VigiaSenior**, un backend para un pastillero inteligente pensado para ayudar en el seguimiento de la medicación en personas mayores. Se trata de un proyecto que parte de una necesidad real y que permite dar sentido a los contenidos del módulo a través de una aplicación práctica, con un claro trasfondo social.
+En esta propuesta se desarrolla **VigiaSenior**, un backend para un pastillero inteligente pensado para ayudar en el seguimiento de la medicación en personas mayores. Se trata de un proyecto que parte de una necesidad real y da sentido a los contenidos del módulo mediante una aplicación práctica con trasfondo social.
 
 Su encaje dentro de **Desarrollo web en entorno servidor** es claro, ya que permite trabajar servicios web, bases de datos, lógica de negocio, diseño de endpoints e integración de eventos procedentes de un dispositivo. En lugar de abordar estos contenidos por separado, se trabajan de manera conjunta dentro de un proyecto único, más cercano a una situación real de desarrollo.
-
-### 🔗 Acceso rápido
-
-- [📘 Guía para profesorado](./profesorado/)
-- [👨‍🎓 Material para alumnado](./alumnado/)
-- [🧪 Apuntes técnicos del alumnado](./alumnado/apuntes/)
-- [🎤 Presentación online](./presentacion/VigiaSenior_presentacion_online.html)
-- [⚙️ Implementación técnica](./implementacion/)
-
----
 
 ## 🎯 Objetivos del proyecto
 
 Con esta propuesta se pretende que el alumnado sea capaz de:
 
-- analizar un problema real y convertirlo en requisitos técnicos;
-- diseñar el modelo de dominio de una aplicación basada en eventos;
-- estructurar una API REST coherente y documentada;
-- implementar la persistencia de datos mediante base de datos relacional;
-- desarrollar lógica de negocio en servidor;
-- integrar software y hardware en una arquitectura sencilla de IoT;
-- documentar el proyecto de forma clara, trazable y reutilizable;
-- defender oralmente la propuesta con base técnica y pedagógica.
+- Analizar un problema real y convertirlo en requisitos técnicos.
+- Diseñar el modelo de dominio de una aplicación basada en eventos.
+- Estructurar una API  coherente y documentada.
+- Implementar la persistencia de datos mediante base de datos relacional.
+- Desarrollar lógica de negocio en servidor.
+- Integrar software y hardware en una arquitectura sencilla de IoT.
+- Documentar el proyecto de forma clara, trazable y reutilizable.
+- Presentar el proyecto y explicar por qué se han tomado las principales decisiones técnicas y didácticas.
 
----
+## 🚀 Resultado esperado del proyecto
 
-## 🚀 Producto mínimo viable (MVP)
+Al finalizar el proyecto, el alumnado habrá desarrollado una primera versión funcional del backend de VigiaSenior, capaz de gestionar la planificación diaria de tomas, recibir eventos simulados de un dispositivo y registrar lo que ocurre durante el seguimiento de la medicación.
 
-El producto mínimo viable del proyecto se apoya en un flujo funcional sencillo pero suficientemente sólido para trabajar en el aula:
+El proyecto se apoya en un flujo funcional sencillo, pero suficientemente sólido para trabajarlo en el aula:
 
-- consulta de planificación diaria;
-- recepción de eventos del dispositivo;
-- registro de apertura de cajita;
-- confirmación de la toma;
-- actualización del estado de la toma;
-- generación de alertas;
-- consulta de dashboard e histórico básico.
+- Consulta de planificación diaria.
+- Recepción de eventos del dispositivo.
+- Registro de apertura de cajita.
+- Confirmación de la toma.
+- actualización del estado de la toma.
+- Generación de alertas.
+- Consulta básica de seguimiento e histórico.
 
-### Endpoints mínimos del backend
+### Endpoints principales del backend
 
-- `GET /health`
-- `GET /api/devices/:deviceId/schedule/today`
-- `POST /api/devices/:deviceId/events`
-- `GET /api/patients/:patientId/dashboard`
-- `GET /api/patients/:patientId/alerts`
-- `PATCH /api/alerts/:alertId/resolve`
+```text
+GET   /health
+GET   /api/devices/:deviceId/schedule/today
+POST  /api/devices/:deviceId/events
+GET   /api/patients/:patientId/dashboard
+GET   /api/patients/:patientId/alerts
+PATCH /api/alerts/:alertId/resolve
+```
 
----
+## 🔌 Hardware del proyecto
 
-## 🔌 Parte hardware del prototipo
+La parte física se plantea en una versión simplificada y asumible para aula, basada en **Arduino Nano ESP32**. Se entrega al inicio del proyecto porque la finalidad principal de la propuesta es el **backend**, no la electrónica ni la configuración hardware.
 
-La parte física se ha planteado en una versión simplificada y asumible para aula, basada en **Arduino Nano ESP32**, y se entrega al inicio del proyecto, ya que la finalidad principal de la propuesta es el **backend**, no el desarrollo eléctrico o la configuración hardware avanzada.
+Se ha elegido una placa basada en ESP32, como Arduino Nano ESP32, porque ofrece un equilibrio muy adecuado entre coste, tamaño y conectividad. Es una opción asequible y fácil de conseguir, también en versiones compatibles de bajo coste, lo que la hace razonable para el contexto academico.
+
+Además, su tamaño reducido encaja mejor en un prototipo de pastillero que otras alternativas más voluminosas, y además integra Wi-Fi y Bluetooth en la propia placa. Esto simplifica mucho el proyecto, ya que evita recurrir a módulos externos adicionales o a soluciones más costosas y complejas, como podría ocurrir con otras placas o con una Raspberry Pi.
 
 ### Configuración del prototipo
 
@@ -113,20 +106,9 @@ La parte física se ha planteado en una versión simplificada y asumible para au
 - 1 buzzer;
 - conexión Wi‑Fi en la versión con backend.
 
-### Mapeo fijo de pines
+### Esquema Propuesto
 
-- **D1–D6** → sensores / pulsadores  
-- **D7–D12** → LEDs  
-- **A0** → botón de confirmación  
-- **A1** → buzzer  
-
-<p align="center">
-  <img src="assets/hardware/esquema-breadboard.png" alt="Esquema de conexión en breadboard" width="820">
-</p>
-
-> Para una primera prueba se recomienda utilizar el sketch de **modo sin backend**, validar cableado y comportamiento local, y solo después pasar al sketch integrado con la API.
-
----
+![Esquema de conexión en breadboard](./assets/hardware/esquema-breadboard.png)
 
 ## 🗂️ Estructura del repositorio
 
@@ -138,178 +120,97 @@ VigiaSenior/
 ├── profesorado/
 ├── presentacion/
 ├── implementacion/
-│   ├── backend/
-│   ├── docs/
-│   ├── hardware/
-│   ├── prompts/
-│   ├── recursos/
-│   ├── simulacion/
-│   └── mkdocs.yml
-├── .gitignore
 ├── LICENSE
 └── README.md
 ```
 
-### 📘 `profesorado/`
-Contiene la documentación pensada para la aplicación didáctica del proyecto:
-
-- guía didáctica;
-- contextualización y justificación;
-- programación de aula;
-- enfoque curricular;
-- metodología y DUA;
-- instrumentos y rúbricas de evaluación.
-
-### 👨‍🎓 `alumnado/`
-Recoge el material de trabajo del alumnado:
-
-- dossier del proyecto;
-- enunciado;
-- fases y entregables;
-- tutoriales;
-- plantillas de análisis, API y documentación.
-
-
-### ⚙️ `implementacion/`
-Agrupa la parte estrictamente técnica del sistema:
-
-- `backend/` → API, modelo de datos, lógica de negocio, validaciones y pruebas;
-- `docs/` → documentación técnica navegable;
-- `hardware/` → sketches Arduino, notas de conexión y esquemas;
-- `prompts/` → apoyo para Copilot Agent;
-- `recursos/` → materiales auxiliares;
-- `simulacion/` → recursos para pruebas y simulación.
-
----
+| Carpeta | Contenido |
+|---|---|
+| 📘 profesorado/ | Guía didáctica, contextualización, programación de aula, currículo, metodología, DUA, instrumentos y rúbricas. |
+| 👨‍🎓 alumnado/ | Dossier, enunciado, fases y entregables, tutoriales y plantillas de análisis, API y documentación. |
+| ⚙️ implementacion/ | Backend, documentación técnica, hardware, prompts, recursos auxiliares y simulación. |
 
 ## 🧰 Materiales incluidos
 
-### Para profesorado
-- guía didáctica;
-- programación de aula;
-- contextualización;
-- currículo y relación RA/CE;
-- metodología y DUA;
-- evaluación;
-- rúbricas.
+### Para profesorado:
 
-### Para alumnado
-- dossier del proyecto;
-- enunciado;
-- fases y entregables;
-- tutoriales;
-- plantillas.
+- Guía didáctica
+- Programación de aula
+- Contextualización
+- Currículo y relación RA/CE
+- Metodología y DUA
+- Evaluación y rúbricas
 
-### Para la implementación
-- backend;
-- sketches Arduino;
-- esquemas de conexión;
-- documentación técnica;
-- recursos de simulación;
-- prompts de apoyo para Copilot Agent.
+### Para alumnado:
 
----
+- Dossier del proyecto
+- Enunciado
+- Fases y entregables
+- Tutoriales
+- Plantillas
+
+### Para la implementación:
+
+- Backend
+- Sketches Arduino
+- Esquemas de conexión
+- Documentación técnica
+- Recursos de simulación
 
 ## 🛠️ Flujo de trabajo recomendado
 
-Para trabajar el proyecto de forma ordenada, se propone la siguiente secuencia:
+El proyecto se plantea como un trabajo progresivo. Primero se entiende el problema y se concreta qué debe hacer el sistema. Después se identifican los datos principales, los eventos que puede recibir el backend y las reglas básicas que debe aplicar.
 
-1. **comprender el problema y el contexto**;
-2. **analizar actores, eventos y reglas de negocio**;
-3. **diseñar el modelo de dominio**;
-4. **definir la API REST**;
-5. **implementar el backend**;
-6. **probar la integración con hardware o simulación**;
-7. **documentar el trabajo**;
-8. **preparar la defensa oral**.
+A partir de ahí, el alumnado diseña una primera versión de la API, implementa el backend por partes y va comprobando su funcionamiento con pruebas sencillas. La simulación del dispositivo o el montaje físico sirven para dar contexto al proyecto, pero no son el centro de la evaluación.
 
-Este orden permite mantener una evolución lógica del proyecto y facilita tanto la evaluación como la transferencia a otros contextos docentes.
-
----
+La parte final se dedica a ordenar la documentación, revisar el trabajo realizado y preparar una presentación breve en la que cada grupo explique qué ha construido, qué decisiones ha tomado y qué partes mejoraría si continuara el desarrollo.
 
 ## 🧠 Metodología de aula
 
 La propuesta se apoya en una metodología basada en:
 
-- aprendizaje basado en proyectos;
-- resolución de un problema significativo;
-- trabajo cooperativo en pequeños grupos;
-- desarrollo incremental por fases;
-- uso de GitHub como herramienta de trazabilidad y documentación;
-- revisión progresiva de entregables.
+- Aprendizaje basado en proyectos
+- Resolución de un problema significativo
+- Trabajo cooperativo en grupos de 3
+- Desarrollo incremental por fases
+- Uso de GitHub como herramienta de trazabilidad y documentación
+- Revisión progresiva de entregables
 
 La parte técnica no se plantea como una simple acumulación de código, sino como un producto que debe ser **comprensible, justificable y transferible**.
 
----
-
 ## 📏 Evaluación
 
-La evaluación del proyecto no se limita a verificar si “funciona” técnicamente, sino que contempla la coherencia global de la propuesta.
+La evaluación no se plantea como una simple comprobación de si el backend “funciona” o no. El funcionamiento técnico es importante, pero se valora dentro de un conjunto más amplio de evidencias que permiten comprobar cómo ha trabajado el grupo y cómo ha justificado sus decisiones.
 
-Se valoran especialmente:
+A lo largo del proyecto se recogerán distintas evidencias evaluables: el análisis inicial del problema, el diseño del modelo de datos, la definición de la API, la implementación del backend, las pruebas realizadas, la documentación técnica y la presentación final.
 
-- la adecuación curricular;
-- la claridad de la programación de aula;
-- la viabilidad del proyecto;
-- la calidad técnica del backend;
-- la documentación generada;
-- la aplicabilidad del repositorio por parte de otro docente;
-- la calidad de la presentación oral.
+Estas evidencias permiten valorar especialmente:
 
-Las rúbricas y criterios de evaluación se encuentran en la carpeta `profesorado/`.
+- Si el alumnado comprende el problema planteado y lo traduce a una solución técnica viable
+- Si el modelo de datos, la API y la lógica del backend son coherentes entre sí.
+- Si el grupo prueba el sistema y corrige errores de forma razonada
+- Si la documentación permite entender el trabajo realizado
+- Si la presentación final explica con claridad las decisiones tomadas, las dificultades encontradas y las posibles mejoras
 
----
-
-## 🗣️ Presentación y defensa
-
-La parte final del proyecto no se reduce a mostrar código, sino a defender una propuesta didáctica y técnica integrada.
-
-La presentación debe permitir explicar:
-
-- el problema de partida;
-- el encaje curricular;
-- la situación de aprendizaje;
-- la secuencia de trabajo;
-- el producto técnico desarrollado;
-- el valor del repositorio como material transferible;
-- la demo funcional del backend y/o del prototipo.
-
----
-
-## 📚 Documentación técnica navegable
-
-Dentro de `implementacion/` se incluye configuración para **MkDocs**, con el objetivo de consultar la documentación técnica de forma estructurada.
-
-Para levantar esa documentación:
-
-```bash
-cd implementacion
-mkdocs serve
-```
-
----
+Las rúbricas y criterios de evaluación se encuentran en la carpeta [profesorado/](./profesorado/).
 
 ## 🧾 Cómo leer este repositorio
 
 Si es la primera vez que accedes al proyecto, el orden de lectura recomendado es:
 
-1. este `README.md`;
-2. `profesorado/`;
-3. `alumnado/`;
-4. `presentacion/`;
-5. `implementacion/backend/`;
-6. `implementacion/hardware/`;
-7. `implementacion/docs/`.
-
----
+1. esta portada;
+2. [Profesorado/](./profesorado/)
+3. [Alumnado/](./alumnado/)
+4. [Presentacion/](./presentacion/VigiaSenior_presentacion_online.html)
+5. [Implementacion/backend/](./implementacion/backend/)
+6. [Implementacion/hardware/](./implementacion/hardware/)
+7. [Implementacion/docs/](./implementacion/docs/)
 
 ## ⚖️ Licencia y reutilización
 
 El repositorio incluye una licencia en el archivo `LICENSE`.
 
 En caso de reutilización docente, se recomienda mantener la atribución del proyecto y respetar el carácter académico de los materiales, especialmente de aquellos concebidos como propuesta transferible para aula.
-
----
 
 ## ✅ Cierre
 
