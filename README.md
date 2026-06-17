@@ -201,7 +201,7 @@ Si es la primera vez que accedes al proyecto, el orden de lectura recomendado es
 1. esta portada;
 2. [Profesorado/](./profesorado/)
 3. [Alumnado/](./alumnado/)
-4. [Presentacion/](./presentacion/VigiaSenior_presentacion_online.html)
+4. [Presentacion/](./presentacion/VigiaSenior%20Aula%20basada%20en%20proyecto%20y%20backend%20de%20pastillero%20inteligente-8.pdf)
 5. [Implementacion/backend/](./implementacion/backend/)
 6. [Implementacion/hardware/](./implementacion/hardware/)
 7. [Implementacion/docs/](./implementacion/docs/)
