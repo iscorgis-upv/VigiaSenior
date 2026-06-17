@@ -1,20 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wokwi Local Test · VigiaSenior</title><link rel="stylesheet" href="../../styles.css"/></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wokwi · prueba local · VigiaSenior</title>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 <body>
-<header class="hero"><div class="wrap"><h1>Wokwi Local Test</h1><p>Simulación del flujo del pastillero.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+<a class="back-home" href="../../../index.html">← Volver al inicio</a>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" style="color:#dbeafe">VigiaSenior</div>
+    <h1>Wokwi · prueba local</h1>
+    <p>Escenario de simulación en modo local para apoyar la comprensión del flujo IoT.</p>
+    <div class="badges"><span class="badge">DAW</span><span class="badge">Backend</span><span class="badge">Propuesta transferible</span></div>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap"><a href="../../../index.html">Inicio</a><a href="../../index.html">Implementación</a><a href="../index.html">Simulación</a><a href="../../hardware/index.html">Hardware</a><a href="../../backend/index.html">Backend</a></div></nav>
+<main class="wrap">
 
-<nav class="topnav"><div class="wrap">
-  <a href="../../../index.html">Inicio</a>
-  <a href="../../index.html">Implementación</a>
-  <a href="../../backend/index.html">Backend</a>
-  <a href="../../docs/index.html">Docs</a>
-  <a href="../../hardware/index.html">Hardware</a>
-  <a href="../../simulacion/index.html">Simulación</a>
-  <a href="../../recursos/index.html">Recursos</a>
-  <a href="../../prompts/index.html">Prompts</a>
-</div></nav>
-<main class="wrap"><a class="back-home" href="../../../index.html">← Volver al inicio</a><section class="hero-mini"><span class="kicker">Wokwi</span><h1>wokwi local test</h1><p>Archivos de simulación listos para copiar en Wokwi.</p></section>
-<section class="grid cards"><article class="card-mini"><h3>README</h3><p>Instrucciones de uso de esta simulación.</p><a class="btn" href="README.html">Abrir guía</a></article><article class="card-mini"><h3>diagram.json</h3><p>Diagrama del montaje virtual.</p><a class="btn" href="diagram.json">Abrir JSON</a></article><article class="card-mini"><h3>sketch.ino</h3><p>Código del microcontrolador.</p><a class="btn" href="sketch.ino">Abrir sketch</a></article></section><p class="footer">VigiaSenior · Implementación técnica</p></main>
-</body></html>
+<section class="card"><h2>Qué representa este escenario</h2><p>Este recurso permite simular el comportamiento básico del pastillero sin depender de un montaje físico completo. La finalidad no es sustituir el backend ni el análisis del problema, sino facilitar pruebas controladas y explicar de dónde salen los eventos que recibe la API.</p></section>
+<section class="card"><h2>Archivos incluidos</h2><ul><li><code>diagram.json</code>: define los componentes y conexiones del circuito simulado.</li><li><code>sketch.ino</code>: contiene el comportamiento programado del dispositivo.</li><li><code>README.html</code>: resume el uso del escenario y sus límites.</li></ul></section>
+<section class="card"><h2>Qué debería observar el alumnado</h2><ul><li>Qué acción del usuario genera cada evento.</li><li>Qué datos necesita el backend para interpretar esa acción.</li><li>Qué diferencia hay entre simular una entrada y registrar una toma real.</li><li>Qué limitaciones tiene la simulación respecto a un dispositivo físico.</li></ul></section>
+<p><a class="btn secondary" href="README.html">Leer README del escenario</a></p>
+
+<p class="footer">VigiaSenior · Simulación</p>
+</main>
+</body>
+</html>

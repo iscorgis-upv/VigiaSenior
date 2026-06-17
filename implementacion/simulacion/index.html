@@ -1,23 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Simulación · VigiaSenior</title><link rel="stylesheet" href="../styles.css"/></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulación del prototipo · VigiaSenior</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
 <body>
-<header class="hero"><div class="wrap"><h1>Simulación</h1><p>Proyectos Wokwi para probar el comportamiento del pastillero.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Implementación técnica</span></div></div></header>
+<a class="back-home" href="../../index.html">← Volver al inicio</a>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" style="color:#dbeafe">VigiaSenior</div>
+    <h1>Simulación del prototipo</h1>
+    <p>Alternativa para trabajar el flujo IoT sin depender del montaje físico.</p>
+    <div class="badges"><span class="badge">DAW</span><span class="badge">Backend</span><span class="badge">Propuesta transferible</span></div>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap"><a href="../../index.html">Inicio</a><a href="../index.html">Implementación</a><a href="../backend/index.html">Backend</a><a href="../docs/index.html">Docs</a><a href="../hardware/index.html">Hardware</a><a href="../simulacion/index.html">Simulación</a><a href="../recursos/index.html">Recursos</a><a href="../prompts/index.html">Prompts</a></div></nav>
+<main class="wrap">
 
-<nav class="topnav"><div class="wrap">
-  <a href="../../index.html">Inicio</a>
-  <a href="../index.html">Implementación</a>
-  <a href="../backend/index.html">Backend</a>
-  <a href="../docs/index.html">Docs</a>
-  <a href="../hardware/index.html">Hardware</a>
-  <a href="../simulacion/index.html">Simulación</a>
-  <!--<a href="../recursos/index.html">Recursos</a>
-  <a href="../prompts/index.html">Prompts</a>-->
-</div></nav>
-<main class="wrap"><a class="back-home" href="../../index.html">← Volver al inicio</a><section class="hero-mini"><span class="kicker">Simulación</span><h1>Pruebas con Wokwi</h1><p>La simulación permite practicar el flujo antes de depender del montaje físico.</p></section>
-<section class="grid cards">
-  <article class="card-mini"><h3>Modo local</h3><p>Prueba el flujo sin WiFi ni backend.</p><a class="btn" href="wokwi_local_test/index.html">Abrir</a></article>
-  <article class="card-mini"><h3>Modo backend</h3><p>Versión preparada para conectar con la API.</p><a class="btn" href="wokwi_backend_ready/index.html">Abrir</a></article>
-</section><p class="footer">VigiaSenior · Implementación técnica</p></main>
-</body></html>
+<section class="card"><h2>Por qué incluir simulación</h2><p>La simulación permite trabajar el proyecto cuando no hay hardware suficiente, cuando el grupo aún no tiene el backend preparado o cuando se quiere aislar un problema. Para una propuesta transferible, esto es importante: otro docente puede aplicar VigiaSenior aunque no disponga del mismo material físico.</p></section>
+<section class="grid cards"><article class="card-mini"><h3>Wokwi · prueba local</h3><p>Escenario para comprobar entradas y salidas sin conexión real con el backend.</p><a class="btn" href="wokwi_local_test/index.html">Abrir</a></article><article class="card-mini"><h3>Wokwi · preparado para backend</h3><p>Escenario orientado a enviar eventos o representar la integración con la API.</p><a class="btn" href="wokwi_backend_ready/index.html">Abrir</a></article></section>
+<section class="card"><h2>Uso recomendado</h2><ol><li>Validar primero el comportamiento local: botones, LEDs, buzzer y estados.</li><li>Definir qué evento debe generar cada acción.</li><li>Probar esos eventos manualmente contra el backend.</li><li>Solo después conectar simulación y API si el tiempo lo permite.</li></ol><p>La simulación no debe convertirse en una segunda implementación paralela. Su valor está en hacer visible el flujo dispositivo-backend y facilitar pruebas.</p></section>
+
+<p class="footer">VigiaSenior · Simulación</p>
+</main>
+</body>
+</html>

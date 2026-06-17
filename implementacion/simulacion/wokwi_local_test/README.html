@@ -1,29 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wokwi Local Test · VigiaSenior</title><link rel="stylesheet" href="../../styles.css"/></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wokwi · prueba local · README · VigiaSenior</title>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 <body>
-<header class="hero"><div class="wrap"><h1>Wokwi Local Test</h1><p>Prueba local del pastillero sin depender del backend.</p><div class="badges"><span class="badge">VigiaSenior</span><span class="badge">Simulación</span></div></div></header>
-<nav class="topnav"><div class="wrap">
-  <a href="../../../index.html">Inicio</a>
-  <a href="../../index.html">Implementación</a>
-  <a href="../../backend/index.html">Backend</a>
-  <a href="../../docs/index.html">Docs</a>
-  <a href="../../hardware/index.html">Hardware</a>
-  <a href="../../simulacion/index.html">Simulación</a>
-</div></nav>
-<main class="wrap"><a class="back-home" href="index.html">← Volver a la simulación</a>
-<section class="hero-mini"><span class="kicker">Guía rápida</span><h1>Simulación local</h1><p>Sirve para comprobar entradas, salidas y flujo básico antes de conectar con la API.</p></section>
-<section class="card">
-<h2>Cómo usar estos archivos</h2>
-<ol>
-<li>Abre Wokwi y crea un proyecto compatible con Arduino.</li>
-<li>Copia el contenido de <code>diagram.json</code> en el diagrama del proyecto.</li>
-<li>Copia el contenido de <code>sketch.ino</code> en el archivo principal del sketch.</li>
-<li>Ejecuta la simulación y revisa la salida por monitor serie.</li>
-</ol>
-<p>Esta versión es útil para validar cableado lógico, pulsadores, LEDs y comportamiento general sin mezclar todavía problemas de red.</p>
-<div class="btn-row"><a class="btn" href="diagram.json">Ver diagram.json</a><a class="btn btn-secondary" href="sketch.ino">Ver sketch.ino</a></div>
-</section>
-<p class="footer">VigiaSenior · Implementación técnica</p></main>
-</body></html>
+<a class="back-home" href="../../../index.html">← Volver al inicio</a>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker" style="color:#dbeafe">VigiaSenior</div>
+    <h1>Wokwi · prueba local · README</h1>
+    <p>Notas de uso del escenario de simulación.</p>
+    <div class="badges"><span class="badge">DAW</span><span class="badge">Backend</span><span class="badge">Propuesta transferible</span></div>
+  </div>
+</header>
+<nav class="topnav"><div class="wrap"><a href="../../../index.html">Inicio</a><a href="../../index.html">Implementación</a><a href="../index.html">Simulación</a><a href="../../hardware/index.html">Hardware</a><a href="../../backend/index.html">Backend</a></div></nav>
+<main class="wrap">
+
+<section class="card"><h2>Uso del escenario</h2><p>Abre el proyecto en Wokwi o en el entorno compatible que se vaya a utilizar. Revisa primero el diagrama para identificar entradas y salidas. Después ejecuta el sketch y comprueba qué ocurre al activar cada entrada.</p></section>
+<section class="card"><h2>Qué no demuestra esta simulación</h2><p>La simulación no garantiza que un montaje físico vaya a funcionar igual, ni que el backend esté correctamente implementado. Solo permite aislar una parte del sistema y comprobar el flujo lógico. Por eso debe acompañarse de pruebas de API y documentación.</p></section>
+<section class="card"><h2>Relación con la entrega</h2><p>Si el equipo usa simulación, debe indicarlo en la memoria técnica y explicar qué parte del sistema se ha validado con ella. No pasa nada por no tener hardware real si el alcance se declara correctamente y las pruebas están bien documentadas.</p></section>
+
+<p class="footer">VigiaSenior · Simulación</p>
+</main>
+</body>
+</html>
