@@ -12,7 +12,13 @@
   <div class="hero-mini">
     <div class="kicker">VigiaSenior · Apuntes completos para alumnado</div>
     <h1>01 · Fundamentos: qué es un backend, qué es una API y qué es un endpoint</h1>
-    <p>Este manual aclara la base conceptual del proyecto. Antes de hablar de archivos, rutas o tests, hay que entender qué papel tiene el backend dentro de VigiaSenior.</p>
+    <p>Este manual aclara la base conceptual del proyecto. Antes de hablar de archivos, rutas o tests, hay que entender qué papel tiene el backend dentro de VigiaSenior.
+      
+      Primero vamos a revisar los conceptos básicos Después, al final de la sección, tendrás un vídeo que explica la diferencia entre 
+      frontend y backend de forma visual, además de detallar el resto de conceptos. 
+      La idea es que puedas leer la explicación, ver el ejemplo y llegar al desarrollo de VigiaSenior con los conceptos bien entendidos.
+
+    </p>
     <a class="btn secondary" href="index.html">← Volver al índice</a>
   </div>
   <section class="card"><h2>1. Qué es un backend</h2>
@@ -94,33 +100,39 @@ POST /api/devices/:deviceId/events
 <tr><td>Repository</td><td>Capa que accede a la base de datos.</td></tr>
 </tbody>
 </table>
-  <section class="card">
-    <h2>Frontend y backend</h2>
+<section class="card">
+  <h2>8. Resumen de Conceptos</h2>
 
-    <p>
-      Cuando una aplicación se divide en partes, solemos hablar de frontend y backend.
-      El frontend es la parte visible con la que interactúa la persona usuaria. El backend,
-      en cambio, es la parte que trabaja por detrás: recibe peticiones, procesa información,
-      accede a la base de datos, aplica reglas y devuelve respuestas.
-    </p>
+  <p>
+    Antes de empezar con VigiaSenior, interesa tener clara una idea básica: una aplicación web
+    suele dividirse en varias partes que trabajan juntas. El usuario no ve todo lo que
+    ocurre por dentro; normalmente interactúa con una pantalla, pero detrás hay otros elementos
+    que reciben información, la procesan y devuelven una respuesta.
+  </p>
 
-    <p>
-      Como a veces una imagen vale más que mil palabras, os dejamos un vídeo breve donde se
-      explica esta diferencia de forma visual. La idea es que os ayude a aclarar conceptos
-      antes de entrar en la API de VigiaSenior y en el papel que tendrá nuestro backend dentro
-      del proyecto.
-    </p>
+  <p>
+    En este proyecto nos vamos a centrar especialmente en el <strong>backend</strong>. Es decir,
+    en la parte que trabaja por detrás: recibe peticiones, procesa datos, consulta la base de datos,
+    aplica reglas de negocio y responde al frontend, al dispositivo o a la simulación.
+  </p>
 
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/50RbVujPPGs?si=BYheKdH_1dVKJraH"
-        title="Vídeo explicativo sobre frontend y backend"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
+  <p>
+    Para terminar de aterrizar esta idea, os dejamos un vídeo que explica de forma visual qué
+    diferencia hay entre frontend y backend y cómo se comunican entre ellos. Conviene verlo antes
+    de avanzar con la API de VigiaSenior, porque el proyecto se centra precisamente en construir
+    esa parte que no se ve, pero que hace que el sistema funcione.
+  </p>
+
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/50RbVujPPGs?si=BYheKdH_1dVKJraH"
+      title="Vídeo explicativo sobre frontend y backend"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 </main>
 </body>
 </html>
